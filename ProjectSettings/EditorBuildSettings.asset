@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/_Solitaire/Scenes/Boot.unity
+    guid: 7679bf4d5ef16c5499267d0bc585f9b4
+  - enabled: 1
+    path: Assets/_Solitaire/Scenes/Loading.unity
+    guid: 615ed635a88aff9479cbdf3d9a3c5366
+  - enabled: 1
+    path: Assets/_Solitaire/Scenes/Home.unity
+    guid: 1f4e8ffae09a01c44aa02d61bf7fa157
+  - enabled: 1
+    path: Assets/_Solitaire/Scenes/Gameplay.unity
+    guid: 00a570977b87d9348923c2ba92bb58b0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
