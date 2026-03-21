@@ -7,6 +7,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     {
         public CardType cardType;
         public CardContentType contentType;
+        public string cardCategory;
         public string cardContent;
     }
 }

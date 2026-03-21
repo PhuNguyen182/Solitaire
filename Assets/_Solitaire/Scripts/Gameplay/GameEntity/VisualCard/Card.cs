@@ -1,3 +1,4 @@
+using _Solitaire.Scripts.Gameplay.GameEntity.CardGroup;
 using TMPro;
 using UnityEngine;
 
@@ -9,14 +10,21 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         [SerializeField] private TMP_Text cardText;
         [SerializeField] private SpriteRenderer cardIcon;
         [SerializeField] private GameObject foundationMark;
+        [SerializeField] private BoxCollider2D cardCollider;
 
         private CardModel _cardModel;
+        private CardGroupData _cardGroupData;
         private Vector3 _initialPosition;
         private bool _isDraggable;
         
         public CardType CardType => cardType;
         public bool IsDraggable => this._isDraggable;
+        public string CardCategory => this._cardModel.cardCategory;
         
+        public void SetCardGroupData(CardGroupData cardGroupData) => this._cardGroupData = cardGroupData;
+
+        #region Card Movement
+
         public void SetDraggable(bool isDraggable) => this._isDraggable = isDraggable;
 
         public void SetInitialPosition(Vector3 position)
@@ -28,6 +36,20 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void FollowPosition(Vector3 position) => this.transform.position = position;
 
         public void SnapToInitialPosition() => this.transform.position = this._initialPosition;
+
+        #endregion
+
+        #region Card Interaction
+        
+        public void SetCardInteractable(bool isInteractable) => this.cardCollider.enabled = isInteractable;
+
+        public bool IsSameCategory(Card card)
+        {
+            bool isSameCategory = string.CompareOrdinal(this.CardCategory, card.CardCategory) == 0;
+            return isSameCategory;
+        }
+
+        #endregion
 
         public void BindModel(CardModel model)
         {
