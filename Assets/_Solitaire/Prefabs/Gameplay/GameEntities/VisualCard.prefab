@@ -456,6 +456,7 @@ MonoBehaviour:
   cardText: {fileID: 6047206874569999135}
   cardIcon: {fileID: 8904900089505232813}
   foundationMark: {fileID: 7587100813923559415}
+  cardCollider: {fileID: 1258641980810064367}
 --- !u!50 &6296487091901575729
 Rigidbody2D:
   serializedVersion: 5
@@ -513,7 +514,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
