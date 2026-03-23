@@ -21,11 +21,13 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public void AppendCard(Card card)
         {
             this._cardGroupData.AppendCards(card);
+            // TODO: Add card to visual card, update card group data and update card positions
         }
 
         public void RemoveCard(Card card)
         {
             this._cardGroupData.RemoveCard(card);
+            // TODO: Add card to visual card, update card group data and update card positions
         }
 
         private void ToggleFoundationMark(bool isFoundation)

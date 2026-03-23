@@ -17,6 +17,7 @@ namespace _Solitaire.Scripts.GameInput
         public bool IsInputActive { get; set; } = true;
         
         public Vector2 ScreenPointerPosition { get; private set; }
+        public Vector2 ViewportPointerPosition { get; private set; }
         public Vector2 WorldPointerPosition { get; private set; }
         
         public event Action OnPointerDown; 
@@ -83,8 +84,11 @@ namespace _Solitaire.Scripts.GameInput
         {
             this.SetupCameraForInput();
             this.ScreenPointerPosition = this.IsInputActive ? context.ReadValue<Vector2>() : Vector2.zero;
-            if (this.inputCamera)
-                this.WorldPointerPosition = this.inputCamera.ScreenToWorldPoint(this.ScreenPointerPosition);
+            if (!this.inputCamera) 
+                return;
+            
+            this.ViewportPointerPosition = this.inputCamera.ScreenToViewportPoint(this.ScreenPointerPosition);
+            this.WorldPointerPosition = this.inputCamera.ScreenToWorldPoint(this.ScreenPointerPosition);
         }
 
         private void UpdatePointerClicked(InputAction.CallbackContext context)

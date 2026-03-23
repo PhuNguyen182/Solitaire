@@ -20,6 +20,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public CardType CardType => cardType;
         public bool IsDraggable => this._isDraggable;
         public string CardCategory => this._cardModel.cardCategory;
+        public CardGroupData CardGroupData => this._cardGroupData;
         
         public void SetCardGroupData(CardGroupData cardGroupData) => this._cardGroupData = cardGroupData;
 
@@ -27,7 +28,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void SetDraggable(bool isDraggable) => this._isDraggable = isDraggable;
 
-        public void SetInitialPosition(Vector3 position)
+        public void UpdateNewInitialPosition(Vector3 position)
         {
             this._initialPosition = position;
             this.transform.position = position;

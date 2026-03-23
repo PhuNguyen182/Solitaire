@@ -119,6 +119,88 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &588313960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 588313961}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &588313961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588313960}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &743247304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 743247306}
+  - component: {fileID: 743247305}
+  m_Layer: 0
+  m_Name: DragController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &743247305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743247304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a63ed5d3a99bed4fae4bc8e648b0ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::_Solitaire.Scripts.Gameplay.Controller.DragController
+  inputController: {fileID: 1404188777}
+  visualCardLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  cardPlaceholderLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!4 &743247306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743247304}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &933380059
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,35 +280,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1404188776 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7333552767473244827, guid: 4ff4d11d3aa27274283d009b0594cad1, type: 3}
-  m_PrefabInstance: {fileID: 374977448471797973}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1404188777 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5485349912455179316, guid: 4ff4d11d3aa27274283d009b0594cad1, type: 3}
   m_PrefabInstance: {fileID: 374977448471797973}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404188776}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46e1e8068f1f8e045b9ae380cadc156d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Solitaire.Scripts.GameInput.InputController
---- !u!114 &1404188779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404188776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8c02026e6ed847468ab9bf97be30a85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestCode
-  inputController: {fileID: 1404188777}
 --- !u!1 &1510024737
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,10 +588,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7333552767473244827, guid: 4ff4d11d3aa27274283d009b0594cad1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1404188779}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ff4d11d3aa27274283d009b0594cad1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -537,3 +598,5 @@ SceneRoots:
   - {fileID: 1510024741}
   - {fileID: 933380062}
   - {fileID: 374977448471797973}
+  - {fileID: 588313961}
+  - {fileID: 743247306}
