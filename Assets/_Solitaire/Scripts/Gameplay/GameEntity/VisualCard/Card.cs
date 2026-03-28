@@ -1,6 +1,7 @@
-using _Solitaire.Scripts.Gameplay.GameEntity.CardGroup;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using TMPro;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 {
@@ -8,9 +9,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     {
         [SerializeField] private CardType cardType;
         [SerializeField] private TMP_Text cardText;
+        [SerializeField] private LayerMask cardLayer;
         [SerializeField] private SpriteRenderer cardIcon;
         [SerializeField] private GameObject foundationMark;
         [SerializeField] private BoxCollider2D cardCollider;
+        [SerializeField] private SortingGroup cardSortingGroup;
 
         private CardModel _cardModel;
         private CardGroup.CardGroup _cardGroup;
@@ -21,8 +24,21 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public bool IsDraggable => this._isDraggable;
         public string CardCategory => this._cardModel.cardCategory;
         public CardGroup.CardGroup CardGroup => this._cardGroup;
+
+        private void Awake()
+        {
+            this._initialPosition = this.transform.position;
+        }
+
+        public void SetOrderLayer(int sortingOrder) => this.cardSortingGroup.sortingOrder = sortingOrder;
         
-        public void SetCardGroupData(CardGroup.CardGroup cardGroup) => this._cardGroup = cardGroup;
+        public void SetCardGroup(CardGroup.CardGroup cardGroup) => this._cardGroup = cardGroup;
+
+        public void CardPickedUp()
+        {
+            this.SetCardInteractable(false);
+            this._cardGroup?.SetCardsInGroupInteractable(false);
+        }
 
         #region Card Movement
 
@@ -34,9 +50,19 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.transform.position = position;
         }
 
-        public void FollowPosition(Vector3 position) => this.transform.position = position;
+        public void FollowPosition(Vector3 position)
+        {
+            if (this._cardGroup == null)
+                this.transform.position = position;
+            else
+                this._cardGroup.FollowPointer(position);
+        }
 
-        public void SnapToInitialPosition() => this.transform.position = this._initialPosition;
+        public void SnapToInitialPosition()
+        {
+            this.transform.position = this._initialPosition;
+            this.CardReleased(this._initialPosition);
+        }
 
         #endregion
 
@@ -44,10 +70,35 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         
         public void SetCardInteractable(bool isInteractable) => this.cardCollider.enabled = isInteractable;
 
+        public void AppendCardToGroup(params Card[] card)
+        {
+            this._cardGroup ??= new CardGroup.CardGroup();
+            this._cardGroup.AppendCards(card);
+        }
+        
         public bool IsSameCategory(Card card)
         {
             bool isSameCategory = string.CompareOrdinal(this.CardCategory, card.CardCategory) == 0;
             return isSameCategory;
+        }
+
+        public List<Card> CheckAvailableCardOnDropDown()
+        {
+            Collider2D[] cardColliders =
+                Physics2D.OverlapBoxAll(this.transform.position, this.cardCollider.size, 0, this.cardLayer);
+            if (cardColliders is not { Length: > 0 }) 
+                return null;
+            
+            int count = cardColliders.Length;
+            List<Card> result = new();
+
+            for (int i = 0; i < count; i++)
+            {
+                if (cardColliders[i].gameObject.TryGetComponent(out Card card))
+                    result.Add(card);
+            }
+
+            return result;
         }
 
         #endregion
@@ -100,6 +151,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             if (this.foundationMark)
                 this.foundationMark.SetActive(isFoundation);
+        }
+        
+        private void CardReleased(Vector3 snapPosition)
+        {
+            this._cardGroup?.SnapDown(snapPosition);
+            this._cardGroup?.ReleaseDraggingCard();
+            this.SetCardInteractable(true);
+            this._cardGroup?.SetCardsInGroupInteractable(true);
         }
     }
 }

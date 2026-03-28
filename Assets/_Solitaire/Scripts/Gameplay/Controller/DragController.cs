@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Solitaire.Scripts.GameInput;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
@@ -33,16 +34,46 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             Vector2 pointerPosition = this.inputController.WorldPointerPosition;
             this._pickedCard.FollowPosition(pointerPosition);
         }
+
+        private Card FindClosestCardToPointer(Vector3 pointerPosition, List<Card> cards)
+        {
+            Card closestCard = null;
+            int count = cards.Count;
+            float minDistance = Mathf.Infinity;
+            
+            for (int i = 0; i < count; i++)
+            {
+                float squaredDistance = (cards[i].transform.position - pointerPosition).sqrMagnitude;
+                if (squaredDistance < minDistance * minDistance)
+                {
+                    closestCard = cards[i];
+                    minDistance = Mathf.Sqrt(squaredDistance);
+                }
+            }
+            
+            return closestCard;
+        }
         
         private void PickupCard()
         {
             Vector2 pointerPosition = this.inputController.WorldPointerPosition;
-            Collider2D cardCollider = Physics2D.OverlapPoint(pointerPosition, this.cardPlaceholderLayer);
-            if (!cardCollider || !cardCollider.TryGetComponent(out Card card)) 
+            Collider2D[] cardColliders = Physics2D.OverlapPointAll(pointerPosition, this.visualCardLayer);
+            int count = cardColliders.Length;
+            List<Card> cards = new();
+            
+            for (int i = 0; i < count; i++)
+            {
+                if (cardColliders[i].TryGetComponent(out Card card))
+                    cards.Add(card);
+            }
+            
+            Card closestCard = this.FindClosestCardToPointer(pointerPosition, cards);
+            if (!closestCard)
                 return;
             
             this._isCardDragging = true;
-            this._pickedCard = card;
+            this._pickedCard = closestCard;
+            this._pickedCard.CardPickedUp();
         }
 
         private void DropCard()
@@ -71,25 +102,28 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 !cardPlaceholderCollider.TryGetComponent(out CardPlaceholder cardPlaceholder)) 
                 return false;
             
-            this._pickedCard.UpdateNewInitialPosition(cardPlaceholder.transform.position);
             cardPlaceholder.AppendCard(this._pickedCard);
             return true;
         }
 
         private bool StackCardInAGroup()
         {
-            Vector2 pointerPosition = this.inputController.WorldPointerPosition;
-            Collider2D cardPlaceholderCollider = Physics2D.OverlapPoint(pointerPosition, this.visualCardLayer);
-
-            if (!cardPlaceholderCollider ||
-                !cardPlaceholderCollider.TryGetComponent(out Card card)) 
+            List<Card> checkCards = this._pickedCard.CheckAvailableCardOnDropDown();
+            if (checkCards is not { Count: > 0 })
                 return false;
 
-            if (!card.IsSameCategory(this._pickedCard))
+            Card sampleCard = checkCards[0];
+            if (!sampleCard.IsSameCategory(this._pickedCard))
                 return false;
+
+            if (this._pickedCard.CardGroup == null)
+                sampleCard.AppendCardToGroup(this._pickedCard);
+            else
+            {
+                Card[] elementCards = this._pickedCard.CardGroup.ElementCards.ToArray();
+                sampleCard.AppendCardToGroup(elementCards);
+            }
             
-            this._pickedCard.UpdateNewInitialPosition(card.transform.position);
-            card.CardGroup.AppendCards(this._pickedCard);
             return true;
         }
 

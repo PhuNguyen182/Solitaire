@@ -1,43 +1,61 @@
 using System;
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
+using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
 {
     public class CardGroup : IDisposable
     {
-        private string _cardCategory;
+        private const string VisualCardLayerName = "Card";
+        
+        private readonly LayerMask _visualCardLayer = LayerMask.GetMask(VisualCardLayerName);
+        private readonly List<Vector3> _cardPositionOffsets = new();
         private readonly List<Card> _elementCards = new();
+        
+        private bool _isDisposed;
+        private Card _selectedCard;
+        private Vector3 _initialPosition;
+        private string _cardCategory;
         
         public event Action OnCardAdded;
         public event Action OnCardGroupFreed;
         
         public List<Card> ElementCards => this._elementCards;
 
-        public CardGroup()
+        public void SetCardsInGroupInteractable(bool isInteractable)
         {
-            this._cardCategory = null;
-            this._elementCards.Clear();
+            int count = this._elementCards.Count;
+            for (int i = 0; i < count; i++)
+                this._elementCards[i].SetCardInteractable(isInteractable);
         }
-        
+
         public void AppendCards(params Card[] cards)
         {
             int count = cards.Length;
+            int currentCardsInGroupCount = this._elementCards.Count;
             for (int i = 0; i < count; i++)
             {
+                Card card = cards[i];
                 if (this._elementCards.Count <= 0)
                 {
-                    this._cardCategory = cards[i].CardCategory;
-                    cards[i].SetCardGroupData(this);
-                    this._elementCards.Add(cards[i]);
+                    this._cardCategory = card.CardCategory;
+                    this._initialPosition = card.transform.position;
+                    card.UpdateNewInitialPosition(this._initialPosition);
+                    card.SetCardGroup(this);
+                    this._elementCards.Add(card);
                 }
                 else
                 {
-                    if (string.CompareOrdinal(cards[i].CardCategory, this._cardCategory) != 0) 
+                    if (string.CompareOrdinal(card.CardCategory, this._cardCategory) != 0)
                         continue;
-                    
-                    cards[i].SetCardGroupData(this);
-                    this._elementCards.Add(cards[i]);
+
+                    int step = currentCardsInGroupCount + i;
+                    Vector3 stepPosition =
+                        this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
+                    card.UpdateNewInitialPosition(stepPosition);
+                    card.SetCardGroup(this);
+                    this._elementCards.Add(card);
                 }
             }
 
@@ -50,7 +68,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
             for (int i = 0; i < count; i++)
             {
                 this._elementCards.Remove(cards[i]);
-                cards[i].SetCardGroupData(null);
+                cards[i].SetCardGroup(null);
             }
 
             if (this._elementCards.Count <= 0)
@@ -59,10 +77,79 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
             this.OnCardAdded?.Invoke();
         }
 
-        public void Dispose()
+        public void FollowPointer(Vector3 pointerPosition)
+        {
+            if (!this._selectedCard)
+            {
+                Collider2D cardCollider = Physics2D.OverlapPoint(pointerPosition, this._visualCardLayer);
+                if (cardCollider && cardCollider.TryGetComponent(out Card card))
+                    this._selectedCard = card;
+                
+                this.CalculateCardPositionOffsets(pointerPosition);
+            }
+
+            int count = this._elementCards.Count;
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 newPosition = pointerPosition + this._cardPositionOffsets[i];
+                this._elementCards[i].transform.position = newPosition;
+            }
+        }
+
+        public void SnapDown(Vector3 snappedPosition)
+        {
+            this.FollowPointer(snappedPosition);
+        }
+
+        public void ReleaseDraggingCard()
+        {
+            this._selectedCard = null;
+            this._cardPositionOffsets.Clear();
+        }
+
+        private void CalculateCardPositionOffsets(Vector3 pointerPosition)
+        {
+            this._cardPositionOffsets.Clear();
+            int count = this._elementCards.Count;
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 offset = pointerPosition - this._elementCards[i].transform.position;
+                this._cardPositionOffsets.Add(offset);
+            }
+        }
+
+        public void ReleaseCards()
         {
             this._elementCards.Clear();
             this.OnCardGroupFreed?.Invoke();
+            this.OnCardGroupFreed = null;
+        }
+
+        private void ReleaseUnmanagedResources()
+        {
+            this.ReleaseCards();
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (this._isDisposed)
+                return;
+            
+            if (disposing)
+                this.ReleaseUnmanagedResources();
+
+            this._isDisposed = true;
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~CardGroup()
+        {
+            this.Dispose(false);
         }
     }
 }

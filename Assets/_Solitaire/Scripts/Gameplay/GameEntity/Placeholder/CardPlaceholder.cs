@@ -1,4 +1,3 @@
-using _Solitaire.Scripts.Gameplay.GameEntity.CardGroup;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
 
@@ -21,13 +20,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public void AppendCard(Card card)
         {
             this._cardGroup.AppendCards(card);
-            // TODO: Add card to visual card, update card group data and update card positions
         }
 
         public void RemoveCard(Card card)
         {
             this._cardGroup.RemoveCard(card);
-            // TODO: Add card to visual card, update card group data and update card positions
         }
 
         private void ToggleFoundationMark(bool isFoundation)
