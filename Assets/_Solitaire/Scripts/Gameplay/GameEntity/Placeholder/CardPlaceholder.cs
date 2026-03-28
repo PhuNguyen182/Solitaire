@@ -11,22 +11,22 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         
         public CardType CardType => cardType;
         
-        private CardGroupData _cardGroupData;
+        private CardGroup.CardGroup _cardGroup;
 
         private void Awake()
         {
-            this._cardGroupData = new CardGroupData();
+            this._cardGroup = new CardGroup.CardGroup();
         }
 
         public void AppendCard(Card card)
         {
-            this._cardGroupData.AppendCards(card);
+            this._cardGroup.AppendCards(card);
             // TODO: Add card to visual card, update card group data and update card positions
         }
 
         public void RemoveCard(Card card)
         {
-            this._cardGroupData.RemoveCard(card);
+            this._cardGroup.RemoveCard(card);
             // TODO: Add card to visual card, update card group data and update card positions
         }
 

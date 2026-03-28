@@ -89,7 +89,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 return false;
             
             this._pickedCard.UpdateNewInitialPosition(card.transform.position);
-            card.CardGroupData.AppendCards(this._pickedCard);
+            card.CardGroup.AppendCards(this._pickedCard);
             return true;
         }
 

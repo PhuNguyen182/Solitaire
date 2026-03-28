@@ -13,16 +13,16 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         [SerializeField] private BoxCollider2D cardCollider;
 
         private CardModel _cardModel;
-        private CardGroupData _cardGroupData;
+        private CardGroup.CardGroup _cardGroup;
         private Vector3 _initialPosition;
         private bool _isDraggable;
         
         public CardType CardType => cardType;
         public bool IsDraggable => this._isDraggable;
         public string CardCategory => this._cardModel.cardCategory;
-        public CardGroupData CardGroupData => this._cardGroupData;
+        public CardGroup.CardGroup CardGroup => this._cardGroup;
         
-        public void SetCardGroupData(CardGroupData cardGroupData) => this._cardGroupData = cardGroupData;
+        public void SetCardGroupData(CardGroup.CardGroup cardGroup) => this._cardGroup = cardGroup;
 
         #region Card Movement
 

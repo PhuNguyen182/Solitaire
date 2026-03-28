@@ -4,7 +4,7 @@ using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
 {
-    public class CardGroupData : IDisposable
+    public class CardGroup : IDisposable
     {
         private string _cardCategory;
         private readonly List<Card> _elementCards = new();
@@ -14,7 +14,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
         
         public List<Card> ElementCards => this._elementCards;
 
-        public CardGroupData()
+        public CardGroup()
         {
             this._cardCategory = null;
             this._elementCards.Clear();
