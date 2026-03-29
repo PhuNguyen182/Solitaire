@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
 {
-    public class DragController : MonoBehaviour
+    public class DragAndDropController : MonoBehaviour
     {
         [SerializeField] private InputController inputController;
         [SerializeField] private LayerMask visualCardLayer;
@@ -91,7 +91,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 bool isCurrentCardAddedToNewGroup = this.StackCardInAGroup();
                 if (!isCurrentCardAddedToNewGroup)
                 {
-                    this._pickedCard.SnapToInitialPosition();
+                    this._pickedCard.SnapBackToInitialedPosition();
                     this.OnCardDropped?.Invoke(false);
                 }
                 else

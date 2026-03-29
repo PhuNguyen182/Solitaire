@@ -36,7 +36,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this._initialPosition = this.transform.position;
         }
 
-        public void SetToPositionImmediately(Vector3 position)
+        public void MoveToPositionImmediately(Vector3 position)
         {
             this.transform.position = position;
         }
@@ -72,10 +72,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             if (this._cardGroup == null)
                 this.transform.position = position;
             else
-                this._cardGroup.FollowPointer(position);
+                this._cardGroup.FollowPosition(position);
         }
 
-        public void SnapToInitialPosition()
+        public void SnapBackToInitialedPosition()
         {
             this.transform.position = this._initialPosition;
             this.CardReleased(this._initialPosition);

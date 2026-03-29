@@ -92,7 +92,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
             this.OnCardAdded?.Invoke();
         }
 
-        public void FollowPointer(Vector3 pointerPosition)
+        public void FollowPosition(Vector3 pointerPosition)
         {
             if (this._selectedCard == null)
             {
@@ -107,13 +107,13 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
             for (int i = 0; i < count; i++)
             {
                 Vector3 newPosition = pointerPosition + this._cardPositionOffsets[i];
-                this._elementCards[i].SetToPositionImmediately(newPosition);
+                this._elementCards[i].MoveToPositionImmediately(newPosition);
             }
         }
 
         public void SnapDown(Vector3 snappedPosition)
         {
-            this.FollowPointer(snappedPosition);
+            this.FollowPosition(snappedPosition);
         }
 
         public void ReleaseDraggingCard()
