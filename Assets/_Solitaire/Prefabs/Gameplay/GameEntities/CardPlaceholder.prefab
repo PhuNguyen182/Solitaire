@@ -209,6 +209,9 @@ MonoBehaviour:
   cardType: 1
   foundationMark: {fileID: 5581414801607388408}
   placeholderCollider: {fileID: 1387996313190238346}
+  cardLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!61 &1387996313190238346
 BoxCollider2D:
   m_ObjectHideFlags: 0

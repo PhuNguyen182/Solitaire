@@ -9,21 +9,24 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     public class PlayingCard : MonoBehaviour, ICard
     {
         [SerializeField] private CardType cardType;
-        
-        [Header("Card Visual")]
-        [SerializeField] private Image cardIcon;
+
+        [Header("Card Visual")] [SerializeField]
+        private Image cardIcon;
+
         [SerializeField] private TMP_Text cardText;
         [SerializeField] private GameObject foundationMark;
         [SerializeField] private Canvas cardSortingGroup;
-        
-        [Header("Card Physics")]
-        [SerializeField] private LayerMask cardLayer;
+
+        [Header("Card Physics")] [SerializeField]
+        private LayerMask cardLayer;
+
         [SerializeField] private BoxCollider2D cardCollider;
 
         private CardModel _cardModel;
         private ICardGroup _cardGroup;
         private Vector3 _initialPosition;
-        
+        private Collider2D[] _cardColliders;
+
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
 
         public string CardCategory => this._cardModel.cardCategory;
@@ -36,9 +39,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this._initialPosition = this.transform.position;
         }
 
-        public void MoveToPositionImmediately(Vector3 position)
+        #region Card Visuals
+
+        public void SetupCamera(Camera canvasCamera)
         {
-            this.transform.position = position;
+            this.cardSortingGroup.worldCamera = canvasCamera;
         }
 
         public void SetOrderLayer(int sortingOrder)
@@ -46,10 +51,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.cardSortingGroup.sortingOrder = sortingOrder;
         }
 
+        #endregion
+
         public void SetCardGroup(ICardGroup cardGroup)
         {
             this._cardGroup = cardGroup;
         }
+
+        #region Drag And Drop
 
         public void CardPickedUp()
         {
@@ -59,7 +68,23 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 this._cardGroup.SetCardsInGroupInteractable(false);
         }
 
+        private void CardReleased(Vector3 snapPosition)
+        {
+            this._cardGroup?.SnapDown(snapPosition);
+            this._cardGroup?.ReleaseDraggingCard();
+            this.SetCardInteractable(true);
+            this._cardGroup?.SetCardsInGroupInteractable(true);
+            this._cardColliders = null;
+        }
+
+        #endregion
+
         #region Card Movement
+
+        public void MoveToPositionImmediately(Vector3 position)
+        {
+            this.transform.position = position;
+        }
 
         public void UpdateNewInitialPosition(Vector3 position)
         {
@@ -84,7 +109,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         #endregion
 
         #region Card Interaction
-        
+
         public void SetCardInteractable(bool isInteractable)
         {
             this.cardCollider.enabled = isInteractable;
@@ -92,10 +117,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void AppendCardToGroup(params ICard[] card)
         {
-            this._cardGroup ??= new CardGroup();
+            this._cardGroup ??= new CardGroup(this.cardLayer);
             this._cardGroup.AppendCards(card);
         }
-        
+
         public bool IsSameCategory(ICard card)
         {
             bool isSameCategory = string.CompareOrdinal(this.CardCategory, card.CardCategory) == 0;
@@ -104,17 +129,17 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public List<ICard> CheckAvailableCardOnDropDown()
         {
-            Collider2D[] cardColliders =
+            this._cardColliders =
                 Physics2D.OverlapBoxAll(this.transform.position, this.cardCollider.size, 0, this.cardLayer);
-            if (cardColliders is not { Length: > 0 }) 
+            if (this._cardColliders is not { Length: > 0 })
                 return null;
-            
-            int count = cardColliders.Length;
+
+            int count = this._cardColliders.Length;
             List<ICard> result = new();
 
             for (int i = 0; i < count; i++)
             {
-                if (cardColliders[i].gameObject.TryGetComponent(out ICard card))
+                if (this._cardColliders[i].TryGetComponent(out ICard card))
                     result.Add(card);
             }
 
@@ -122,6 +147,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         }
 
         #endregion
+
+        #region Card Bindation
 
         public void BindModel(CardModel model)
         {
@@ -139,9 +166,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         private void BindCardTextContent(CardModel model)
         {
-            if (!this.cardText) 
+            if (!this.cardText)
                 return;
-            
+
             if (model.contentType != CardContentType.Text)
             {
                 this.cardText.gameObject.SetActive(false);
@@ -154,9 +181,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         private void BindCardImageContent(CardModel model)
         {
-            if (!this.cardIcon) 
+            if (!this.cardIcon)
                 return;
-            
+
             if (model.contentType != CardContentType.Image)
             {
                 this.cardIcon.gameObject.SetActive(false);
@@ -172,13 +199,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             if (this.foundationMark)
                 this.foundationMark.SetActive(isFoundation);
         }
-        
-        private void CardReleased(Vector3 snapPosition)
-        {
-            this._cardGroup?.SnapDown(snapPosition);
-            this._cardGroup?.ReleaseDraggingCard();
-            this.SetCardInteractable(true);
-            this._cardGroup?.SetCardsInGroupInteractable(true);
-        }
+
+        #endregion
     }
 }

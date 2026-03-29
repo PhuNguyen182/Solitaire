@@ -4,6 +4,7 @@ using _Solitaire.Scripts.GameInput;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
 {
@@ -15,6 +16,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private ICard _pickedCard;
         private bool _isCardDragging;
+        private Collider2D[] _cardColliders;
 
         public event Action<bool> OnCardDropped;
 
@@ -60,13 +62,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private void PickupCard()
         {
             Vector2 pointerPosition = this.inputController.WorldPointerPosition;
-            Collider2D[] cardColliders = Physics2D.OverlapPointAll(pointerPosition, this.visualCardLayer);
-            int count = cardColliders.Length;
+            this._cardColliders = Physics2D.OverlapPointAll(pointerPosition, this.visualCardLayer);
+            int count = this._cardColliders.Length;
             List<ICard> cards = new();
 
             for (int i = 0; i < count; i++)
             {
-                if (cardColliders[i].TryGetComponent(out ICard card))
+                if (this._cardColliders[i].TryGetComponent(out ICard card))
                     cards.Add(card);
             }
 
@@ -105,6 +107,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             }
 
             this._pickedCard = null;
+            this._cardColliders = null;
         }
 
         private bool SnapToCardPlaceholder()
@@ -122,7 +125,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private bool StackCardInAGroup()
         {
-            List<ICard> checkCards = this._pickedCard.CheckAvailableCardOnDropDown();
+            List<ICard> checkCards = this.GetCheckCards(this._pickedCard);
             if (checkCards is not { Count: > 0 })
                 return false;
 
@@ -139,6 +142,27 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             }
 
             return true;
+        }
+
+        private List<ICard> GetCheckCards(ICard sampleCard)
+        {
+            using (ListPool<ICard>.Get(out List<ICard> result))
+            {
+                if (sampleCard.IsSingleCard)
+                {
+                    result = sampleCard.CheckAvailableCardOnDropDown();
+                    return result;
+                }
+                
+                int count = sampleCard.CardGroup.ElementCards.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    List<ICard> cards = sampleCard.CardGroup.ElementCards[i].CheckAvailableCardOnDropDown();
+                    result.AddRange(cards);
+                }
+
+                return result;
+            }
         }
 
         private void OnDisable()

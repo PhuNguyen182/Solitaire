@@ -7,22 +7,26 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
 {
     public class CardGroup : ICardGroup, IDisposable
     {
-        private const string VisualCardLayerName = "Card";
-        
-        private readonly LayerMask _visualCardLayer = LayerMask.GetMask(VisualCardLayerName);
-        private readonly List<Vector3> _cardPositionOffsets = new();
-        private readonly List<ICard> _elementCards = new();
+        private readonly LayerMask _visualCardLayer;
+        private readonly List<Vector3> _cardPositionOffsets;
+        private readonly List<ICard> _elementCards;
         
         private bool _isDisposed;
         private ICard _selectedCard;
         private Vector3 _initialPosition;
-        private string _cardCategory;
-        
-        public event Action OnCardAdded;
-        public event Action OnCardGroupFreed;
         
         public List<ICard> ElementCards => this._elementCards;
         public bool IsEmpty => this._elementCards.Count <= 0;
+        
+        public event Action OnCardAdded;
+        public event Action OnCardGroupFreed;
+
+        public CardGroup(LayerMask visualCardLayer)
+        {
+            this._visualCardLayer = visualCardLayer;
+            this._cardPositionOffsets = new List<Vector3>();
+            this._elementCards = new List<ICard>();
+        }
 
         public bool ContainFoundationCard()
         {
@@ -52,7 +56,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 ICard card = cards[i];
                 if (this._elementCards.Count <= 0)
                 {
-                    this._cardCategory = card.CardCategory;
                     this._initialPosition = card.WorldPosition;
                     card.UpdateNewInitialPosition(this._initialPosition);
                     card.SetOrderLayer(0);
@@ -61,9 +64,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 }
                 else
                 {
-                    if (string.CompareOrdinal(card.CardCategory, this._cardCategory) != 0)
-                        continue;
-
                     int step = currentCardsInGroupCount + i;
                     Vector3 stepPosition =
                         this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
@@ -85,9 +85,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 this._elementCards.Remove(cards[i]);
                 cards[i].SetCardGroup(null);
             }
-
-            if (this._elementCards.Count <= 0)
-                this._cardCategory = null;
             
             this.OnCardAdded?.Invoke();
         }

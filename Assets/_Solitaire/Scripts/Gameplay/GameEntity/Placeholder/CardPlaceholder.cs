@@ -9,12 +9,13 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         [SerializeField] private CardType cardType;
         [SerializeField] private GameObject foundationMark;
         [SerializeField] private BoxCollider2D placeholderCollider;
+        [SerializeField] private LayerMask cardLayer;
         
         private ICardGroup _cardGroup;
 
         private void Awake()
         {
-            this._cardGroup = new CardGroup();
+            this._cardGroup = new CardGroup(this.cardLayer);
             this.SetupCardPlaceholderInitialEnableState();
         }
 

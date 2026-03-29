@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2033183011593713944}
   - component: {fileID: 577334728078546116}
   m_Layer: 0
-  m_Name: DragController
+  m_Name: DragAndDropController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
