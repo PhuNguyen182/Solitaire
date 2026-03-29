@@ -1,3 +1,4 @@
+using _Solitaire.Scripts.Gameplay.GameEntity.CardGroup;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         [SerializeField] private GameObject foundationMark;
         [SerializeField] private BoxCollider2D placeholderCollider;
         
-        private CardGroup.CardGroup _cardGroup;
+        private ICardGroup _cardGroup;
 
         private void Awake()
         {

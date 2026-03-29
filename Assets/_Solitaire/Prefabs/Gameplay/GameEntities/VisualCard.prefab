@@ -413,7 +413,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2298726769793874256}
   - component: {fileID: 5259798418486098403}
-  - component: {fileID: 6296487091901575729}
   - component: {fileID: 1258641980810064367}
   m_Layer: 6
   m_Name: VisualCard
@@ -454,36 +453,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Solitaire.Scripts.Gameplay.GameEntity.VisualCard.Card
   cardType: 1
   cardText: {fileID: 6047206874569999135}
+  cardLayer:
+    serializedVersion: 2
+    m_Bits: 0
   cardIcon: {fileID: 8904900089505232813}
   foundationMark: {fileID: 7587100813923559415}
   cardCollider: {fileID: 1258641980810064367}
---- !u!50 &6296487091901575729
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8780478763694940733}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  cardSortingGroup: {fileID: 0}
 --- !u!61 &1258641980810064367
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
         private readonly List<ICard> _elementCards = new();
         
         private bool _isDisposed;
-        private Card _selectedCard;
+        private ICard _selectedCard;
         private Vector3 _initialPosition;
         private string _cardCategory;
         
@@ -94,10 +94,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
 
         public void FollowPointer(Vector3 pointerPosition)
         {
-            if (!this._selectedCard)
+            if (this._selectedCard == null)
             {
                 Collider2D cardCollider = Physics2D.OverlapPoint(pointerPosition, this._visualCardLayer);
-                if (cardCollider && cardCollider.TryGetComponent(out Card card))
+                if (cardCollider && cardCollider.TryGetComponent(out ICard card))
                     this._selectedCard = card;
                 
                 this.CalculateCardPositionOffsets(pointerPosition);
