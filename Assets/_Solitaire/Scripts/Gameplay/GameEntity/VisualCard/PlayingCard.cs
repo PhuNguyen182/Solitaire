@@ -11,9 +11,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     {
         [SerializeField] private CardType cardType;
 
-        [Header("Card Visual")] [SerializeField]
-        private Image cardIcon;
-
+        [Header("Card Visual")] 
+        [SerializeField] private Image cardIcon;
         [SerializeField] private TMP_Text cardText;
         [SerializeField] private GameObject foundationMark;
         [SerializeField] private Canvas cardSortingGroup;

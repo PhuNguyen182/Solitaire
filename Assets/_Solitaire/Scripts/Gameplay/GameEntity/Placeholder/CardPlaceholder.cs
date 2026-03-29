@@ -11,11 +11,20 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         [SerializeField] private BoxCollider2D placeholderCollider;
         [SerializeField] private LayerMask cardLayer;
         
+        private int _cardPlaceHolderID;
         private ICardGroup _cardGroup;
-
+        
         private void Awake()
         {
             this._cardGroup = new CardGroup(this.cardLayer);
+        }
+
+        public int CardPlaceHolderID => this._cardPlaceHolderID;
+
+        public void BindModelData(CardPlaceholderModel model)
+        {
+            this.cardType = model.CardType;
+            this.ToggleFoundationMark(model.CardType == CardType.Foundation);
             this.SetupCardPlaceholderInitialEnableState();
         }
 
@@ -69,6 +78,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                 return;
             
             // To do: Execute flip card logic here
+        }
+
+        public void SetCardID(int cardID)
+        {
+            this._cardPlaceHolderID = cardID;
         }
 
         private void CheckCardPlaceholderCollider()

@@ -6,7 +6,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     public enum CardType
     {
         None = 0,
-        Normal = 1,
-        Foundation = 2,
+        Foundation = 1,
+        Normal = 2,
+        Joker = 3,
     }
 }

@@ -13,11 +13,14 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         [SerializeField] private LayerMask visualCardLayer;
         [SerializeField] private LayerMask cardPlaceholderLayer;
 
-        private ICard _pickedCard;
         private bool _isCardDragging;
+        private int _pickedCardPlaceholderID;
         private Collider2D[] _cardColliders;
+        
+        private ICard _pickedCard;
         private ICardPlaceholder _pickedCardPlaceholder;
-
+        private CardPlaceholderManager _cardPlaceholderManager;
+        
         public event Action<bool> OnCardDropped;
 
         private void OnEnable()
@@ -29,6 +32,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private void Update()
         {
             this.UpdatePickedCardPosition();
+        }
+
+        public void SetCardPlaceholderManager(CardPlaceholderManager cardPlaceholderManager)
+        {
+            this._cardPlaceholderManager = cardPlaceholderManager;
         }
 
         private void UpdatePickedCardPosition()
@@ -78,7 +86,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
             this._isCardDragging = true;
             this._pickedCard = closestCard;
-            this._pickedCardPlaceholder = closestCard.CardPlaceholder;
+            this._pickedCardPlaceholderID = closestCard.CardPlaceholder.CardPlaceHolderID;
+            this._pickedCardPlaceholder = this._cardPlaceholderManager.GetCardPlaceholder(this._pickedCardPlaceholderID);
             this._pickedCard.CardPickedUp();
         }
 
@@ -105,6 +114,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             }
             else
             {
+                this._pickedCardPlaceholder?.FlipLastCard();
                 this.OnCardDropped?.Invoke(true);
             }
 
