@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
 {
-    public class CardGroup : IDisposable
+    public class CardGroup : ICardGroup, IDisposable
     {
         private const string VisualCardLayerName = "Card";
         
         private readonly LayerMask _visualCardLayer = LayerMask.GetMask(VisualCardLayerName);
         private readonly List<Vector3> _cardPositionOffsets = new();
-        private readonly List<Card> _elementCards = new();
+        private readonly List<ICard> _elementCards = new();
         
         private bool _isDisposed;
         private Card _selectedCard;
@@ -21,7 +21,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
         public event Action OnCardAdded;
         public event Action OnCardGroupFreed;
         
-        public List<Card> ElementCards => this._elementCards;
+        public List<ICard> ElementCards => this._elementCards;
         public bool IsEmpty => this._elementCards.Count <= 0;
 
         public bool ContainFoundationCard()
@@ -43,17 +43,17 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
                 this._elementCards[i].SetCardInteractable(isInteractable);
         }
 
-        public void AppendCards(params Card[] cards)
+        public void AppendCards(params ICard[] cards)
         {
             int count = cards.Length;
             int currentCardsInGroupCount = this._elementCards.Count;
             for (int i = 0; i < count; i++)
             {
-                Card card = cards[i];
+                ICard card = cards[i];
                 if (this._elementCards.Count <= 0)
                 {
                     this._cardCategory = card.CardCategory;
-                    this._initialPosition = card.transform.position;
+                    this._initialPosition = card.WorldPosition;
                     card.UpdateNewInitialPosition(this._initialPosition);
                     card.SetOrderLayer(0);
                     card.SetCardGroup(this);
@@ -77,7 +77,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
             this.OnCardAdded?.Invoke();
         }
         
-        public void RemoveCard(params Card[] cards)
+        public void RemoveCard(params ICard[] cards)
         {
             int count = cards.Length;
             for (int i = 0; i < count; i++)
@@ -107,7 +107,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
             for (int i = 0; i < count; i++)
             {
                 Vector3 newPosition = pointerPosition + this._cardPositionOffsets[i];
-                this._elementCards[i].transform.position = newPosition;
+                this._elementCards[i].SetToPositionImmediately(newPosition);
             }
         }
 
@@ -128,12 +128,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
             int count = this._elementCards.Count;
             for (int i = 0; i < count; i++)
             {
-                Vector3 offset = pointerPosition - this._elementCards[i].transform.position;
+                Vector3 offset = pointerPosition - this._elementCards[i].WorldPosition;
                 this._cardPositionOffsets.Add(offset);
             }
         }
 
-        public void ReleaseCards()
+        private void ReleaseCards()
         {
             this._elementCards.Clear();
             this.OnCardGroupFreed?.Invoke();

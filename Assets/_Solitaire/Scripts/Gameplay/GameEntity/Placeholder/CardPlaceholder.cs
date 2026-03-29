@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 {
-    public class CardPlaceholder : MonoBehaviour
+    public class CardPlaceholder : MonoBehaviour, ICardPlaceholder
     {
         [SerializeField] private CardType cardType;
         [SerializeField] private GameObject foundationMark;
@@ -19,7 +19,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 
         #region Append Cards
         
-        public bool TryAppendCard(Card card)
+        public bool TryAppendCard(ICard card)
         {
             bool result = card.IsSingleCard 
                 ? this.AppendSingleCard(card) 
@@ -28,7 +28,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             return result;
         }
 
-        private bool AppendSingleCard(Card card)
+        private bool AppendSingleCard(ICard card)
         {
             if (this.cardType == CardType.Foundation)
             {
@@ -40,7 +40,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             return true;
         }
 
-        private bool AppendMultipleCards(Card card)
+        private bool AppendMultipleCards(ICard card)
         {
             if (this.cardType == CardType.Foundation)
             {
@@ -48,14 +48,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                     return false;
             }
 
-            Card[] cards = card.CardGroup.ElementCards.ToArray();
+            ICard[] cards = card.CardGroup.ElementCards.ToArray();
             this._cardGroup.AppendCards(cards);
             return true;
         }
 
         #endregion
 
-        public void RemoveCard(Card card)
+        public void RemoveCard(ICard card)
         {
             this._cardGroup.RemoveCard(card);
             this.CheckCardPlaceholderCollider();

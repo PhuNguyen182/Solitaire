@@ -12,7 +12,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         [SerializeField] private LayerMask visualCardLayer;
         [SerializeField] private LayerMask cardPlaceholderLayer;
         
-        private Card _pickedCard;
+        private ICard _pickedCard;
         private bool _isCardDragging;
         
         private void OnEnable()
@@ -28,22 +28,22 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private void UpdatePickedCardPosition()
         {
-            if (!this._isCardDragging || !this._pickedCard) 
+            if (!this._isCardDragging || this._pickedCard == null) 
                 return;
             
             Vector2 pointerPosition = this.inputController.WorldPointerPosition;
             this._pickedCard.FollowPosition(pointerPosition);
         }
 
-        private Card FindClosestCardToPointer(Vector3 pointerPosition, List<Card> cards)
+        private ICard FindClosestCardToPointer(Vector3 pointerPosition, List<ICard> cards)
         {
-            Card closestCard = null;
+            ICard closestCard = null;
             int count = cards.Count;
             float minDistance = Mathf.Infinity;
             
             for (int i = 0; i < count; i++)
             {
-                float squaredDistance = (cards[i].transform.position - pointerPosition).sqrMagnitude;
+                float squaredDistance = (cards[i].WorldPosition - pointerPosition).sqrMagnitude;
                 if (squaredDistance < minDistance * minDistance)
                 {
                     closestCard = cards[i];
@@ -59,16 +59,16 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             Vector2 pointerPosition = this.inputController.WorldPointerPosition;
             Collider2D[] cardColliders = Physics2D.OverlapPointAll(pointerPosition, this.visualCardLayer);
             int count = cardColliders.Length;
-            List<Card> cards = new();
+            List<ICard> cards = new();
             
             for (int i = 0; i < count; i++)
             {
-                if (cardColliders[i].TryGetComponent(out Card card))
+                if (cardColliders[i].TryGetComponent(out ICard card))
                     cards.Add(card);
             }
             
-            Card closestCard = this.FindClosestCardToPointer(pointerPosition, cards);
-            if (!closestCard)
+            ICard closestCard = this.FindClosestCardToPointer(pointerPosition, cards);
+            if (closestCard == null)
                 return;
             
             this._isCardDragging = true;
@@ -78,7 +78,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private void DropCard()
         {
-            if (!this._pickedCard)
+            if (this._pickedCard == null)
                 return;
 
             this._isCardDragging = false;
@@ -99,7 +99,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             Collider2D cardPlaceholderCollider = Physics2D.OverlapPoint(pointerPosition, this.visualCardLayer);
 
             if (!cardPlaceholderCollider ||
-                !cardPlaceholderCollider.TryGetComponent(out CardPlaceholder cardPlaceholder)) 
+                !cardPlaceholderCollider.TryGetComponent(out ICardPlaceholder cardPlaceholder)) 
                 return false;
             
             bool result = cardPlaceholder.TryAppendCard(this._pickedCard);
@@ -108,11 +108,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private bool StackCardInAGroup()
         {
-            List<Card> checkCards = this._pickedCard.CheckAvailableCardOnDropDown();
+            List<ICard> checkCards = this._pickedCard.CheckAvailableCardOnDropDown();
             if (checkCards is not { Count: > 0 })
                 return false;
 
-            Card sampleCard = checkCards[0];
+            ICard sampleCard = checkCards[0];
             if (!sampleCard.IsSameCategory(this._pickedCard))
                 return false;
 
@@ -120,7 +120,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 sampleCard.AppendCardToGroup(this._pickedCard);
             else
             {
-                Card[] elementCards = this._pickedCard.CardGroup.ElementCards.ToArray();
+                ICard[] elementCards = this._pickedCard.CardGroup.ElementCards.ToArray();
                 sampleCard.AppendCardToGroup(elementCards);
             }
             

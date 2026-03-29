@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using _Solitaire.Scripts.Gameplay.GameEntity.CardGroup;
 using UnityEngine;
 using UnityEngine.Rendering;
 using TMPro;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 {
-    public class Card : MonoBehaviour
+    public class Card : MonoBehaviour, ICard
     {
         [SerializeField] private CardType cardType;
         [SerializeField] private TMP_Text cardText;
@@ -16,7 +17,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         [SerializeField] private SortingGroup cardSortingGroup;
 
         private CardModel _cardModel;
-        private CardGroup.CardGroup _cardGroup;
+        private ICardGroup _cardGroup;
         private Vector3 _initialPosition;
         private bool _isDraggable;
         
@@ -25,11 +26,17 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public string CardCategory => this._cardModel.cardCategory;
         public CardType CardType => this.cardType;
-        public CardGroup.CardGroup CardGroup => this._cardGroup;
+        public ICardGroup CardGroup => this._cardGroup;
+        public Vector3 WorldPosition => this.transform.position;
 
         private void Awake()
         {
             this._initialPosition = this.transform.position;
+        }
+
+        public void SetToPositionImmediately(Vector3 position)
+        {
+            this.transform.position = position;
         }
 
         public void SetOrderLayer(int sortingOrder)
@@ -37,7 +44,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.cardSortingGroup.sortingOrder = sortingOrder;
         }
 
-        public void SetCardGroup(CardGroup.CardGroup cardGroup)
+        public void SetCardGroup(ICardGroup cardGroup)
         {
             this._cardGroup = cardGroup;
         }
@@ -86,19 +93,19 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.cardCollider.enabled = isInteractable;
         }
 
-        public void AppendCardToGroup(params Card[] card)
+        public void AppendCardToGroup(params ICard[] card)
         {
             this._cardGroup ??= new CardGroup.CardGroup();
             this._cardGroup.AppendCards(card);
         }
         
-        public bool IsSameCategory(Card card)
+        public bool IsSameCategory(ICard card)
         {
             bool isSameCategory = string.CompareOrdinal(this.CardCategory, card.CardCategory) == 0;
             return isSameCategory;
         }
 
-        public List<Card> CheckAvailableCardOnDropDown()
+        public List<ICard> CheckAvailableCardOnDropDown()
         {
             Collider2D[] cardColliders =
                 Physics2D.OverlapBoxAll(this.transform.position, this.cardCollider.size, 0, this.cardLayer);
@@ -106,11 +113,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 return null;
             
             int count = cardColliders.Length;
-            List<Card> result = new();
+            List<ICard> result = new();
 
             for (int i = 0; i < count; i++)
             {
-                if (cardColliders[i].gameObject.TryGetComponent(out Card card))
+                if (cardColliders[i].gameObject.TryGetComponent(out ICard card))
                     result.Add(card);
             }
 
