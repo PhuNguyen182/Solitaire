@@ -1,20 +1,24 @@
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.GameEntity.CardGroup;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.UI;
 using TMPro;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 {
-    public class Card : MonoBehaviour, ICard
+    public class PlayingCard : MonoBehaviour, ICard
     {
         [SerializeField] private CardType cardType;
+        
+        [Header("Card Visual")]
+        [SerializeField] private Image cardIcon;
         [SerializeField] private TMP_Text cardText;
-        [SerializeField] private LayerMask cardLayer;
-        [SerializeField] private SpriteRenderer cardIcon;
         [SerializeField] private GameObject foundationMark;
+        [SerializeField] private Canvas cardSortingGroup;
+        
+        [Header("Card Physics")]
+        [SerializeField] private LayerMask cardLayer;
         [SerializeField] private BoxCollider2D cardCollider;
-        [SerializeField] private SortingGroup cardSortingGroup;
 
         private CardModel _cardModel;
         private ICardGroup _cardGroup;
