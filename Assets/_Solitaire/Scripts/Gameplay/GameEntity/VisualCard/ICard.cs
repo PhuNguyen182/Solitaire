@@ -6,7 +6,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 {
     public interface ICard
     {
-        public bool IsDraggable { get; }
         public bool IsSingleCard { get; }
         public string CardCategory{ get; }
         public CardType CardType { get; }
@@ -16,7 +15,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void SetOrderLayer(int sortingOrder);
         public void SetCardGroup(ICardGroup cardGroup);
         public void CardPickedUp();
-        public void SetDraggable(bool isDraggable);
         public void UpdateNewInitialPosition(Vector3 position);
         public void SnapToInitialPosition();
         public void SetToPositionImmediately(Vector3 position);

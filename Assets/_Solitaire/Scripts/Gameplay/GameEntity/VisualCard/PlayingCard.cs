@@ -23,9 +23,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private CardModel _cardModel;
         private ICardGroup _cardGroup;
         private Vector3 _initialPosition;
-        private bool _isDraggable;
         
-        public bool IsDraggable => this._isDraggable;
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
 
         public string CardCategory => this._cardModel.cardCategory;
@@ -62,11 +60,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         }
 
         #region Card Movement
-
-        public void SetDraggable(bool isDraggable)
-        {
-            this._isDraggable = isDraggable;
-        }
 
         public void UpdateNewInitialPosition(Vector3 position)
         {
