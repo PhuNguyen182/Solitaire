@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.Interfaces;
+using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
@@ -11,12 +12,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public string CardCategory{ get; }
         public CardType CardType { get; }
         public ICardGroup CardGroup { get; }
+        public ICardPlaceholder CardPlaceholder { get; }
         public Vector3 WorldPosition { get; }
 
         public void BindModel(CardModel model);
         public void CardPickedUp();
         public void SetOrderLayer(int sortingOrder);
         public void SetCardGroup(ICardGroup cardGroup);
+        public void SetCardPlaceholder(ICardPlaceholder cardPlaceholder);
         public void UpdateNewInitialPosition(Vector3 position);
         public void SnapBackToInitialedPosition();
         public void MoveToPositionImmediately(Vector3 position);

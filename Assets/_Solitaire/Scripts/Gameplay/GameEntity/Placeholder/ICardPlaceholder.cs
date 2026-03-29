@@ -6,5 +6,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
     {
         public bool TryAppendCard(ICard card);
         public void RemoveCard(ICard card);
+        public void FlipLastCard();
     }
 }

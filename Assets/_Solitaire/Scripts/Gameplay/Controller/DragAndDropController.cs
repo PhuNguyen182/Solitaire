@@ -4,7 +4,6 @@ using _Solitaire.Scripts.GameInput;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
 {
@@ -17,6 +16,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private ICard _pickedCard;
         private bool _isCardDragging;
         private Collider2D[] _cardColliders;
+        private ICardPlaceholder _pickedCardPlaceholder;
 
         public event Action<bool> OnCardDropped;
 
@@ -78,6 +78,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
             this._isCardDragging = true;
             this._pickedCard = closestCard;
+            this._pickedCardPlaceholder = closestCard.CardPlaceholder;
             this._pickedCard.CardPickedUp();
         }
 
@@ -98,6 +99,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 }
                 else
                 {
+                    this._pickedCardPlaceholder?.FlipLastCard();
                     this.OnCardDropped?.Invoke(true);
                 }
             }

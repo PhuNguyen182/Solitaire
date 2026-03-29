@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.GameEntity.Group;
+using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -24,6 +25,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         private CardModel _cardModel;
         private ICardGroup _cardGroup;
+        private ICardPlaceholder _cardPlaceholder;
         private Vector3 _initialPosition;
         private Collider2D[] _cardColliders;
 
@@ -32,6 +34,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public string CardCategory => this._cardModel.cardCategory;
         public CardType CardType => this.cardType;
         public ICardGroup CardGroup => this._cardGroup;
+        public ICardPlaceholder CardPlaceholder => this._cardPlaceholder;
         public Vector3 WorldPosition => this.transform.position;
 
         private void Awake()
@@ -56,6 +59,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void SetCardGroup(ICardGroup cardGroup)
         {
             this._cardGroup = cardGroup;
+        }
+
+        public void SetCardPlaceholder(ICardPlaceholder cardPlaceholder)
+        {
+            this._cardPlaceholder = cardPlaceholder;
         }
 
         #region Drag And Drop

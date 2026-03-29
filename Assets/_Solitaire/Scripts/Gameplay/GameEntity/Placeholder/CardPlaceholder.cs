@@ -63,6 +63,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             this.CheckCardPlaceholderCollider();
         }
 
+        public void FlipLastCard()
+        {
+            if (this.cardType == CardType.Foundation)
+                return;
+            
+            // To do: Execute flip card logic here
+        }
+
         private void CheckCardPlaceholderCollider()
         {
             this.placeholderCollider.enabled = this._cardGroup.IsEmpty;

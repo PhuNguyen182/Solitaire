@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
 
@@ -14,8 +15,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         private bool _isDisposed;
         private ICard _selectedCard;
         private Vector3 _initialPosition;
+        private ICardPlaceholder _selectedCardPlaceholder;
         
         public List<ICard> ElementCards => this._elementCards;
+        public ICardPlaceholder CardPlaceholder => this._selectedCardPlaceholder;
         public bool IsEmpty => this._elementCards.Count <= 0;
         
         public event Action OnCardAdded;
@@ -40,6 +43,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             return false;
         }
 
+        private void SetCardPlaceholder(ICardPlaceholder placeholder)
+        {
+            this._selectedCardPlaceholder = placeholder;
+        }
+
         public void SetCardsInGroupInteractable(bool isInteractable)
         {
             int count = this._elementCards.Count;
@@ -57,24 +65,27 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 if (this._elementCards.Count <= 0)
                 {
                     this._initialPosition = card.WorldPosition;
-                    card.UpdateNewInitialPosition(this._initialPosition);
-                    card.SetOrderLayer(0);
-                    card.SetCardGroup(this);
-                    this._elementCards.Add(card);
+                    this.AppendSingleCard(card, 0, this._initialPosition);
                 }
                 else
                 {
                     int step = currentCardsInGroupCount + i;
                     Vector3 stepPosition =
                         this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
-                    card.UpdateNewInitialPosition(stepPosition);
-                    card.SetOrderLayer(step);
-                    card.SetCardGroup(this);
-                    this._elementCards.Add(card);
+                    this.AppendSingleCard(card, step, stepPosition);
                 }
             }
 
             this.OnCardAdded?.Invoke();
+        }
+
+        private void AppendSingleCard(ICard card, int sortingOrder, Vector3 position)
+        {
+            card.UpdateNewInitialPosition(position);
+            card.SetOrderLayer(sortingOrder);
+            card.SetCardGroup(this);
+            this.SetCardPlaceholder(card.CardPlaceholder);
+            this._elementCards.Add(card);
         }
         
         public void RemoveCard(params ICard[] cards)
