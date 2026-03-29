@@ -20,9 +20,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private Vector3 _initialPosition;
         private bool _isDraggable;
         
-        public CardType CardType => cardType;
         public bool IsDraggable => this._isDraggable;
+        public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
+
         public string CardCategory => this._cardModel.cardCategory;
+        public CardType CardType => this.cardType;
         public CardGroup.CardGroup CardGroup => this._cardGroup;
 
         private void Awake()
@@ -30,19 +32,30 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this._initialPosition = this.transform.position;
         }
 
-        public void SetOrderLayer(int sortingOrder) => this.cardSortingGroup.sortingOrder = sortingOrder;
-        
-        public void SetCardGroup(CardGroup.CardGroup cardGroup) => this._cardGroup = cardGroup;
+        public void SetOrderLayer(int sortingOrder)
+        {
+            this.cardSortingGroup.sortingOrder = sortingOrder;
+        }
+
+        public void SetCardGroup(CardGroup.CardGroup cardGroup)
+        {
+            this._cardGroup = cardGroup;
+        }
 
         public void CardPickedUp()
         {
-            this.SetCardInteractable(false);
-            this._cardGroup?.SetCardsInGroupInteractable(false);
+            if (this._cardGroup == null)
+                this.SetCardInteractable(false);
+            else
+                this._cardGroup.SetCardsInGroupInteractable(false);
         }
 
         #region Card Movement
 
-        public void SetDraggable(bool isDraggable) => this._isDraggable = isDraggable;
+        public void SetDraggable(bool isDraggable)
+        {
+            this._isDraggable = isDraggable;
+        }
 
         public void UpdateNewInitialPosition(Vector3 position)
         {
@@ -68,7 +81,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         #region Card Interaction
         
-        public void SetCardInteractable(bool isInteractable) => this.cardCollider.enabled = isInteractable;
+        public void SetCardInteractable(bool isInteractable)
+        {
+            this.cardCollider.enabled = isInteractable;
+        }
 
         public void AppendCardToGroup(params Card[] card)
         {

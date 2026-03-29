@@ -22,6 +22,19 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
         public event Action OnCardGroupFreed;
         
         public List<Card> ElementCards => this._elementCards;
+        public bool IsEmpty => this._elementCards.Count <= 0;
+
+        public bool ContainFoundationCard()
+        {
+            int count = this._elementCards.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (this._elementCards[i].CardType == CardType.Foundation)
+                    return true;
+            }
+            
+            return false;
+        }
 
         public void SetCardsInGroupInteractable(bool isInteractable)
         {
@@ -42,6 +55,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
                     this._cardCategory = card.CardCategory;
                     this._initialPosition = card.transform.position;
                     card.UpdateNewInitialPosition(this._initialPosition);
+                    card.SetOrderLayer(0);
                     card.SetCardGroup(this);
                     this._elementCards.Add(card);
                 }
@@ -54,6 +68,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
                     Vector3 stepPosition =
                         this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
                     card.UpdateNewInitialPosition(stepPosition);
+                    card.SetOrderLayer(step);
                     card.SetCardGroup(this);
                     this._elementCards.Add(card);
                 }

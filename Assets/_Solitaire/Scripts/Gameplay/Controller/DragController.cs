@@ -102,8 +102,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 !cardPlaceholderCollider.TryGetComponent(out CardPlaceholder cardPlaceholder)) 
                 return false;
             
-            cardPlaceholder.AppendCard(this._pickedCard);
-            return true;
+            bool result = cardPlaceholder.TryAppendCard(this._pickedCard);
+            return result;
         }
 
         private bool StackCardInAGroup()
