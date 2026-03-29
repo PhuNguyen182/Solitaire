@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
 
-namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
+namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
 {
     public class CardGroup : ICardGroup, IDisposable
     {

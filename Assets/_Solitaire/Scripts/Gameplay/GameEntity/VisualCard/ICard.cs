@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using _Solitaire.Scripts.Gameplay.GameEntity.CardGroup;
+using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.Interfaces;
 using UnityEngine;
 

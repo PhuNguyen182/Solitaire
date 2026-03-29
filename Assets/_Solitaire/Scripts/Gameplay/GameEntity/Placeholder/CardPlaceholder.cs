@@ -1,4 +1,4 @@
-using _Solitaire.Scripts.Gameplay.GameEntity.CardGroup;
+using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 
         private void Awake()
         {
-            this._cardGroup = new CardGroup.CardGroup();
+            this._cardGroup = new CardGroup();
             this.SetupCardPlaceholderInitialEnableState();
         }
 

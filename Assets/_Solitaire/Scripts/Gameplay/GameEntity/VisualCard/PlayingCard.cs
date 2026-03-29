@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using _Solitaire.Scripts.Gameplay.GameEntity.CardGroup;
+using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -92,7 +92,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void AppendCardToGroup(params ICard[] card)
         {
-            this._cardGroup ??= new CardGroup.CardGroup();
+            this._cardGroup ??= new CardGroup();
             this._cardGroup.AppendCards(card);
         }
         

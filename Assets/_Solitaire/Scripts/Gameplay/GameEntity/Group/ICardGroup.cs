@@ -4,7 +4,7 @@ using _Solitaire.Scripts.Gameplay.GameEntity.Interfaces;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
 
-namespace _Solitaire.Scripts.Gameplay.GameEntity.CardGroup
+namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
 {
     public interface ICardGroup : IFollowable
     {
