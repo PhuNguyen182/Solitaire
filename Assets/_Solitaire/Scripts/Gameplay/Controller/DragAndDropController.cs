@@ -146,23 +146,21 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private List<ICard> GetCheckCards(ICard sampleCard)
         {
-            using (ListPool<ICard>.Get(out List<ICard> result))
+            List<ICard> result = new();
+            if (sampleCard.IsSingleCard)
             {
-                if (sampleCard.IsSingleCard)
-                {
-                    result = sampleCard.CheckAvailableCardOnDropDown();
-                    return result;
-                }
-                
-                int count = sampleCard.CardGroup.ElementCards.Count;
-                for (int i = 0; i < count; i++)
-                {
-                    List<ICard> cards = sampleCard.CardGroup.ElementCards[i].CheckAvailableCardOnDropDown();
-                    result.AddRange(cards);
-                }
-
+                result = sampleCard.CheckAvailableCardOnDropDown();
                 return result;
             }
+
+            int count = sampleCard.CardGroup.ElementCards.Count;
+            for (int i = 0; i < count; i++)
+            {
+                List<ICard> cards = sampleCard.CardGroup.ElementCards[i].CheckAvailableCardOnDropDown();
+                result.AddRange(cards);
+            }
+
+            return result;
         }
 
         private void OnDisable()
