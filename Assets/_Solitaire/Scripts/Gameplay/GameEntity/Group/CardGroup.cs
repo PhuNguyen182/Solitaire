@@ -43,7 +43,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             return false;
         }
 
-        private void SetCardPlaceholder(ICardPlaceholder placeholder)
+        public void SetCardPlaceholder(ICardPlaceholder placeholder)
         {
             this._selectedCardPlaceholder = placeholder;
         }
@@ -55,7 +55,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 this._elementCards[i].SetCardInteractable(isInteractable);
         }
 
-        public void AppendCards(params ICard[] cards)
+        public ICard GetLastCard()
+        {
+            return this._elementCards[^1];
+        }
+
+        public void AppendCards(bool assignGroupToCard, params ICard[] cards)
         {
             int count = cards.Length;
             int currentCardsInGroupCount = this._elementCards.Count;
@@ -65,38 +70,43 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 if (this._elementCards.Count <= 0)
                 {
                     this._initialPosition = card.WorldPosition;
-                    this.AppendSingleCard(card, 0, this._initialPosition);
+                    this.AppendSingleCard(card, 0, this._initialPosition, assignGroupToCard);
                 }
                 else
                 {
                     int step = currentCardsInGroupCount + i;
                     Vector3 stepPosition =
                         this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
-                    this.AppendSingleCard(card, step, stepPosition);
+                    this.AppendSingleCard(card, step, stepPosition, assignGroupToCard);
                 }
             }
 
             this.OnCardAdded?.Invoke();
         }
 
-        private void AppendSingleCard(ICard card, int sortingOrder, Vector3 position)
+        private void AppendSingleCard(ICard card, int sortingOrder, Vector3 position, bool assignGroupToCard)
         {
             card.UpdateNewInitialPosition(position);
             card.SetOrderLayer(sortingOrder);
-            card.SetCardGroup(this);
+            if (assignGroupToCard)
+                card.SetCardGroup(this);
+            
             this.SetCardPlaceholder(card.CardPlaceholder);
             this._elementCards.Add(card);
         }
-        
+
         public void RemoveCard(params ICard[] cards)
         {
             int count = cards.Length;
             for (int i = 0; i < count; i++)
             {
+                if (!this._elementCards.Contains(cards[i]))
+                    continue;
+
                 this._elementCards.Remove(cards[i]);
                 cards[i].SetCardGroup(null);
             }
-            
+
             this.OnCardAdded?.Invoke();
         }
 
@@ -148,7 +158,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             this.OnCardGroupFreed = null;
         }
 
-        private void ReleaseUnmanagedResources()
+        private void ReleaseManagedResources()
         {
             this.ReleaseCards();
         }
@@ -159,7 +169,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 return;
             
             if (disposing)
-                this.ReleaseUnmanagedResources();
+                this.ReleaseManagedResources();
 
             this._isDisposed = true;
         }

@@ -2,6 +2,7 @@
 using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.Interfaces;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
@@ -16,6 +17,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public Vector3 WorldPosition { get; }
 
         public void BindModel(CardModel model);
+        public UniTask FlipCard(bool isFaceUp, bool isImmediately);
         public void CardPickedUp();
         public void SetOrderLayer(int sortingOrder);
         public void SetCardGroup(ICardGroup cardGroup);

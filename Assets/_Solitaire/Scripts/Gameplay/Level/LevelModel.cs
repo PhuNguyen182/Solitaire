@@ -9,7 +9,7 @@ namespace _Solitaire.Scripts.Gameplay.Level
         public int moveCount;
         public bool useDynamicCardData;
         public List<CardColumnModel> cardColumnModel = new();
-        public List<string> availableCategories = new();
+        public List<CategoryData> availableCategories = new();
         
         public int NumberOfColumns => this.cardColumnModel.Count;
 

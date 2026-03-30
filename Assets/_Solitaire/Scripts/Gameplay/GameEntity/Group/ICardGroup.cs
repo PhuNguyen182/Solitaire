@@ -16,9 +16,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public event Action OnCardAdded;
         public event Action OnCardGroupFreed;
 
+        public ICard GetLastCard();
         public bool ContainFoundationCard();
+        public void SetCardPlaceholder(ICardPlaceholder placeholder);
         public void SetCardsInGroupInteractable(bool isInteractable);
-        public void AppendCards(params ICard[] cards);
+        public void AppendCards(bool assignGroupToCard, params ICard[] cards);
         public void RemoveCard(params ICard[] cards);
         public void SnapDown(Vector3 snappedPosition);
         public void ReleaseDraggingCard();

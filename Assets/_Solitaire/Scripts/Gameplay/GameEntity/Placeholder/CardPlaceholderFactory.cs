@@ -18,7 +18,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             if (this._cardPlaceholderPrefab is not CardPlaceholder cardPlaceholder)
                 return null;
 
-            CardPlaceholder instance = Object.Instantiate(cardPlaceholder, param.Position, Quaternion.identity,
+            ICardPlaceholder instance = Object.Instantiate(cardPlaceholder, param.Position, Quaternion.identity,
                 this._cardPlaceholderParentTransform);
             instance.BindModelData(param);
             return instance;

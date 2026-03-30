@@ -10,22 +10,54 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         [SerializeField] private GameObject foundationMark;
         [SerializeField] private BoxCollider2D placeholderCollider;
         [SerializeField] private LayerMask cardLayer;
-        
-        private int _cardPlaceHolderID;
+
         private ICardGroup _cardGroup;
+        private CardFactory _cardFactory;
+        private CardPlaceholderModel _cardPlaceholderModel;
+
+        public int CardPlaceHolderID { get; private set; }
+
+        public Transform CurrentTransform => this.transform;
         
         private void Awake()
         {
             this._cardGroup = new CardGroup(this.cardLayer);
+            this._cardGroup.SetCardPlaceholder(this);
         }
-
-        public int CardPlaceHolderID => this._cardPlaceHolderID;
 
         public void BindModelData(CardPlaceholderModel model)
         {
+            this._cardPlaceholderModel = model;
             this.cardType = model.CardType;
             this.ToggleFoundationMark(model.CardType == CardType.Foundation);
             this.SetupCardPlaceholderInitialEnableState();
+        }
+
+        public void SetCardFactory(CardFactory cardFactory)
+        {
+            this._cardFactory = cardFactory;
+        }
+
+        public void BuildCardColumn()
+        {
+            if (this._cardPlaceholderModel.CardColumnModel == null)
+                return;
+
+            int count = this._cardPlaceholderModel.CardColumnModel.cardModel.Count;
+            for (int i = 0; i < count; i++)
+            {
+                CardModel cardModel = this._cardPlaceholderModel.CardColumnModel.cardModel[i];
+                Vector3 cardPosition = this.transform.position + Vector3.down * (i * CardConstants.CardPositionOffset);
+                CardFactoryParam param = new CardFactoryParam
+                {
+                    CardModel = cardModel,
+                    CardPlaceholder = this,
+                    Position = cardPosition,
+                };
+                
+                ICard cardInstance = this._cardFactory.Create(param);
+                this.TryAppendCard(cardInstance);
+            }
         }
 
         #region Append Cards
@@ -47,7 +79,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                     return false;
             }
 
-            this._cardGroup.AppendCards(card);
+            this._cardGroup.AppendCards(false, card);
             return true;
         }
 
@@ -60,7 +92,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             }
 
             ICard[] cards = card.CardGroup.ElementCards.ToArray();
-            this._cardGroup.AppendCards(cards);
+            this._cardGroup.AppendCards(false, cards);
             return true;
         }
 
@@ -76,13 +108,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         {
             if (this.cardType == CardType.Foundation)
                 return;
-            
-            // To do: Execute flip card logic here
+
+            ICard lastCard = this._cardGroup.GetLastCard();
+            lastCard.FlipCard(true, true);
         }
 
         public void SetCardID(int cardID)
         {
-            this._cardPlaceHolderID = cardID;
+            this.CardPlaceHolderID = cardID;
         }
 
         private void CheckCardPlaceholderCollider()

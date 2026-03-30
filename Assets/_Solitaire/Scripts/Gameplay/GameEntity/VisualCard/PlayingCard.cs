@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -51,6 +52,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void SetOrderLayer(int sortingOrder)
         {
             this.cardSortingGroup.sortingOrder = sortingOrder;
+        }
+
+        public async UniTask FlipCard(bool isFaceUp, bool isImmediately)
+        {
+            await UniTask.CompletedTask;
         }
 
         #endregion
@@ -125,7 +131,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void AppendCardToGroup(params ICard[] card)
         {
             this._cardGroup ??= new CardGroup(this.cardLayer);
-            this._cardGroup.AppendCards(card);
+            this._cardGroup.AppendCards(true, card);
         }
 
         public bool IsSameCategory(ICard card)

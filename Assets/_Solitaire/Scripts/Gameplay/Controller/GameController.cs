@@ -12,6 +12,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         [SerializeField] private CardPlaceholder cardPlaceholderPrefab;
         [SerializeField] private PlayingCard playingCardPrefab;
         
+        private CardFactory _cardFactory;
         private CardPlaceholderManager _cardPlaceholderManager;
 
         private void Awake()
@@ -26,9 +27,10 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private void InitializeGame()
         {
+            this._cardFactory = new CardFactory(this.playingCardPrefab);
             this._cardPlaceholderManager = new CardPlaceholderManager(this.cardPlaceholderPrefab,
                 this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
-                this.cardPlaceholderContainer);
+                this.cardPlaceholderContainer, this._cardFactory);
         }
 
         private void StartGameLevel()

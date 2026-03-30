@@ -114,6 +114,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             }
             else
             {
+                this._pickedCardPlaceholder?.RemoveCard(this._pickedCard);
                 this._pickedCardPlaceholder?.FlipLastCard();
                 this.OnCardDropped?.Invoke(true);
             }
