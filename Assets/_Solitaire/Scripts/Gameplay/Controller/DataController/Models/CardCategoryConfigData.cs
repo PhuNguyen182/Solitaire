@@ -18,6 +18,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
         public int Capacity;
         public bool UseImage;
         public List<string> Words = new();
+        
+        public bool ContainWord(string word) => this.Words.Contains(word);
     }
 
     public sealed class CardCategoryRecordClassMap : ClassMap<CardCategoryRecord>
