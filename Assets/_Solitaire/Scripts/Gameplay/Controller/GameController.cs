@@ -1,5 +1,6 @@
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
+using _Solitaire.Scripts.Gameplay.Level;
 using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
@@ -11,6 +12,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         [SerializeField] private Transform normalPlaceholderStartPoint;
         [SerializeField] private CardPlaceholder cardPlaceholderPrefab;
         [SerializeField] private PlayingCard playingCardPrefab;
+        [SerializeField] private CardSupplier cardSupplier;
         
         private CardFactory _cardFactory;
         private CardPlaceholderManager _cardPlaceholderManager;
@@ -31,6 +33,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this._cardPlaceholderManager = new CardPlaceholderManager(this.cardPlaceholderPrefab,
                 this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
                 this.cardPlaceholderContainer, this._cardFactory);
+        }
+
+        private void SetupLevelModel(LevelModel levelModel)
+        {
+            this.cardSupplier.SetLevelModel(levelModel);
         }
 
         private void StartGameLevel()

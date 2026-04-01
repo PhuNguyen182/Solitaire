@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using Cysharp.Threading.Tasks;
+using DracoRuan.CoreSystems.AssetBundleSystem.Runtime.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -28,6 +29,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private ICardPlaceholder _cardPlaceholder;
         private Vector3 _initialPosition;
         private Collider2D[] _cardColliders;
+        private IAssetBundleLoader _assetLoader;
 
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
 
@@ -173,7 +175,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this.cardType = model.cardType;
             this.BindCardTextContent(model);
-            this.BindCardImageContent(model);
+            this.BindCardImageContent(model).Forget();
             this.ToggleFoundationMark(model.cardType == CardType.Foundation);
         }
 
@@ -192,7 +194,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.cardText.gameObject.SetActive(true);
         }
 
-        private void BindCardImageContent(CardModel model)
+        private async UniTask BindCardImageContent(CardModel model)
         {
             if (!this.cardIcon)
                 return;
@@ -203,8 +205,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 return;
             }
 
-            //TODO: this.cardIcon.sprite = model.cardContent;
-            this.cardIcon.gameObject.SetActive(true);
+            if (this._assetLoader != null)
+            {
+                Sprite cardIconSprite = await this._assetLoader.LoadAsset<Sprite>(model.cardContent);
+                this.cardIcon.sprite = cardIconSprite;
+                this.cardIcon.gameObject.SetActive(true);
+            }
         }
 
         private void ToggleFoundationMark(bool isFoundation)

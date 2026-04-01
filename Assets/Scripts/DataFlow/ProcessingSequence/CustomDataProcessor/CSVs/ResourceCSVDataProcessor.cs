@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CsvHelper.Configuration;
 using Cysharp.Threading.Tasks;
 using DracoRuan.Foundation.DataFlow.DataProviders;
 using DracoRuan.Foundation.DataFlow.LocalData;
@@ -7,8 +8,10 @@ using UnityEngine;
 
 namespace DracoRuan.Foundation.DataFlow.ProcessingSequence.CustomDataProcessor.CSVs
 {
-    public class ResourceCsvDataProcessor<TData, TRecord> : IProcessSequence, IProcessSequenceData
-        where TData : SerializableRecordClass<TRecord>, IGameData, new()
+    public class ResourceCsvDataProcessor<TData, TRecord, TRecordMap> : IProcessSequence, IProcessSequenceData
+        where TData : SerializableRecordClass<TRecord, TRecordMap>, IGameData, new()
+        where TRecord : class
+        where TRecordMap : ClassMap<TRecord>
     {
         private readonly string _dataConfigKey;
         private readonly IDataProvider _dataProvider;
@@ -30,7 +33,7 @@ namespace DracoRuan.Foundation.DataFlow.ProcessingSequence.CustomDataProcessor.C
             try
             {
                 string output = textAsset.text ?? string.Empty;
-                IEnumerable<TRecord> dataRecords = CsvHelperUtil<TRecord>.GetRecordsFromCsv(output);
+                IEnumerable<TRecord> dataRecords = CsvHelperUtil<TRecord, TRecordMap>.GetRecordsFromCsv(output);
                 if (dataRecords == null)
                     return false;
 
