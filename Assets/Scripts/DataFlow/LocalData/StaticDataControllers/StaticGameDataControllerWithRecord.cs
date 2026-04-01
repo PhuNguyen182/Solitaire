@@ -10,7 +10,7 @@ using DracoRuan.Foundation.DataFlow.ProcessingSequence.CustomDataProcessor.CSVs;
 namespace DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers
 {
     public abstract class StaticGameDataControllerWithRecord<TData, TRecord, TRecordMap> : IStaticGameDataController 
-        where TData : SerializableRecordClass<TRecord, TRecordMap>, IGameData, new()
+        where TData : SerializableRecordClass<TRecord>, IGameData, new()
         where TRecord : class
         where TRecordMap : ClassMap<TRecord>
     {

@@ -4,9 +4,7 @@ using DracoRuan.Foundation.DataFlow.LocalData;
 
 namespace DracoRuan.Foundation.DataFlow.ProcessingSequence.CustomDataProcessor.CSVs
 {
-    public class SerializableRecordClass<TRecord, TRecordMap> : ISetCustomCsvRecordGameData<TRecord>
-        where TRecord : class
-        where TRecordMap : ClassMap<TRecord>
+    public class SerializableRecordClass<TRecord> : ISetCustomCsvRecordGameData<TRecord>
     {
         public IEnumerable<TRecord> Records { get; private set; }
 

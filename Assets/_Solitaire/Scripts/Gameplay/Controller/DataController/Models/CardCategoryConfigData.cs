@@ -6,7 +6,7 @@ using DracoRuan.Foundation.DataFlow.ProcessingSequence.CustomDataProcessor.CSVs;
 namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
 {
     [GameData(nameof(CardCategoryConfigData))]
-    public class CardCategoryConfigData : SerializableRecordClass<CardCategoryRecord, CardCategoryRecordClassMap>, IGameData
+    public class CardCategoryConfigData : SerializableRecordClass<CardCategoryRecord>, IGameData
     {
         public int Version { get; set; }
     }
@@ -22,20 +22,28 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
 
     public sealed class CardCategoryRecordClassMap : ClassMap<CardCategoryRecord>
     {
+        private const string IdFieldName = "ID";
+        private const string CategoryFieldName = "Category";
+        private const string CapacityFieldName = "Capacity";
+        private const string UseImageFieldName = "Image";
+        private const string WordsFieldName = "Words";
+        
         public CardCategoryRecordClassMap()
         {
-            this.Map(record => record.ID).Name("ID");
-            this.Map(record => record.Category).Name("Category");
-            this.Map(record => record.Capacity).Name("Capacity");
-            this.Map(record => record.UseImage).Name("Image");
+            this.Map(record => record.ID).Name(IdFieldName);
+            this.Map(record => record.Category).Name(CategoryFieldName);
+            this.Map(record => record.Capacity).Name(CapacityFieldName);
+            this.Map(record => record.UseImage).Name(UseImageFieldName);
             this.Map(record => record.Words).Convert(args =>
             {
                 List<string> list = new();
                 for (int i = 1; i <= 20; i++)
                 {
-                    string word = args.Row.GetField($"Word{i}");
-                    if (!string.IsNullOrWhiteSpace(word))
-                        list.Add(word);
+                    string word = args.Row.GetField($"{WordsFieldName}{i}");
+                    if (string.IsNullOrEmpty(word) || string.IsNullOrWhiteSpace(word))
+                        continue;
+                    
+                    list.Add(word);
                 }
 
                 return list;

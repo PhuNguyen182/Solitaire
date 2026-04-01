@@ -9,7 +9,7 @@ using UnityEngine;
 namespace DracoRuan.Foundation.DataFlow.ProcessingSequence.CustomDataProcessor.CSVs
 {
     public class ResourceCsvDataProcessor<TData, TRecord, TRecordMap> : IProcessSequence, IProcessSequenceData
-        where TData : SerializableRecordClass<TRecord, TRecordMap>, IGameData, new()
+        where TData : SerializableRecordClass<TRecord>, IGameData, new()
         where TRecord : class
         where TRecordMap : ClassMap<TRecord>
     {
