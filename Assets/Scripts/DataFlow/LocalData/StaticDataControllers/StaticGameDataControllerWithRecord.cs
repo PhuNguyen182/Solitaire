@@ -65,7 +65,7 @@ namespace DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers
             {
                 DataProcessorType.ResourceCsv 
                     => new ResourceCsvDataProcessor<TData, TRecord, TRecordMap>(dataKey, this._dataProviderService),
-                DataProcessorType.AddressableScriptableObjects 
+                DataProcessorType.AddressableCsv 
                     => new AddressableCsvDataProcessor<TData, TRecord, TRecordMap>(dataKey, this._dataProviderService),
                 _ => null    
             };
