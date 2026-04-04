@@ -212,6 +212,15 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "games.corundum.stateless-for-unity": {
+      "version": "5.11.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.cysharp.unitask": "2.2.5"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,
