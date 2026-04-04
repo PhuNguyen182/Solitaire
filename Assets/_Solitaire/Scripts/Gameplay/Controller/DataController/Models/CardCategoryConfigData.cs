@@ -15,7 +15,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
     {
         public int ID;
         public string Category;
-        public int Capacity;
         public bool UseImage;
         public List<string> Words = new();
         
@@ -26,7 +25,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
     {
         private const string IdFieldName = "ID";
         private const string CategoryFieldName = "Category";
-        private const string CapacityFieldName = "Capacity";
         private const string UseImageFieldName = "Image";
         private const string WordsFieldName = "Word";
         
@@ -34,7 +32,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
         {
             this.Map(record => record.ID).Name(IdFieldName);
             this.Map(record => record.Category).Name(CategoryFieldName);
-            this.Map(record => record.Capacity).Name(CapacityFieldName);
             this.Map(record => record.UseImage).Name(UseImageFieldName);
             this.Map(record => record.Words).Convert(args =>
             {

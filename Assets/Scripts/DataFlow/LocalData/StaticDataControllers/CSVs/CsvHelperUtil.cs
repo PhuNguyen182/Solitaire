@@ -19,6 +19,7 @@ namespace DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers.CSVs
             CsvConfiguration = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = true,
+                Delimiter = ","
             };
         }
 
