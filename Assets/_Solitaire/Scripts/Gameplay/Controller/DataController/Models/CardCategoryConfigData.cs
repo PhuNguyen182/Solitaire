@@ -16,7 +16,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
         public int ID;
         public string Category;
         public bool UseImage;
-        public List<string> Words = new();
+        public HashSet<string> Words = new(20);
         
         public int Capacity => this.Words.Count;
         public bool ContainWord(string word) => this.Words.Contains(word);
@@ -36,7 +36,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
             this.Map(record => record.UseImage).Name(UseImageFieldName);
             this.Map(record => record.Words).Convert(args =>
             {
-                List<string> list = new();
+                HashSet<string> list = new();
                 for (int i = 1; i <= 20; i++)
                 {
                     string word = args.Row.GetField($"{WordsFieldName}{i}");
