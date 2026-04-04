@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using CsvHelper.Configuration;
-using DracoRuan.Foundation.DataFlow.LocalData;
 
-namespace DracoRuan.Foundation.DataFlow.ProcessingSequence.CustomDataProcessor.CSVs
+namespace DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers.CSVs
 {
-    public class SerializableRecordClass<TRecord> : ISetCustomCsvRecordGameData<TRecord>
+    public class CustomRecordData<TRecord> : ISetCustomCsvRecordGameData<TRecord>
     {
         public IEnumerable<TRecord> Records { get; private set; }
 

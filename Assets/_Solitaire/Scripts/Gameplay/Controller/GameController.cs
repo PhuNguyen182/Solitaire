@@ -1,6 +1,8 @@
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using _Solitaire.Scripts.Gameplay.Level;
+using Cysharp.Threading.Tasks;
+using DracoRuan.Foundation.DataFlow.MasterDataController;
 using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
@@ -16,15 +18,23 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         
         private CardFactory _cardFactory;
         private CardPlaceholderManager _cardPlaceholderManager;
+        private MainDataManager _mainDataManager;
 
         private void Awake()
         {
-            this.InitializeGame();
+            this.TestInitializeData();
+            //this.InitializeGame();
         }
 
         private void Start()
         {
             this.StartGameLevel();
+        }
+
+        private void TestInitializeData()
+        {
+            this._mainDataManager = new MainDataManager();
+            this._mainDataManager.InitializeDataHandlers().Forget();
         }
 
         private void InitializeGame()

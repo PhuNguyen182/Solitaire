@@ -1,11 +1,14 @@
 using System.Linq;
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.Controller.DataController.Models;
+using DracoRuan.Foundation.DataFlow.DataProcessors;
+using DracoRuan.Foundation.DataFlow.DataProviders;
+using DracoRuan.Foundation.DataFlow.LocalData;
 using DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers;
-using DracoRuan.Foundation.DataFlow.ProcessingSequence;
 
 namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 {
+    [StaticGameDataController(nameof(CardCategoryConfigDataController))]
     public class CardCategoryConfigDataController : StaticGameDataControllerWithRecord<CardCategoryConfigData,
         CardCategoryRecord, CardCategoryRecordClassMap>
     {
@@ -15,7 +18,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 
         protected override List<DataProcessSequence> DataProcessSequences => new()
         {
-            new DataProcessSequence($"CSVs/{this.GetDataKey()}", DataProcessorType.ResourceCsv)
+            new DataProcessSequence($"CSVs/{this.GetDataKey()}", DataSourceType.Resources)
         };
 
         protected override void OnDataInitialized()

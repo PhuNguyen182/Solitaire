@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using CsvHelper.Configuration;
 using DracoRuan.Foundation.DataFlow.LocalData;
-using DracoRuan.Foundation.DataFlow.ProcessingSequence.CustomDataProcessor.CSVs;
+using DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers.CSVs;
 
 namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
 {
     [GameData(nameof(CardCategoryConfigData))]
-    public class CardCategoryConfigData : SerializableRecordClass<CardCategoryRecord>, IGameData
+    public class CardCategoryConfigData : CustomRecordData<CardCategoryRecord>, IGameData
     {
         public int Version { get; set; }
     }
@@ -28,7 +28,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
         private const string CategoryFieldName = "Category";
         private const string CapacityFieldName = "Capacity";
         private const string UseImageFieldName = "Image";
-        private const string WordsFieldName = "Words";
+        private const string WordsFieldName = "Word";
         
         public CardCategoryRecordClassMap()
         {
