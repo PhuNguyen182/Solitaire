@@ -6,6 +6,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     public class CardFactoryParam
     {
         public CardModel CardModel;
+        public Transform CardContainer;
         public ICardPlaceholder CardPlaceholder;
         public Vector3 Position;
     }
@@ -25,7 +26,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 return null;
 
             ICard cardInstance = GameObjectPoolManager.SpawnInstance(playingCard, param.Position, Quaternion.identity,
-                param.CardPlaceholder.CurrentTransform);
+                param.CardContainer);
             cardInstance.BindModel(param.CardModel);
             cardInstance.SetCardPlaceholder(param.CardPlaceholder);
             cardInstance.FlipCard(false, true);

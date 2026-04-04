@@ -10,11 +10,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     public interface ICard : IFollowable
     {
         public bool IsSingleCard { get; }
-        public string CardCategory{ get; }
+        public int CardCategory { get; }
         public CardType CardType { get; }
         public ICardGroup CardGroup { get; }
         public ICardPlaceholder CardPlaceholder { get; }
         public Vector3 WorldPosition { get; }
+        public CardModel CardModel { get; }
 
         public void BindModel(CardModel model);
         public UniTask FlipCard(bool isFaceUp, bool isImmediately);

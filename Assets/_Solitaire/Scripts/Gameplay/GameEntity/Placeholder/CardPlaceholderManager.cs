@@ -14,12 +14,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         private readonly Vector3 _normalPlaceholderStartPosition;
 
         public CardPlaceholderManager(ICardPlaceholder cardPlaceholder, Vector3 foundationPlaceholderStartPosition,
-            Vector3 normalPlaceholderStartPosition, Transform cardPlaceholderParentTransform, CardFactory cardFactory)
+            Vector3 normalPlaceholderStartPosition, Transform cardPlaceholderParentTransform, Transform cardContainerTransform,
+            CardFactory cardFactory)
         {
             this._cardPlaceholderMap = new Dictionary<int, ICardPlaceholder>();
             this._foundationPlaceholderStartPosition = foundationPlaceholderStartPosition;
             this._normalPlaceholderStartPosition = normalPlaceholderStartPosition;
-            this._cardPlaceholderFactory = new CardPlaceholderFactory(cardPlaceholder, cardPlaceholderParentTransform);
+            this._cardPlaceholderFactory = new CardPlaceholderFactory(cardPlaceholder, cardPlaceholderParentTransform,
+                cardContainerTransform);
             this._cardFactory = cardFactory;
         }
 

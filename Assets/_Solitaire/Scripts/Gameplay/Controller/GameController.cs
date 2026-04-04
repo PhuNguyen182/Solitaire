@@ -1,8 +1,8 @@
+using _Solitaire.Scripts.Gameplay.Level;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
-using _Solitaire.Scripts.Gameplay.Level;
-using Cysharp.Threading.Tasks;
 using DracoRuan.Foundation.DataFlow.MasterDataController;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
@@ -12,11 +12,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         [SerializeField] private Transform cardPlaceholderContainer;
         [SerializeField] private Transform foundationPlaceholderStartPoint;
         [SerializeField] private Transform normalPlaceholderStartPoint;
+        [SerializeField] private Transform cardContainerPoint;
         [SerializeField] private CardPlaceholder cardPlaceholderPrefab;
         [SerializeField] private PlayingCard playingCardPrefab;
         [SerializeField] private CardSupplier cardSupplier;
         
         private CardFactory _cardFactory;
+        private PlayCardManager _playCardManager;
         private CardPlaceholderManager _cardPlaceholderManager;
         private MainDataManager _mainDataManager;
 
@@ -39,10 +41,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private void InitializeGame()
         {
+            this._playCardManager = new PlayCardManager();
             this._cardFactory = new CardFactory(this.playingCardPrefab);
             this._cardPlaceholderManager = new CardPlaceholderManager(this.cardPlaceholderPrefab,
                 this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
-                this.cardPlaceholderContainer, this._cardFactory);
+                this.cardPlaceholderContainer, this.cardContainerPoint, this._cardFactory);
         }
 
         private void SetupLevelModel(LevelModel levelModel)
@@ -53,6 +56,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private void StartGameLevel()
         {
             
+        }
+
+        private void OnDestroy()
+        {
+            this._playCardManager.Dispose();
         }
     }
 }

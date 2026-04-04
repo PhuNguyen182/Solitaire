@@ -14,6 +14,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         private ICardGroup _cardGroup;
         private CardFactory _cardFactory;
         private CardPlaceholderModel _cardPlaceholderModel;
+        private Transform _cardContainer;
 
         public int CardPlaceHolderID { get; private set; }
 
@@ -33,6 +34,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             this.SetupCardPlaceholderInitialEnableState();
         }
 
+        public void SetCardContainer(Transform cardContainer)
+        {
+            this._cardContainer = cardContainer;
+        }
+
         public void SetCardFactory(CardFactory cardFactory)
         {
             this._cardFactory = cardFactory;
@@ -50,6 +56,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                 Vector3 cardPosition = this.transform.position + Vector3.down * (i * CardConstants.CardPositionOffset);
                 CardFactoryParam param = new CardFactoryParam
                 {
+                    CardContainer = this._cardContainer,
                     CardModel = cardModel,
                     CardPlaceholder = this,
                     Position = cardPosition,

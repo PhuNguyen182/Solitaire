@@ -10,6 +10,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     {
         [SerializeField] private PlayingCard cardPrefab;
         [SerializeField] private Button provideCardButton;
+        [SerializeField] private Transform cardContainer;
         [SerializeField] private Transform[] cardPositions;
         [SerializeField] private int maxSupplyCardCount = 3;
         
@@ -62,6 +63,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 this._levelModel.availableCategories.Shuffle();
                 CardFactoryParam cardParam = new CardFactoryParam
                 {
+                    CardContainer = this.cardContainer,
                     Position = this.cardPositions[supplyCardCount].position,
                 };
                 ICard supplyCard = this._cardFactory.Create(cardParam);

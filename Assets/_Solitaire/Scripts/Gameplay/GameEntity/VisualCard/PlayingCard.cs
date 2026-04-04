@@ -33,11 +33,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
 
-        public string CardCategory => this._cardModel.cardCategory;
+        public int CardCategory => this._cardModel.cardCategory;
         public CardType CardType => this.cardType;
         public ICardGroup CardGroup => this._cardGroup;
         public ICardPlaceholder CardPlaceholder => this._cardPlaceholder;
         public Vector3 WorldPosition => this.transform.position;
+        public CardModel CardModel => this._cardModel;
 
         private void Awake()
         {
@@ -138,7 +139,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public bool IsSameCategory(ICard card)
         {
-            bool isSameCategory = string.CompareOrdinal(this.CardCategory, card.CardCategory) == 0;
+            bool isSameCategory = this.CardCategory == card.CardCategory;
             return isSameCategory;
         }
 

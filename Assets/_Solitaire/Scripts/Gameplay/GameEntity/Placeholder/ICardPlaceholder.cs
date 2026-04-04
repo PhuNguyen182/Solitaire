@@ -8,6 +8,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public int CardPlaceHolderID { get; }
         public Transform CurrentTransform { get; }
         
+        public void SetCardContainer(Transform cardContainer);
         public void BindModelData(CardPlaceholderModel model);
         public bool TryAppendCard(ICard card);
         public void RemoveCard(ICard card);
