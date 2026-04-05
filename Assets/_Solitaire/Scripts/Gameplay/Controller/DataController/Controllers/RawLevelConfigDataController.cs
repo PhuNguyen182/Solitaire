@@ -79,7 +79,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
             LevelModel levelModel = new LevelModel
             {
                 moveCount = levelConfigData.Moves,
-                useRandomize = levelConfigData.UseRandomize
             };
 
             List<CategoryData> availableCategories = BuildAvailableCardCategories(levelConfigData);
@@ -147,7 +146,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
             int columnCount = columnCounts.Count;
 
             int currentIndex = 0;
-            totalCardModels.Shuffle();
+            bool useRandom = levelConfigData.UseRandomize;
+            totalCardModels.Shuffle(!useRandom);
 
             for (int i = 0; i < columnCount; i++)
             {

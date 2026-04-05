@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace _Solitaire.Scripts.Gameplay
 {
     public struct CardConstants
