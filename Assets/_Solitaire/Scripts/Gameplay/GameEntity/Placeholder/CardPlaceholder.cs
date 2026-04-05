@@ -1,3 +1,4 @@
+using _Solitaire.Scripts.Gameplay.Controller;
 using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         private ICardGroup _cardGroup;
         private CardFactory _cardFactory;
         private CardPlaceholderModel _cardPlaceholderModel;
+        private PlayCardManager _playCardManager;
         private Transform _cardContainer;
 
         public int CardPlaceHolderID { get; private set; }
@@ -30,6 +32,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         {
             this._cardPlaceholderModel = model;
             this.cardType = model.CardType;
+            this._playCardManager = model.PlayCardManager;
             this.ToggleFoundationMark(model.CardType == CardType.Foundation);
             this.SetupCardPlaceholderInitialEnableState();
         }
@@ -87,6 +90,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             }
 
             this._cardGroup.AppendCards(false, card);
+            this._playCardManager.AddCard(card);
             return true;
         }
 
@@ -100,6 +104,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 
             ICard[] cards = card.CardGroup.ElementCards.ToArray();
             this._cardGroup.AppendCards(false, cards);
+            
+            int count = cards.Length;
+            for (int i = 0; i < count; i++)
+                this._playCardManager.AddCard(cards[i]);
+            
             return true;
         }
 

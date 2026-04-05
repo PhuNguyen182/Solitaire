@@ -200,7 +200,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             if (!this.cardIcon)
                 return;
 
-            if (model.contentType != CardContentType.Image)
+            if (model.contentType != CardContentType.Icon)
             {
                 this.cardIcon.gameObject.SetActive(false);
                 return;

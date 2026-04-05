@@ -20,6 +20,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private ICard _pickedCard;
         private ICardPlaceholder _pickedCardPlaceholder;
         private CardPlaceholderManager _cardPlaceholderManager;
+        private PlayCardManager _playCardManager;
         
         public event Action<bool> OnCardDropped;
 
@@ -32,6 +33,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private void Update()
         {
             this.UpdatePickedCardPosition();
+        }
+
+        public void SetPlayCardManager(PlayCardManager playCardManager)
+        {
+            this._playCardManager = playCardManager;
         }
 
         public void SetCardPlaceholderManager(CardPlaceholderManager cardPlaceholderManager)
@@ -98,30 +104,39 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
             this._isCardDragging = false;
             bool isSnapToCardPlaceholder = this.SnapToCardPlaceholder();
+            bool isCardFromSupplier = this._pickedCard.CardPlaceholder == null;
             if (!isSnapToCardPlaceholder)
             {
                 bool isCurrentCardAddedToNewGroup = this.StackCardInAGroup();
                 if (!isCurrentCardAddedToNewGroup)
-                {
-                    this._pickedCard.SnapBackToInitialedPosition();
-                    this.OnCardDropped?.Invoke(false);
-                }
+                    DropInvalidatedCard();
                 else
-                {
-                    this._pickedCardPlaceholder?.RemoveCard(this._pickedCard);
-                    this._pickedCardPlaceholder?.FlipLastCard();
-                    this.OnCardDropped?.Invoke(true);
-                }
+                    DropValidatedCard();
             }
             else
             {
-                this._pickedCardPlaceholder?.RemoveCard(this._pickedCard);
-                this._pickedCardPlaceholder?.FlipLastCard();
-                this.OnCardDropped?.Invoke(true);
+                DropValidatedCard();
             }
 
             this._pickedCard = null;
             this._cardColliders = null;
+            return;
+
+            void DropValidatedCard()
+            {
+                if (isCardFromSupplier)
+                    this._playCardManager.AddCard(this._pickedCard);
+                
+                this._pickedCardPlaceholder?.RemoveCard(this._pickedCard);
+                this._pickedCardPlaceholder?.FlipLastCard();
+                this.OnCardDropped?.Invoke(true);
+            }
+            
+            void DropInvalidatedCard()
+            {
+                this._pickedCard.SnapBackToInitialedPosition();
+                this.OnCardDropped?.Invoke(false);
+            }
         }
 
         private bool SnapToCardPlaceholder()

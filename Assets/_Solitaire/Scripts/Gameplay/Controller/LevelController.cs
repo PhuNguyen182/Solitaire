@@ -1,0 +1,38 @@
+using _Solitaire.Scripts.Gameplay.Level;
+
+namespace _Solitaire.Scripts.Gameplay.Controller
+{
+    public class LevelController
+    {
+        private readonly LevelModel _levelModel;
+        private readonly PlayCardManager _playCardManager;
+
+        public LevelController(LevelModel levelModel, PlayCardManager playCardManager)
+        {
+            this._levelModel = levelModel;
+            this._playCardManager = playCardManager;
+        }
+
+        public bool CheckCategory(int cardCategory, int cardCount)
+        {
+            CategoryData cardCategoryData = null;
+            int categoryCount = this._levelModel.availableCategories.Count;
+            for (int i = 0; i < categoryCount; i++)
+            {
+                if (this._levelModel.availableCategories[i].categoryId != cardCategory) 
+                    continue;
+                
+                cardCategoryData = this._levelModel.availableCategories[i];
+                break;
+            }
+
+            // Check if cardCount is equal to max card count (including foundation card)
+            bool isCategoryComplete = cardCategoryData != null && cardCategoryData.maxCardCount == cardCount - 1;
+            if (!isCategoryComplete) 
+                return false;
+            
+            this._playCardManager.RemoveCardCategory(cardCategory);
+            return true;
+        }
+    }
+}

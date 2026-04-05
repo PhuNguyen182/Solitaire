@@ -9,10 +9,14 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 {
     public class GameController : MonoBehaviour
     {
+        [Header("Card Mapping")]
         [SerializeField] private Transform cardPlaceholderContainer;
         [SerializeField] private Transform foundationPlaceholderStartPoint;
         [SerializeField] private Transform normalPlaceholderStartPoint;
         [SerializeField] private Transform cardContainerPoint;
+        
+        [Header("Card Controlling")]
+        [SerializeField] private DragAndDropController dragAndDropController;
         [SerializeField] private CardPlaceholder cardPlaceholderPrefab;
         [SerializeField] private PlayingCard playingCardPrefab;
         [SerializeField] private CardSupplier cardSupplier;
@@ -20,12 +24,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private CardFactory _cardFactory;
         private PlayCardManager _playCardManager;
         private CardPlaceholderManager _cardPlaceholderManager;
+        private LevelController _levelController;
         private MainDataManager _mainDataManager;
 
         private void Awake()
         {
             this.TestInitializeData();
-            //this.InitializeGame();
+            this.InitializeGame();
         }
 
         private void Start()
@@ -45,11 +50,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this._cardFactory = new CardFactory(this.playingCardPrefab);
             this._cardPlaceholderManager = new CardPlaceholderManager(this.cardPlaceholderPrefab,
                 this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
-                this.cardPlaceholderContainer, this.cardContainerPoint, this._cardFactory);
+                this._playCardManager, this.cardPlaceholderContainer, this.cardContainerPoint, this._cardFactory);
+            this.dragAndDropController.SetPlayCardManager(this._playCardManager);
         }
 
         private void SetupLevelModel(LevelModel levelModel)
         {
+            this._levelController = new LevelController(levelModel, this._playCardManager);
             this.cardSupplier.SetLevelModel(levelModel);
         }
 

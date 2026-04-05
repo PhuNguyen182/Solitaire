@@ -7,6 +7,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     {
         None = 0,
         Text = 1,
-        Image = 2,
+        Icon = 2,
     }
 }
