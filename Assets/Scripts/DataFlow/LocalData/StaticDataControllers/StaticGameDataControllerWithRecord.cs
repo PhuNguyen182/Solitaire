@@ -42,7 +42,7 @@ namespace DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers
             this.OnDataInitialized();
         }
 
-        public void InjectDataManager(IMainDataManager mainDataManager)
+        public virtual void InjectDataManager(IMainDataManager mainDataManager)
         {
             this._dataProviderService = mainDataManager.DataProviderService;
         }

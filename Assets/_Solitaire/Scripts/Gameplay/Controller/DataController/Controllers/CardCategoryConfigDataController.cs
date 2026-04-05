@@ -13,6 +13,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         CardCategoryRecord, CardCategoryRecordClassMap>
     {
         private Dictionary<int, CardCategoryRecord> _cardCategoryRecords;
+        private Dictionary<string, int> _keyMappings;
         
         protected override CardCategoryConfigData SourceData { get; set; }
 
@@ -24,6 +25,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         protected override void OnDataInitialized()
         {
             this._cardCategoryRecords = this.SourceData.Records.ToDictionary(record => record.ID);
+            this._keyMappings = this.SourceData.Records.ToDictionary(record => record.Category, record => record.ID);
         }
 
         public CardCategoryRecord GetCardCategoryConfig(int cardCategoryID) =>
@@ -34,6 +36,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
             CardCategoryRecord cardCategory = this._cardCategoryRecords.GetValueOrDefault(cardCategoryID);
             return cardCategory != null && cardCategory.ContainWord(word);
         }
+        
+        public int GetCardCategoryID(string categoryName) => this._keyMappings.GetValueOrDefault(categoryName);
 
         protected override void ReleaseManagedResources()
         {

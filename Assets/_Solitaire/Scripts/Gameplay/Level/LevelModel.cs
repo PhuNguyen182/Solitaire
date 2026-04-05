@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _Solitaire.Scripts.Gameplay.Controller.DataController.Models;
 
 namespace _Solitaire.Scripts.Gameplay.Level
 {
@@ -7,7 +8,8 @@ namespace _Solitaire.Scripts.Gameplay.Level
     public class LevelModel
     {
         public int moveCount;
-        public bool useDynamicCardData;
+        public bool useRandomize;
+        public LevelDifficulty difficulty;
         public List<CardColumnModel> cardColumnModel = new();
         public List<CategoryData> availableCategories = new();
         
@@ -16,7 +18,8 @@ namespace _Solitaire.Scripts.Gameplay.Level
         public void Clear()
         {
             this.moveCount = 0;
-            this.useDynamicCardData = false;
+            this.useRandomize = false;
+            this.difficulty = LevelDifficulty.None;
             this.cardColumnModel.Clear();
             this.availableCategories.Clear();
         }

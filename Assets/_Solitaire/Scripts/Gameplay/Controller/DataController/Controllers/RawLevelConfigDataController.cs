@@ -2,10 +2,13 @@ using System.Linq;
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.Level;
 using _Solitaire.Scripts.Gameplay.Controller.DataController.Models;
+using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers;
 using DracoRuan.Foundation.DataFlow.DataProcessors;
 using DracoRuan.Foundation.DataFlow.DataProviders;
 using DracoRuan.Foundation.DataFlow.LocalData;
+using DracoRuan.Foundation.DataFlow.MasterDataController;
+using Extensions;
 using UnityEngine.Pool;
 
 namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
@@ -15,6 +18,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         RawLevelDataClassMap>
     {
         private Dictionary<int, LevelConfigData> _levelConfigData;
+        private CardCategoryConfigDataController _cardCategoryConfigDataController;
+        private IMainDataManager _mainDataManager;
 
         protected override RawLevelConfigData SourceData { get; set; }
 
@@ -22,6 +27,12 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         {
             new DataProcessSequence($"CSVs/{this.GetDataKey()}", DataSourceType.Resources)
         };
+
+        public override void InjectDataManager(IMainDataManager mainDataManager)
+        {
+            base.InjectDataManager(mainDataManager);
+            this._mainDataManager = mainDataManager;
+        }
 
         protected override void OnDataInitialized()
         {
@@ -61,8 +72,99 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
             if (levelConfigData == null)
                 return null;
 
-            // To do: modify the level model data structure to update generate new level model
-            return new LevelModel();
+            this._cardCategoryConfigDataController ??=
+                this._mainDataManager.GetStaticDataController<CardCategoryConfigDataController>();
+            LevelModel levelModel = new LevelModel
+            {
+                moveCount = levelConfigData.Moves,
+                useRandomize = levelConfigData.UseRandomize
+            };
+
+            List<CategoryData> availableCategories = BuildAvailableCardCategories(levelConfigData);
+            levelModel.availableCategories = availableCategories;
+            List<CardColumnModel> cardColumnModel = BuildCardColumnData(levelConfigData, availableCategories);
+            levelModel.cardColumnModel = cardColumnModel;
+            return levelModel;
+        }
+
+        private List<CardColumnModel> BuildCardColumnData(LevelConfigData levelConfigData,
+            List<CategoryData> availableCategories)
+        {
+            List<CardModel> totalCardModels = new List<CardModel>();
+            List<CardColumnModel> result = new List<CardColumnModel>();
+            List<CardModel> cardInColumnModels = new List<CardModel>();
+
+            int categoryCount = availableCategories.Count;
+            for (int i = 0; i < categoryCount; i++)
+                totalCardModels.AddRange(availableCategories[i].cards);
+
+            List<int> columnCounts = levelConfigData.ColumnCounts;
+            int columnCount = columnCounts.Count;
+            
+            int currentIndex = 0;
+            totalCardModels.Shuffle();
+            
+            for (int i = 0; i < columnCount; i++)
+            {
+                cardInColumnModels.Clear();
+                int cardCountInColumn = columnCounts[i];
+                if (currentIndex + cardCountInColumn <= totalCardModels.Count)
+                {
+                    List<CardModel> subList = totalCardModels.GetRange(currentIndex, cardCountInColumn);
+                    cardInColumnModels.AddRange(subList);
+                    currentIndex += cardCountInColumn;
+                }
+                
+                result.Add(new CardColumnModel
+                {
+                    cardModel = cardInColumnModels
+                });
+            }
+            
+            return result;
+        }
+
+        private List<CategoryData> BuildAvailableCardCategories(LevelConfigData levelConfigData)
+        {
+            List<CategoryData> levelCategoryData = new List<CategoryData>();
+            List<CategoryConfigData> cardCategory = levelConfigData.Categories;
+            foreach (CategoryConfigData cardCategoryData in cardCategory)
+            {
+                int categoryId =
+                    this._cardCategoryConfigDataController.GetCardCategoryID(cardCategoryData.CategoryName);
+                int wordCount = cardCategoryData.Words.Count;
+                CardContentType cardContentType = cardCategoryData.ItemType;
+                List<CardModel> cardModels = new List<CardModel>
+                {
+                    new()
+                    {
+                        cardCategory = categoryId,
+                        cardContent = cardCategoryData.CategoryName,
+                        contentType = cardContentType,
+                        cardType = CardType.Foundation,
+                    }
+                };
+
+                foreach (string cardWord in cardCategoryData.Words)
+                {
+                    cardModels.Add(new CardModel
+                    {
+                        cardCategory = categoryId,
+                        cardContent = cardWord,
+                        contentType = cardContentType,
+                        cardType = CardType.Normal,
+                    });
+                }
+
+                levelCategoryData.Add(new CategoryData
+                {
+                    categoryId = categoryId,
+                    maxCardCount = wordCount,
+                    cards = cardModels,
+                });
+            }
+
+            return levelCategoryData;
         }
 
         private LevelConfigData GetLevelConfigData(int levelId)
