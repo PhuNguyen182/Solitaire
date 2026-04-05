@@ -126,7 +126,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
     
     public class LevelConfigData
     {
-        public int LevelId;
+        public int Level;
         public LevelDifficulty Difficulty;
         public bool UseRandomize;
         public int WordColumns;

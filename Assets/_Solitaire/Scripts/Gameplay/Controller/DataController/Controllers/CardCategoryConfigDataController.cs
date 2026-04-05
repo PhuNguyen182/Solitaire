@@ -1,10 +1,10 @@
 using System.Linq;
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.Controller.DataController.Models;
+using DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers;
 using DracoRuan.Foundation.DataFlow.DataProcessors;
 using DracoRuan.Foundation.DataFlow.DataProviders;
 using DracoRuan.Foundation.DataFlow.LocalData;
-using DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers;
 
 namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 {
@@ -23,7 +23,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 
         protected override void OnDataInitialized()
         {
-            this._cardCategoryRecords = this.SourceData.Records.ToDictionary(record => record.ID, record => record);
+            this._cardCategoryRecords = this.SourceData.Records.ToDictionary(record => record.ID);
         }
 
         public CardCategoryRecord GetCardCategoryConfig(int cardCategoryID) =>
@@ -33,6 +33,12 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         {
             CardCategoryRecord cardCategory = this._cardCategoryRecords.GetValueOrDefault(cardCategoryID);
             return cardCategory != null && cardCategory.ContainWord(word);
+        }
+
+        protected override void ReleaseManagedResources()
+        {
+            this._cardCategoryRecords?.Clear();
+            this._cardCategoryRecords = null;
         }
     }
 }
