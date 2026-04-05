@@ -66,6 +66,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
             }
         }
 
+        #region Creating Level Model
+
         public LevelModel BuildLevelModel(int level)
         {
             LevelConfigData levelConfigData = this.GetLevelConfigData(level);
@@ -85,43 +87,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
             List<CardColumnModel> cardColumnModel = BuildCardColumnData(levelConfigData, availableCategories);
             levelModel.cardColumnModel = cardColumnModel;
             return levelModel;
-        }
-
-        private List<CardColumnModel> BuildCardColumnData(LevelConfigData levelConfigData,
-            List<CategoryData> availableCategories)
-        {
-            List<CardModel> totalCardModels = new List<CardModel>();
-            List<CardColumnModel> result = new List<CardColumnModel>();
-            List<CardModel> cardInColumnModels = new List<CardModel>();
-
-            int categoryCount = availableCategories.Count;
-            for (int i = 0; i < categoryCount; i++)
-                totalCardModels.AddRange(availableCategories[i].cards);
-
-            List<int> columnCounts = levelConfigData.ColumnCounts;
-            int columnCount = columnCounts.Count;
-            
-            int currentIndex = 0;
-            totalCardModels.Shuffle();
-            
-            for (int i = 0; i < columnCount; i++)
-            {
-                cardInColumnModels.Clear();
-                int cardCountInColumn = columnCounts[i];
-                if (currentIndex + cardCountInColumn <= totalCardModels.Count)
-                {
-                    List<CardModel> subList = totalCardModels.GetRange(currentIndex, cardCountInColumn);
-                    cardInColumnModels.AddRange(subList);
-                    currentIndex += cardCountInColumn;
-                }
-                
-                result.Add(new CardColumnModel
-                {
-                    cardModel = cardInColumnModels
-                });
-            }
-            
-            return result;
         }
 
         private List<CategoryData> BuildAvailableCardCategories(LevelConfigData levelConfigData)
@@ -166,6 +131,45 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 
             return levelCategoryData;
         }
+
+        private List<CardColumnModel> BuildCardColumnData(LevelConfigData levelConfigData,
+            List<CategoryData> availableCategories)
+        {
+            List<CardModel> totalCardModels = new List<CardModel>();
+            List<CardColumnModel> result = new List<CardColumnModel>();
+            List<CardModel> cardInColumnModels = new List<CardModel>();
+
+            int categoryCount = availableCategories.Count;
+            for (int i = 0; i < categoryCount; i++)
+                totalCardModels.AddRange(availableCategories[i].cards);
+
+            List<int> columnCounts = levelConfigData.ColumnCounts;
+            int columnCount = columnCounts.Count;
+
+            int currentIndex = 0;
+            totalCardModels.Shuffle();
+
+            for (int i = 0; i < columnCount; i++)
+            {
+                cardInColumnModels.Clear();
+                int cardCountInColumn = columnCounts[i];
+                if (currentIndex + cardCountInColumn <= totalCardModels.Count)
+                {
+                    List<CardModel> subList = totalCardModels.GetRange(currentIndex, cardCountInColumn);
+                    cardInColumnModels.AddRange(subList);
+                    currentIndex += cardCountInColumn;
+                }
+
+                result.Add(new CardColumnModel
+                {
+                    cardModel = cardInColumnModels
+                });
+            }
+
+            return result;
+        }
+        
+        #endregion
 
         private LevelConfigData GetLevelConfigData(int levelId)
         {
