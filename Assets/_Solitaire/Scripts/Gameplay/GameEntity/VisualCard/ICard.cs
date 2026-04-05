@@ -30,5 +30,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void AppendCardToGroup(params ICard[] card);
         public bool IsSameCategory(ICard card);
         public List<ICard> CheckAvailableCardOnDropDown();
+        public void Cleanup();
     }
 }

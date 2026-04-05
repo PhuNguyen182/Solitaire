@@ -221,5 +221,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         }
 
         #endregion
+
+        public void Cleanup()
+        {
+            GameObjectPoolManager.Despawn(this.gameObject);
+        }
     }
 }

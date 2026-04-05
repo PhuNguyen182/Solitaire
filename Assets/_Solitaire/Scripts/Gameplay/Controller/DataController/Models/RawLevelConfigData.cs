@@ -45,11 +45,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
     {
         private int _lastLevel;
         private int _lastWordColumn;
-        private LevelDifficulty _lastDiff;
-        private bool _lastRandom;
-        private int _lastWordCols;
+        private LevelDifficulty _lastDifficulty;
+        private bool _lastUseRandomize;
+        private int _lastWordColumns;
         private int _lastMoves;
-        private List<int> _lastColCounts = new();
+        private List<int> _lastColumnCounts = new();
 
         public RawLevelDataClassMap()
         {
@@ -65,16 +65,16 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
             {
                 string difficulty = args.Row.GetField("Difficulty");
                 if (!string.IsNullOrWhiteSpace(difficulty)) 
-                    Enum.TryParse(difficulty, out this._lastDiff);
-                return this._lastDiff;
+                    Enum.TryParse(difficulty, out this._lastDifficulty);
+                return this._lastDifficulty;
             });
 
             this.Map(rawLevelData => rawLevelData.UseRandomize).Convert(args =>
             {
                 string useRandomize = args.Row.GetField("UseRandomize");
                 if (!string.IsNullOrWhiteSpace(useRandomize)) 
-                    this._lastRandom = string.CompareOrdinal(useRandomize.ToUpper(), "TRUE") == 0;
-                return this._lastRandom;
+                    this._lastUseRandomize = string.CompareOrdinal(useRandomize.ToUpper(), "TRUE") == 0;
+                return this._lastUseRandomize;
             });
             
             this.Map(rawLevelData => rawLevelData.ColumnCounts).Convert(args =>
@@ -82,12 +82,12 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
                 string columnCount = args.Row.GetField("Column1Count");
                 if (!string.IsNullOrWhiteSpace(columnCount))
                 {
-                    this._lastColCounts = new List<int>();
+                    this._lastColumnCounts = new List<int>();
                     for (int i = 4; i <= 8; i++) 
-                        this._lastColCounts.Add(args.Row.GetField<int>(i));
+                        this._lastColumnCounts.Add(args.Row.GetField<int>(i));
                 }
 
-                return this._lastColCounts;
+                return this._lastColumnCounts;
             });
 
             this.Map(rawLevelData => rawLevelData.Moves).Convert(args =>
@@ -100,8 +100,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
             
             this.Map(rawLevelData => rawLevelData.WordColumns).Convert(args =>
             {
-                string move = args.Row.GetField("WordColumns");
-                if (int.TryParse(move, out int result)) 
+                string wordColumns = args.Row.GetField("WordColumns");
+                if (int.TryParse(wordColumns, out int result)) 
                     this._lastWordColumn = result;
                 return this._lastWordColumn;
             });
@@ -142,5 +142,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Models
         public CardContentType ItemType;
         public string CategoryName;
         public List<string> Words = new();
+        
+        public int WordCount => this.Words.Count;
     }
 }
