@@ -53,8 +53,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 
                 this._levelConfigData = levelConfigDataList.ToDictionary(rawLevelData => rawLevelData.Level);
             }
-            
-            Debug.Log(this._levelConfigData.Count);
         }
 
         public LevelModel BuildLevelModel(int level)
