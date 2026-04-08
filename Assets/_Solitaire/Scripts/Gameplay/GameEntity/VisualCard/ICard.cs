@@ -10,7 +10,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     public interface ICard : IFollowable
     {
         public bool IsSingleCard { get; }
-        public int CardCategory { get; }
+        public string CardCategory { get; }
         public CardType CardType { get; }
         public ICardGroup CardGroup { get; }
         public ICardPlaceholder CardPlaceholder { get; }

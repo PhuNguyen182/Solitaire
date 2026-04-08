@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ZLinq;
 using Random = UnityEngine.Random;
 
 namespace Extensions
@@ -20,13 +21,13 @@ namespace Extensions
             }
         }
 
-        public static T GetLast<T>(this List<T> list) => list[^1];
+        public static T GetLastElement<T>(this T[] array) => array[^1];
 
-        public static T GetRandom<T>(this List<T> list, bool useSpecifySeed = false, int seed = 100)
+        public static T GetRandomElement<T>(this T[] array, bool useSpecifySeed = false, int seed = 100)
         {
             int usingSeed = useSpecifySeed ? seed : (int)(DateTime.Now.Ticks % (int.MaxValue - 1));
             Random.InitState(usingSeed);
-            return list[Random.Range(0, list.Count)];
+            return array[Random.Range(0, array.Length)];
         }
 
         #endregion
@@ -45,13 +46,39 @@ namespace Extensions
             }
         }
 
-        public static T GetLast<T>(this T[] array) => array[^1];
+        public static T GetLastElement<T>(this List<T> list) => list[^1];
 
-        public static T GetRandom<T>(this T[] array, bool useSpecifySeed = false, int seed = 100)
+        public static T GetRandomElement<T>(this List<T> list, bool useSpecifySeed = false, int seed = 100)
         {
             int usingSeed = useSpecifySeed ? seed : (int)(DateTime.Now.Ticks % (int.MaxValue - 1));
             Random.InitState(usingSeed);
-            return array[Random.Range(0, array.Length)];
+            return list[Random.Range(0, list.Count)];
+        }
+
+        #endregion
+
+        #region HashSet
+
+        public static T GetRandomElement<T>(this HashSet<T> hashSet, bool useSpecifySeed = false, int seed = 100)
+        {
+            int usingSeed = useSpecifySeed ? seed : (int)(DateTime.Now.Ticks % (int.MaxValue - 1));
+            Random.InitState(usingSeed);
+            int randomIndex = Random.Range(0, hashSet.Count);
+            return hashSet.AsValueEnumerable().ElementAt(randomIndex);
+        }
+
+        #endregion
+
+        #region Dictionary
+
+        public static TValue GetRandomValue<TKey, TValue>(this Dictionary<TKey, TValue> dictionary,
+            bool useSpecifySeed = false, int seed = 100)
+        {
+            int usingSeed = useSpecifySeed ? seed : (int)(DateTime.Now.Ticks % (int.MaxValue - 1));
+            Random.InitState(usingSeed);
+            int randomIndex = Random.Range(0, dictionary.Count);
+            TKey randomKey = dictionary.Keys.AsValueEnumerable().ElementAt(randomIndex);
+            return dictionary[randomKey];
         }
 
         #endregion

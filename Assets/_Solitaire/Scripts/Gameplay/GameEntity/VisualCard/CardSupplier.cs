@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using _Solitaire.Scripts.Gameplay.Controller;
 using _Solitaire.Scripts.Gameplay.Level;
-using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +16,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         
         private LevelModel _levelModel; 
         private CardFactory _cardFactory;
+        private PlayCardManager _playCardManager;
         private List<ICard> _supplyCards;
+        private WordPool _wordPool;
 
         private void Awake()
         {
@@ -27,10 +29,29 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this.RegisterButtons();
         }
+        
+        public void SetPlayCardManager(PlayCardManager playCardManager) => this._playCardManager = playCardManager;
 
         public void SetLevelModel(LevelModel levelModel)
         {
             this._levelModel = levelModel;
+            this.BuildWordPoolForCardSupplier(levelModel);
+        }
+
+        private void BuildWordPoolForCardSupplier(LevelModel levelModel)
+        {
+            this._wordPool = new WordPool();
+            foreach (CategoryData categoryData in levelModel.availableCategories)
+            {
+                int numberOfWord = categoryData.maxCardCount;
+                string categoryName = categoryData.categoryName;
+                
+                CardModelByCategory cardModelByCategory = new CardModelByCategory(categoryName, numberOfWord);
+                foreach (var cardModel in categoryData.cards)
+                    cardModelByCategory.AddCardModel(cardModel);
+                
+                this._wordPool.AddWordCategory(cardModelByCategory);
+            }
         }
 
         private void RegisterButtons()
@@ -62,14 +83,16 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             else
             {
                 int supplyCardCount = this._supplyCards.Count;
-                this._levelModel.availableCategories.Shuffle();
-                // TODO: Use PlayCardManager to check available card to provide individual card for supplying
+                CardModel providedCardModel = this._wordPool.GetFullyRandomWord();
+                providedCardModel.PlayCardManager = this._playCardManager;
                 CardFactoryParam cardParam = new CardFactoryParam
                 {
                     CardContainer = this.cardContainer,
                     Position = this.cardPositions[supplyCardCount].position,
+                    CardModel = providedCardModel,
                 };
                 ICard supplyCard = this._cardFactory.Create(cardParam);
+                supplyCard.FlipCard(true, true);
                 this._supplyCards.Add(supplyCard);
             }
         }
@@ -77,6 +100,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private void OnDisable()
         {
             this.DeregisterButtons();
+            this._wordPool?.Dispose();
         }
     }
 }

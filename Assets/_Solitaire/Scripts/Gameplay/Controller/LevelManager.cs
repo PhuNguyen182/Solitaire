@@ -13,13 +13,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this._playCardManager = playCardManager;
         }
 
-        public bool CheckCategory(int cardCategory, int cardCount)
+        public bool CheckCategory(string cardCategory, int cardCount)
         {
             CategoryData cardCategoryData = null;
             int categoryCount = this._levelModel.availableCategories.Count;
             for (int i = 0; i < categoryCount; i++)
             {
-                if (this._levelModel.availableCategories[i].categoryId != cardCategory) 
+                if (this._levelModel.availableCategories[i].categoryName != cardCategory) 
                     continue;
                 
                 cardCategoryData = this._levelModel.availableCategories[i];

@@ -95,15 +95,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
             List<CategoryConfigData> cardCategory = levelConfigData.Categories;
             foreach (CategoryConfigData cardCategoryData in cardCategory)
             {
-                int categoryId =
-                    this._cardCategoryConfigDataController.GetCardCategoryID(cardCategoryData.CategoryName);
                 int wordCount = cardCategoryData.Words.Count;
                 CardContentType cardContentType = cardCategoryData.ItemType;
                 List<CardModel> cardModels = new List<CardModel>
                 {
                     new()
                     {
-                        cardCategory = categoryId,
+                        cardCategory = cardCategoryData.CategoryName,
                         cardContent = cardCategoryData.CategoryName,
                         contentType = cardContentType,
                         cardType = CardType.Foundation,
@@ -114,7 +112,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
                 {
                     cardModels.Add(new CardModel
                     {
-                        cardCategory = categoryId,
+                        cardCategory = cardCategoryData.CategoryName,
                         cardContent = cardWord,
                         contentType = cardContentType,
                         cardType = CardType.Normal,
@@ -123,7 +121,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 
                 levelCategoryData.Add(new CategoryData
                 {
-                    categoryId = categoryId,
+                    categoryName = cardCategoryData.CategoryName,
                     maxCardCount = wordCount,
                     cards = cardModels,
                 });

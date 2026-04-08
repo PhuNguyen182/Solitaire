@@ -51,6 +51,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this._playCardManager = new PlayCardManager();
             this._cardFactory = new CardFactory(this.playingCardPrefab);
             this.dragAndDropController.SetPlayCardManager(this._playCardManager);
+            this.cardSupplier.SetPlayCardManager(this._playCardManager);
         }
 
         private void StartGameLevel()

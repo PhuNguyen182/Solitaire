@@ -33,7 +33,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
 
-        public int CardCategory => this._cardModel.cardCategory;
+        public string CardCategory => this._cardModel.cardCategory;
         public CardType CardType => this.cardType;
         public ICardGroup CardGroup => this._cardGroup;
         public ICardPlaceholder CardPlaceholder => this._cardPlaceholder;
@@ -59,6 +59,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public async UniTask FlipCard(bool isFaceUp, bool isImmediately)
         {
+            if (isFaceUp)
+                this._cardModel.PlayCardManager?.AddGenerousCategory(this.CardCategory);
+            else
+                this._cardModel.PlayCardManager?.RemoveGenerousCategory(this.CardCategory);
+            
             await UniTask.CompletedTask;
         }
 
@@ -139,7 +144,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public bool IsSameCategory(ICard card)
         {
-            bool isSameCategory = this.CardCategory == card.CardCategory;
+            bool isSameCategory = string.CompareOrdinal(this.CardCategory, card.CardCategory) == 0;
             return isSameCategory;
         }
 

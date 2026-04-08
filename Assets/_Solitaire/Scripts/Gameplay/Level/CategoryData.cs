@@ -7,7 +7,7 @@ namespace _Solitaire.Scripts.Gameplay.Level
     [Serializable]
     public class CategoryData
     {
-        public int categoryId;
+        public string categoryName;
         public int maxCardCount;
         public List<CardModel> cards = new(); 
     }

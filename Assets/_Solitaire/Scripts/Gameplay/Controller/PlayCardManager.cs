@@ -7,8 +7,9 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 {
     public class PlayCardManager : IDisposable
     {
-        private readonly HashSet<int> _completedCategories = new();
-        private readonly Dictionary<int, List<string>> _existingCards = new();
+        private readonly HashSet<string> _completedCategories = new();
+        private readonly Dictionary<string, List<string>> _existingCards = new();
+        private readonly HashSet<string> _generousCategories = new();
 
         private bool _isDisposed;
 
@@ -31,26 +32,44 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         #endregion
 
-        public void RemoveCardCategory(int cardCategory)
+        public void RemoveCardCategory(string cardCategory)
         {
             this._existingCards.Remove(cardCategory);
         }
 
         #region Check Card Category Complete
 
-        public bool IsCategoryCard(int cardCategory) => this._completedCategories.Contains(cardCategory);
+        public bool IsCategoryCard(string cardCategory) => this._completedCategories.Contains(cardCategory);
 
-        public void MarkCategoryAsCompleted(int category) => this._completedCategories.Add(category);
+        public void MarkCategoryAsCompleted(string category) => this._completedCategories.Add(category);
 
-        public HashSet<int> GetCompletedCategories() => this._completedCategories;
+        public HashSet<string> GetCompletedCategories() => this._completedCategories;
+
+        #endregion
+
+        #region Check Generous Categories
+
+        public HashSet<string> GetGenerousCategories() => this._generousCategories;
+        
+        public void AddGenerousCategory(string cardCategory)
+        {
+            if (this._generousCategories.Contains(cardCategory)) 
+                this._generousCategories.Add(cardCategory);
+        }
+
+        public void RemoveGenerousCategory(string cardCategory)
+        {
+            if (this._generousCategories.Contains(cardCategory))
+                this._generousCategories.Remove(cardCategory);
+        }
 
         #endregion
 
         #region Level Querying
 
-        public List<int> GetCurrentCardCategories() => this._existingCards.Keys.ToList();
+        public List<string> GetCurrentCardCategories() => this._existingCards.Keys.ToList();
 
-        public List<string> GetCurrentCardsWithCategory(int category) =>
+        public List<string> GetCurrentCardsWithCategory(string category) =>
             this._existingCards.GetValueOrDefault(category);
 
         #endregion

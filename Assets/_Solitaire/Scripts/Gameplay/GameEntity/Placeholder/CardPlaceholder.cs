@@ -58,6 +58,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             for (int i = 0; i < count; i++)
             {
                 CardModel cardModel = this._cardPlaceholderModel.CardColumnModel.cardModel[i];
+                cardModel.PlayCardManager = this._playCardManager;
                 Vector3 cardPosition = this.transform.position + Vector3.down * (i * CardConstants.CardPositionOffset);
                 CardFactoryParam param = new CardFactoryParam
                 {
@@ -68,6 +69,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                 };
                 
                 ICard cardInstance = this._cardFactory.Create(param);
+                if (i == count - 1)
+                    cardInstance.FlipCard(true, true);
+                
                 this.TryAppendCard(cardInstance);
             }
         }

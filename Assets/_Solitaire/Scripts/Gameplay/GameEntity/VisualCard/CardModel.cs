@@ -1,4 +1,5 @@
 using System;
+using _Solitaire.Scripts.Gameplay.Controller;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 {
@@ -7,7 +8,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     {
         public CardType cardType;
         public CardContentType contentType;
-        public int cardCategory;
+        public string cardCategory;
         public string cardContent;
+        public PlayCardManager PlayCardManager;
     }
 }
