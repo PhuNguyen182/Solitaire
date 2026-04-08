@@ -1,3 +1,4 @@
+using ZLinq;
 using System.Linq;
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.Level;
@@ -43,7 +44,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         {
             using (ListPool<LevelConfigData>.Get(out List<LevelConfigData> levelConfigDataList))
             {
-                levelConfigDataList = this.SourceData.Records
+                levelConfigDataList = this.SourceData.Records.AsValueEnumerable()
                     .GroupBy(rawLevelData => rawLevelData.Level)
                     .Select(grouping => new LevelConfigData
                     {

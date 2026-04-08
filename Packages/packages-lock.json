@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "7aea0cf62c7c628f8880b27e7f583c77d7774729"
+      "hash": "7da0ef2e0359ca5913f6fdc6e21e20e8e82e58f2"
     },
     "com.github-glitchenzo.nugetforunity": {
       "version": "4.5.0",

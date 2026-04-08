@@ -224,6 +224,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void Cleanup()
         {
+            this.SetCardGroup(null);
+            this.SetCardPlaceholder(null);
+            this._cardModel = null;
             GameObjectPoolManager.Despawn(this.gameObject);
         }
     }

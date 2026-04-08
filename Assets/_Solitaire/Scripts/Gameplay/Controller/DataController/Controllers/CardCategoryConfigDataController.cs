@@ -26,6 +26,23 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         {
             this._cardCategoryRecords = this.SourceData.Records.ToDictionary(record => record.ID);
             this._keyMappings = this.SourceData.Records.ToDictionary(record => record.Category, record => record.ID);
+            
+            /*var duplicates = this.SourceData.Records
+                .GroupBy(r => r.Category) // Nhóm theo tên Category
+                .Where(g => g.Count() > 1) // Chỉ lấy những nhóm có nhiều hơn 1 phần tử
+                .Select(g => new { 
+                    CategoryName = g.Key, 
+                    Count = g.Count() 
+                });
+
+            Debug.Log("Các giá trị bị lặp:");
+            string s = "";
+            foreach (var item in duplicates)
+            {
+                s += $"{item.CategoryName},";
+                Debug.Log($"- {item.CategoryName}: xuất hiện {item.Count} lần");
+            }
+            Debug.Log(s);*/
         }
 
         public CardCategoryRecord GetCardCategoryConfig(int cardCategoryID) =>

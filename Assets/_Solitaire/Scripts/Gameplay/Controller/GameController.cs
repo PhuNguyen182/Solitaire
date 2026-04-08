@@ -1,3 +1,4 @@
+using _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers;
 using _Solitaire.Scripts.Gameplay.Level;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
@@ -24,8 +25,9 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private CardFactory _cardFactory;
         private PlayCardManager _playCardManager;
         private CardPlaceholderManager _cardPlaceholderManager;
-        private LevelController _levelController;
+        private RawLevelConfigDataController _rawLevelConfigDataController;
         private MainDataManager _mainDataManager;
+        private LevelManager _levelManager;
 
         private void Awake()
         {
@@ -48,21 +50,24 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         {
             this._playCardManager = new PlayCardManager();
             this._cardFactory = new CardFactory(this.playingCardPrefab);
-            this._cardPlaceholderManager = new CardPlaceholderManager(this.cardPlaceholderPrefab,
-                this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
-                this._playCardManager, this.cardPlaceholderContainer, this.cardContainerPoint, this._cardFactory);
             this.dragAndDropController.SetPlayCardManager(this._playCardManager);
-        }
-
-        private void SetupLevelModel(LevelModel levelModel)
-        {
-            this._levelController = new LevelController(levelModel, this._playCardManager);
-            this.cardSupplier.SetLevelModel(levelModel);
         }
 
         private void StartGameLevel()
         {
-            
+            LevelModel levelModel = this._rawLevelConfigDataController.BuildLevelModel(1);
+            this.SetupLevelModel(levelModel);
+        }
+
+        private void SetupLevelModel(LevelModel levelModel)
+        {
+            this._levelManager = new LevelManager(levelModel, this._playCardManager);
+            this._cardPlaceholderManager = new CardPlaceholderManager(this.cardPlaceholderPrefab,
+                this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
+                this._playCardManager, this._levelManager, this.cardPlaceholderContainer, this.cardContainerPoint,
+                this._cardFactory);
+            this.cardSupplier.SetLevelModel(levelModel);
+            this._cardPlaceholderManager.BuildLevel(levelModel);
         }
 
         private void OnDestroy()

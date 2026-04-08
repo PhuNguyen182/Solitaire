@@ -24,5 +24,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public void RemoveCard(params ICard[] cards);
         public void SnapDown(Vector3 snappedPosition);
         public void ReleaseDraggingCard();
+        public void Cleanup();
     }
 }

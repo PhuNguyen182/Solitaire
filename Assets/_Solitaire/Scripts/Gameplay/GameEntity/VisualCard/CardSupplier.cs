@@ -55,12 +55,15 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             if (this._supplyCards.Count >= this.maxSupplyCardCount)
             {
                 // Regain all cards
+                foreach (ICard card in this._supplyCards)
+                    card.Cleanup();
                 this._supplyCards.Clear();
             }
             else
             {
                 int supplyCardCount = this._supplyCards.Count;
                 this._levelModel.availableCategories.Shuffle();
+                // TODO: Use PlayCardManager to check available card to provide individual card for supplying
                 CardFactoryParam cardParam = new CardFactoryParam
                 {
                     CardContainer = this.cardContainer,

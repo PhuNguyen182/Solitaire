@@ -16,6 +16,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         private CardFactory _cardFactory;
         private CardPlaceholderModel _cardPlaceholderModel;
         private PlayCardManager _playCardManager;
+        private LevelManager _levelManager;
         private Transform _cardContainer;
 
         public int CardPlaceHolderID { get; private set; }
@@ -33,6 +34,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             this._cardPlaceholderModel = model;
             this.cardType = model.CardType;
             this._playCardManager = model.PlayCardManager;
+            this._levelManager = model.LevelManager;
             this.ToggleFoundationMark(model.CardType == CardType.Foundation);
             this.SetupCardPlaceholderInitialEnableState();
         }
@@ -74,14 +76,23 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         
         public bool TryAppendCard(ICard card)
         {
+            bool assignGroupToCard = this.cardType == CardType.Foundation;
             bool result = card.IsSingleCard 
-                ? this.AppendSingleCard(card) 
-                : this.AppendMultipleCards(card);
+                ? this.AppendSingleCard(card, assignGroupToCard) 
+                : this.AppendMultipleCards(card, assignGroupToCard);
             this.CheckCardPlaceholderCollider();
+
+            if (this.cardType != CardType.Foundation) 
+                return result;
+            
+            bool canClearThisCategory =
+                this._levelManager.CheckCategory(card.CardCategory, this._cardGroup.ElementCards.Count);
+            if (canClearThisCategory)
+                this._cardGroup.Cleanup();
             return result;
         }
 
-        private bool AppendSingleCard(ICard card)
+        private bool AppendSingleCard(ICard card, bool assignGroupToCard)
         {
             if (this.cardType == CardType.Foundation)
             {
@@ -89,12 +100,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                     return false;
             }
 
-            this._cardGroup.AppendCards(false, card);
+            this._cardGroup.AppendCards(assignGroupToCard, card);
             this._playCardManager.AddCard(card);
             return true;
         }
 
-        private bool AppendMultipleCards(ICard card)
+        private bool AppendMultipleCards(ICard card, bool assignGroupToCard)
         {
             if (this.cardType == CardType.Foundation)
             {
@@ -103,7 +114,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             }
 
             ICard[] cards = card.CardGroup.ElementCards.ToArray();
-            this._cardGroup.AppendCards(false, cards);
+            this._cardGroup.AppendCards(assignGroupToCard, cards);
             
             int count = cards.Length;
             for (int i = 0; i < count; i++)

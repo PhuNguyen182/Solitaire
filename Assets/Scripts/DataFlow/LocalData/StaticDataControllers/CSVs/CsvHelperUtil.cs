@@ -1,3 +1,4 @@
+using ZLinq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -34,7 +35,7 @@ namespace DracoRuan.Foundation.DataFlow.LocalData.StaticDataControllers.CSVs
             try
             {
                 csvReader.Context.RegisterClassMap<TRecordMap>();
-                IEnumerable<TRecord> records = csvReader.GetRecords<TRecord>().ToArray();
+                IEnumerable<TRecord> records = csvReader.GetRecords<TRecord>().AsValueEnumerable().ToArray();
                 return records;
             }
             catch (Exception e)

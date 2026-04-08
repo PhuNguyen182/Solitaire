@@ -140,6 +140,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             this._cardPositionOffsets.Clear();
         }
 
+        public void Cleanup()
+        {
+            foreach (ICard card in this._elementCards)
+                card.Cleanup();
+            
+            this._elementCards.Clear();
+        }
+
         private void CalculateCardPositionOffsets(Vector3 pointerPosition)
         {
             this._cardPositionOffsets.Clear();

@@ -12,23 +12,25 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         private readonly CardPlaceholderFactory _cardPlaceholderFactory;
         private readonly Dictionary<int, ICardPlaceholder> _cardPlaceholderMap;
         private readonly PlayCardManager _playCardManager;
+        private readonly LevelManager _levelManager;
         private readonly Vector3 _foundationPlaceholderStartPosition;
         private readonly Vector3 _normalPlaceholderStartPosition;
 
         public CardPlaceholderManager(ICardPlaceholder cardPlaceholder, Vector3 foundationPlaceholderStartPosition,
-            Vector3 normalPlaceholderStartPosition, PlayCardManager playCardManager, 
+            Vector3 normalPlaceholderStartPosition, PlayCardManager playCardManager, LevelManager levelManager, 
             Transform cardPlaceholderParentTransform, Transform cardContainerTransform, CardFactory cardFactory)
         {
             this._cardPlaceholderMap = new Dictionary<int, ICardPlaceholder>();
             this._foundationPlaceholderStartPosition = foundationPlaceholderStartPosition;
             this._normalPlaceholderStartPosition = normalPlaceholderStartPosition;
             this._playCardManager = playCardManager;
+            this._levelManager = levelManager;
             this._cardPlaceholderFactory = new CardPlaceholderFactory(cardPlaceholder, cardPlaceholderParentTransform,
                 cardContainerTransform);
             this._cardFactory = cardFactory;
         }
 
-        public void CreateCardPlaceholdersFromLevel(LevelModel levelModel)
+        public void BuildLevel(LevelModel levelModel)
         {
             int columnCount = levelModel.NumberOfColumns;
             for (int i = 0; i < columnCount; i++)
@@ -61,7 +63,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                     Position = cardPlaceholderPosition,
                     CardType = cardType,
                     CardColumnModel = cardColumnModel,
-                    PlayCardManager = this._playCardManager
+                    PlayCardManager = this._playCardManager,
+                    LevelManager = this._levelManager,
                 };
 
                 ICardPlaceholder cardPlaceholder = this._cardPlaceholderFactory.Create(cardPlaceholderModel);

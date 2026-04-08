@@ -2,12 +2,12 @@ using _Solitaire.Scripts.Gameplay.Level;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
 {
-    public class LevelController
+    public class LevelManager
     {
         private readonly LevelModel _levelModel;
         private readonly PlayCardManager _playCardManager;
 
-        public LevelController(LevelModel levelModel, PlayCardManager playCardManager)
+        public LevelManager(LevelModel levelModel, PlayCardManager playCardManager)
         {
             this._levelModel = levelModel;
             this._playCardManager = playCardManager;
@@ -31,6 +31,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             if (!isCategoryComplete) 
                 return false;
             
+            this._playCardManager.MarkCategoryAsCompleted(cardCategory);
             this._playCardManager.RemoveCardCategory(cardCategory);
             return true;
         }
