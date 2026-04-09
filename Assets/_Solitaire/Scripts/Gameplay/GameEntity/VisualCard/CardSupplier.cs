@@ -102,7 +102,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private void OnDisable()
         {
             this.DeregisterButtons();
-            this._wordPool?.Dispose();
         }
     }
 }

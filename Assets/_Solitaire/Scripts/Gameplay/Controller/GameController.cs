@@ -105,6 +105,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private void OnDestroy()
         {
             this._playCardManager.Dispose();
+            this._wordPool?.Dispose();
         }
     }
 }
