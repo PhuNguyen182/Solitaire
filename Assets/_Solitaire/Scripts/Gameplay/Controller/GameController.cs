@@ -80,8 +80,9 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 CardModelByCategory cardModelByCategory = new CardModelByCategory(categoryName, numberOfWord);
                 foreach (var cardModel in categoryData.cards)
                 {
-                    if (!this._playCardManager.ContainWord(cardModel.cardCategory, cardModel.cardContent))
-                        cardModelByCategory.AddCardModel(cardModel);
+                    cardModelByCategory.AddCardModel(cardModel);
+                    if (this._playCardManager.ContainWord(cardModel.cardCategory, cardModel.cardContent))
+                        cardModelByCategory.RemoveCardModel(cardModel);
                 }
                 
                 this._wordPool.AddWordCategory(cardModelByCategory);

@@ -61,8 +61,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             if (isFaceUp)
                 this._cardModel.PlayCardManager?.AddGenerousCategory(this.CardCategory);
-            else
-                this._cardModel.PlayCardManager?.RemoveGenerousCategory(this.CardCategory);
             
             await UniTask.CompletedTask;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.Controller;
 using _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers;
 using _Solitaire.Scripts.Gameplay.Level;
+using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -90,7 +91,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             float random = Random.value;
             if (random > this._generousProbability)
             {
-                cardModel = this._wordPool.GetFullyRandomWord();
+                HashSet<string> incompletedCategory = this._playCardManager.GetIncompletedCategories();
+                string randomCategory = incompletedCategory.GetRandomElement();
+                cardModel = this._wordPool.GetRandomWordByCategory(randomCategory);
                 return cardModel;
             }
             

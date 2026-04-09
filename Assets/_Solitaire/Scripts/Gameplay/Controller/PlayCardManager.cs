@@ -45,9 +45,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         public bool HasCategoryCardSolved(string cardCategory) => !this._cardCategories.Contains(cardCategory);
 
-        public void MarkCategoryAsCompleted(string category) => this._cardCategories.Remove(category);
+        public void MarkCategoryAsCompleted(string category)
+        {
+            this._cardCategories.Remove(category);
+            this.RemoveGenerousCategory(category);
+        }
 
-        public HashSet<string> GetCompletedCategories() => this._cardCategories;
+        public HashSet<string> GetIncompletedCategories() => this._existingCards.Keys.ToHashSet();
 
         #endregion
 
@@ -61,7 +65,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 this._generousCategories.Add(cardCategory);
         }
 
-        public void RemoveGenerousCategory(string cardCategory)
+        private void RemoveGenerousCategory(string cardCategory)
         {
             if (this._generousCategories.Contains(cardCategory))
                 this._generousCategories.Remove(cardCategory);
@@ -80,8 +84,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             bool contains = words.Contains(word);
             return contains;
         }
-
-        public List<string> GetCurrentCardCategories() => this._existingCards.Keys.ToList();
 
         public HashSet<string> GetCurrentCardsWithCategory(string category) =>
             this._existingCards.GetValueOrDefault(category);
