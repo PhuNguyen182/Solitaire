@@ -1,6 +1,6 @@
+using ZLinq;
 using System;
 using System.Collections.Generic;
-using ZLinq;
 using Random = UnityEngine.Random;
 
 namespace Extensions
@@ -65,6 +65,18 @@ namespace Extensions
             Random.InitState(usingSeed);
             int randomIndex = Random.Range(0, hashSet.Count);
             return hashSet.AsValueEnumerable().ElementAt(randomIndex);
+        }
+
+        public static bool AddRange<T>(this HashSet<T> hashSet, IEnumerable<T> valueRange)
+        {
+            foreach (T value in valueRange)
+            {
+                bool canAdd = hashSet.Add(value);
+                if (!canAdd)
+                    return false;
+            }
+            
+            return true;
         }
 
         #endregion

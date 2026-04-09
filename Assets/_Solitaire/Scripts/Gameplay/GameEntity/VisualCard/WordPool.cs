@@ -30,7 +30,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void RemoveWordByCategory(string categoryName, CardModel word)
         {
             CardModelByCategory cardModelByCategory = this._wordsPool.GetValueOrDefault(categoryName);
-            cardModelByCategory?.RemoveCardModel(word);
+            if (cardModelByCategory == null)
+                return;
+            
+            cardModelByCategory.RemoveCardModel(word);
+            this._wordsPool[categoryName] = cardModelByCategory;
         }
 
         private void ReleaseUnmanagedResources()

@@ -5,12 +5,13 @@ using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 {
-    public struct CardPlaceholderModel
+    public class CardPlaceholderModel
     {
         public CardType CardType;
         public Vector3 Position;
         public CardColumnModel CardColumnModel;
         public PlayCardManager PlayCardManager;
         public LevelManager LevelManager;
+        public WordPool WordPool;
     }
 }

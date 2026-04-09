@@ -1,3 +1,4 @@
+using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using _Solitaire.Scripts.Gameplay.Level;
 
 namespace _Solitaire.Scripts.Gameplay.Controller

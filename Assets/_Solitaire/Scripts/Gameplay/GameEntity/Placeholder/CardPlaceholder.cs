@@ -18,6 +18,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         private PlayCardManager _playCardManager;
         private LevelManager _levelManager;
         private Transform _cardContainer;
+        private WordPool _wordPool;
 
         public int CardPlaceHolderID { get; private set; }
 
@@ -35,6 +36,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             this.cardType = model.CardType;
             this._playCardManager = model.PlayCardManager;
             this._levelManager = model.LevelManager;
+            this._wordPool = model.WordPool;
             this.ToggleFoundationMark(model.CardType == CardType.Foundation);
             this.SetupCardPlaceholderInitialEnableState();
         }
@@ -70,7 +72,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                 
                 ICard cardInstance = this._cardFactory.Create(param);
                 if (i == count - 1)
+                {
                     cardInstance.FlipCard(true, true);
+                    this._wordPool.RemoveWordByCategory(cardInstance.CardCategory, cardInstance.CardModel);
+                }
                 
                 this.TryAppendCard(cardInstance);
             }
@@ -142,6 +147,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 
             ICard lastCard = this._cardGroup.GetLastCard();
             lastCard.FlipCard(true, true);
+            this._wordPool.RemoveWordByCategory(lastCard.CardCategory, lastCard.CardModel);
         }
 
         public void SetCardID(int cardID)

@@ -2,14 +2,15 @@ using System;
 using System.Linq;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using System.Collections.Generic;
+using Extensions;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
 {
     public class PlayCardManager : IDisposable
     {
-        private readonly HashSet<string> _completedCategories = new();
-        private readonly Dictionary<string, List<string>> _existingCards = new();
         private readonly HashSet<string> _generousCategories = new();
+        private readonly Dictionary<string, HashSet<string>> _existingCards = new();
+        private HashSet<string> _cardCategories = new();
 
         private bool _isDisposed;
 
@@ -19,12 +20,12 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         {
             if (!this._existingCards.ContainsKey(card.CardCategory))
             {
-                this._existingCards.Add(card.CardCategory, new List<string> { card.CardModel.cardContent });
+                this._existingCards.Add(card.CardCategory, new HashSet<string> { card.CardModel.cardContent });
             }
 
             else
             {
-                List<string> cardContent = this._existingCards[card.CardCategory];
+                HashSet<string> cardContent = this._existingCards[card.CardCategory];
                 cardContent.Add(card.CardModel.cardContent);
                 this._existingCards[card.CardCategory] = cardContent;
             }
@@ -39,17 +40,20 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         #region Check Card Category Complete
 
-        public bool IsCategoryCard(string cardCategory) => this._completedCategories.Contains(cardCategory);
+        public void InitializeCardCategories(HashSet<string> cardCategories) =>
+            this._cardCategories = cardCategories;
 
-        public void MarkCategoryAsCompleted(string category) => this._completedCategories.Add(category);
+        public bool HasCategoryCardSolved(string cardCategory) => !this._cardCategories.Contains(cardCategory);
 
-        public HashSet<string> GetCompletedCategories() => this._completedCategories;
+        public void MarkCategoryAsCompleted(string category) => this._cardCategories.Remove(category);
+
+        public HashSet<string> GetCompletedCategories() => this._cardCategories;
 
         #endregion
 
         #region Check Generous Categories
-
-        public HashSet<string> GetGenerousCategories() => this._generousCategories;
+        
+        public string GetRandomGenerousCategory() => this._generousCategories.GetRandomElement();
         
         public void AddGenerousCategory(string cardCategory)
         {
@@ -67,9 +71,19 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         #region Level Querying
 
+        public bool ContainWord(string category, string word)
+        {
+            HashSet<string> words = this._existingCards.GetValueOrDefault(category);
+            if (words is not { Count: > 0 }) 
+                return false;
+
+            bool contains = words.Contains(word);
+            return contains;
+        }
+
         public List<string> GetCurrentCardCategories() => this._existingCards.Keys.ToList();
 
-        public List<string> GetCurrentCardsWithCategory(string category) =>
+        public HashSet<string> GetCurrentCardsWithCategory(string category) =>
             this._existingCards.GetValueOrDefault(category);
 
         #endregion
@@ -79,7 +93,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private void ReleaseManagedResources()
         {
             this._existingCards.Clear();
-            this._completedCategories.Clear();
+            this._cardCategories.Clear();
         }
 
         private void Dispose(bool disposing)

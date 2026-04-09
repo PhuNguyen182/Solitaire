@@ -1,5 +1,7 @@
+using System.Linq;
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.Controller;
+using _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers;
 using _Solitaire.Scripts.Gameplay.Level;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,10 +15,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         [SerializeField] private Transform cardContainer;
         [SerializeField] private Transform[] cardPositions;
         [SerializeField] private int maxSupplyCardCount = 3;
-        
-        private LevelModel _levelModel; 
+
+        private float _generousProbability;
         private CardFactory _cardFactory;
         private PlayCardManager _playCardManager;
+        private CardSupplyProbabilityConfigDataController _cardSupplyProbabilityConfigDataController;
         private List<ICard> _supplyCards;
         private WordPool _wordPool;
 
@@ -29,29 +32,21 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this.RegisterButtons();
         }
-        
-        public void SetPlayCardManager(PlayCardManager playCardManager) => this._playCardManager = playCardManager;
 
-        public void SetLevelModel(LevelModel levelModel)
+        public void InitServices(PlayCardManager playCardManager,
+            CardSupplyProbabilityConfigDataController dataController)
         {
-            this._levelModel = levelModel;
-            this.BuildWordPoolForCardSupplier(levelModel);
+            this._playCardManager = playCardManager;
+            this._cardSupplyProbabilityConfigDataController = dataController;
+            this._generousProbability = this._cardSupplyProbabilityConfigDataController.GetGenerousProbability();
         }
 
-        private void BuildWordPoolForCardSupplier(LevelModel levelModel)
+        public void SetLevelModel(LevelModel levelModel, WordPool wordPool)
         {
-            this._wordPool = new WordPool();
-            foreach (CategoryData categoryData in levelModel.availableCategories)
-            {
-                int numberOfWord = categoryData.maxCardCount;
-                string categoryName = categoryData.categoryName;
-                
-                CardModelByCategory cardModelByCategory = new CardModelByCategory(categoryName, numberOfWord);
-                foreach (var cardModel in categoryData.cards)
-                    cardModelByCategory.AddCardModel(cardModel);
-                
-                this._wordPool.AddWordCategory(cardModelByCategory);
-            }
+            this._wordPool = wordPool;
+            HashSet<string> cardCategories =
+                levelModel.availableCategories.Select(data => data.categoryName).ToHashSet();
+            this._playCardManager.InitializeCardCategories(cardCategories);
         }
 
         private void RegisterButtons()
@@ -66,16 +61,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         private void ProvideCard()
         {
-            /*
-             * 1. Check in spawned cards, if exceed maxSupplyCardCount, regain all supply card into deck
-             * 2. Check in full board, spawn a random card but different from all available cards in the board. The spawned card
-             * must be included in available card group in level model
-             */
-            // Sample code here
-
             if (this._supplyCards.Count >= this.maxSupplyCardCount)
             {
-                // Regain all cards
                 foreach (ICard card in this._supplyCards)
                     card.Cleanup();
                 this._supplyCards.Clear();
@@ -83,7 +70,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             else
             {
                 int supplyCardCount = this._supplyCards.Count;
-                CardModel providedCardModel = this._wordPool.GetFullyRandomWord();
+                CardModel providedCardModel = this.GetSuppliedCardModel();
                 providedCardModel.PlayCardManager = this._playCardManager;
                 CardFactoryParam cardParam = new CardFactoryParam
                 {
@@ -95,6 +82,21 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 supplyCard.FlipCard(true, true);
                 this._supplyCards.Add(supplyCard);
             }
+        }
+
+        private CardModel GetSuppliedCardModel()
+        {
+            CardModel cardModel;
+            float random = Random.value;
+            if (random > this._generousProbability)
+            {
+                cardModel = this._wordPool.GetFullyRandomWord();
+                return cardModel;
+            }
+            
+            string cardCategory = this._playCardManager.GetRandomGenerousCategory();
+            cardModel = this._wordPool.GetRandomWordByCategory(cardCategory);
+            return cardModel;
         }
 
         private void OnDisable()

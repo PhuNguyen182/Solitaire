@@ -21,18 +21,20 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         [SerializeField] private CardPlaceholder cardPlaceholderPrefab;
         [SerializeField] private PlayingCard playingCardPrefab;
         [SerializeField] private CardSupplier cardSupplier;
-        
+
+        private bool _isDataInitialized;
         private CardFactory _cardFactory;
         private PlayCardManager _playCardManager;
         private CardPlaceholderManager _cardPlaceholderManager;
         private RawLevelConfigDataController _rawLevelConfigDataController;
+        private CardSupplyProbabilityConfigDataController _cardSupplyProbabilityConfigDataController;
         private MainDataManager _mainDataManager;
         private LevelManager _levelManager;
+        private WordPool _wordPool;
 
         private void Awake()
         {
-            this.TestInitializeData();
-            this.InitializeGame();
+            this.TestInitializeData().Forget();
         }
 
         private void Start()
@@ -40,10 +42,16 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this.StartGameLevel();
         }
 
-        private void TestInitializeData()
+        private async UniTask TestInitializeData()
         {
             this._mainDataManager = new MainDataManager();
-            this._mainDataManager.InitializeDataHandlers().Forget();
+            await this._mainDataManager.InitializeDataHandlers();
+            this._rawLevelConfigDataController =
+                this._mainDataManager.GetStaticDataController<RawLevelConfigDataController>();
+            this._cardSupplyProbabilityConfigDataController = this._mainDataManager
+                .GetStaticDataController<CardSupplyProbabilityConfigDataController>();
+            this._isDataInitialized = true;
+            this.InitializeGame();
         }
 
         private void InitializeGame()
@@ -51,24 +59,47 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this._playCardManager = new PlayCardManager();
             this._cardFactory = new CardFactory(this.playingCardPrefab);
             this.dragAndDropController.SetPlayCardManager(this._playCardManager);
-            this.cardSupplier.SetPlayCardManager(this._playCardManager);
+            this.cardSupplier.InitServices(this._playCardManager, this._cardSupplyProbabilityConfigDataController);
         }
 
         private void StartGameLevel()
         {
             LevelModel levelModel = this._rawLevelConfigDataController.BuildLevelModel(1);
-            this.SetupLevelModel(levelModel);
+            this.InitializeWordPool(levelModel);
+            this.SetupLevelModel(levelModel).Forget();
         }
 
-        private void SetupLevelModel(LevelModel levelModel)
+        private void InitializeWordPool(LevelModel levelModel)
         {
+            this._wordPool = new WordPool();
+            foreach (CategoryData categoryData in levelModel.availableCategories)
+            {
+                int numberOfWord = categoryData.maxCardCount;
+                string categoryName = categoryData.categoryName;
+                
+                CardModelByCategory cardModelByCategory = new CardModelByCategory(categoryName, numberOfWord);
+                foreach (var cardModel in categoryData.cards)
+                {
+                    if (!this._playCardManager.ContainWord(cardModel.cardCategory, cardModel.cardContent))
+                        cardModelByCategory.AddCardModel(cardModel);
+                }
+                
+                this._wordPool.AddWordCategory(cardModelByCategory);
+            }
+            
+            this.dragAndDropController.SetWordPool(this._wordPool);
+        }
+
+        private async UniTask SetupLevelModel(LevelModel levelModel)
+        {
+            await UniTask.WaitUntil(() => this._isDataInitialized);
             this._levelManager = new LevelManager(levelModel, this._playCardManager);
             this._cardPlaceholderManager = new CardPlaceholderManager(this.cardPlaceholderPrefab,
                 this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
                 this._playCardManager, this._levelManager, this.cardPlaceholderContainer, this.cardContainerPoint,
-                this._cardFactory);
-            this.cardSupplier.SetLevelModel(levelModel);
+                this._cardFactory, this._wordPool);
             this._cardPlaceholderManager.BuildLevel(levelModel);
+            this.cardSupplier.SetLevelModel(levelModel, this._wordPool);
         }
 
         private void OnDestroy()

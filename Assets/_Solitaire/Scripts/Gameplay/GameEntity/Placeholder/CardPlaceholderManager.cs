@@ -15,10 +15,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         private readonly LevelManager _levelManager;
         private readonly Vector3 _foundationPlaceholderStartPosition;
         private readonly Vector3 _normalPlaceholderStartPosition;
+        private readonly WordPool _wordPool;
 
         public CardPlaceholderManager(ICardPlaceholder cardPlaceholder, Vector3 foundationPlaceholderStartPosition,
             Vector3 normalPlaceholderStartPosition, PlayCardManager playCardManager, LevelManager levelManager, 
-            Transform cardPlaceholderParentTransform, Transform cardContainerTransform, CardFactory cardFactory)
+            Transform cardPlaceholderParentTransform, Transform cardContainerTransform, CardFactory cardFactory,
+            WordPool wordPool)
         {
             this._cardPlaceholderMap = new Dictionary<int, ICardPlaceholder>();
             this._foundationPlaceholderStartPosition = foundationPlaceholderStartPosition;
@@ -28,6 +30,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             this._cardPlaceholderFactory = new CardPlaceholderFactory(cardPlaceholder, cardPlaceholderParentTransform,
                 cardContainerTransform);
             this._cardFactory = cardFactory;
+            this._wordPool = wordPool;
         }
 
         public void BuildLevel(LevelModel levelModel)
@@ -65,6 +68,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                     CardColumnModel = cardColumnModel,
                     PlayCardManager = this._playCardManager,
                     LevelManager = this._levelManager,
+                    WordPool = this._wordPool,
                 };
 
                 ICardPlaceholder cardPlaceholder = this._cardPlaceholderFactory.Create(cardPlaceholderModel);
