@@ -17,6 +17,7 @@ namespace _Solitaire.Scripts.Gameplay.Level
         {
             this.moveCount = 0;
             this.difficulty = LevelDifficulty.None;
+            this.numberOfColumns = 0;
             this.cardColumnModel.Clear();
             this.availableCategories.Clear();
         }
