@@ -11,8 +11,7 @@ namespace _Solitaire.Scripts.Gameplay.Level
         public LevelDifficulty difficulty;
         public List<CardColumnModel> cardColumnModel = new();
         public List<CategoryData> availableCategories = new();
-        
-        public int NumberOfColumns => this.cardColumnModel.Count;
+        public int numberOfColumns;
 
         public void Clear()
         {

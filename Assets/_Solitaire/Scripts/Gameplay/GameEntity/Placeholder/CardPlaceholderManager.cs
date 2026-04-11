@@ -35,7 +35,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 
         public void BuildLevel(LevelModel levelModel)
         {
-            int columnCount = levelModel.NumberOfColumns;
+            int columnCount = levelModel.numberOfColumns;
             for (int i = 0; i < columnCount; i++)
             {
                 AddCardPlaceholderToMap(i, CardType.Foundation);

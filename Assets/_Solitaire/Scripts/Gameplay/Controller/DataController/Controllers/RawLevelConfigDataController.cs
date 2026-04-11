@@ -80,6 +80,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
             LevelModel levelModel = new LevelModel
             {
                 moveCount = levelConfigData.Moves,
+                numberOfColumns = levelConfigData.WordColumns
             };
 
             List<CategoryData> availableCategories = BuildAvailableCardCategories(levelConfigData);
