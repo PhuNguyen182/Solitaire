@@ -18,12 +18,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         [SerializeField] private TMP_Text cardText;
         [SerializeField] private GameObject foundationMark;
         [SerializeField] private Canvas cardSortingGroup;
+        [SerializeField] private GameObject content;
+        [SerializeField] private GameObject backVisual;
 
-        [Header("Card Physics")] [SerializeField]
-        private LayerMask cardLayer;
-
+        [Header("Card Physics")] 
+        [SerializeField] private LayerMask cardLayer;
         [SerializeField] private BoxCollider2D cardCollider;
 
+        private bool _isFaceUp;
         private CardModel _cardModel;
         private ICardGroup _cardGroup;
         private ICardPlaceholder _cardPlaceholder;
@@ -59,9 +61,17 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public async UniTask FlipCard(bool isFaceUp, bool isImmediately)
         {
+            this._isFaceUp = isFaceUp;
             if (isFaceUp)
                 this._cardModel.PlayCardManager?.AddGenerousCategory(this.CardCategory);
-            
+
+            if (this.content && this.backVisual)
+            {
+                this.content.SetActive(isFaceUp);
+                this.backVisual.SetActive(!isFaceUp);
+            }
+
+            this.ToggleFoundationMark(this._isFaceUp && this._cardModel.cardType == CardType.Foundation);
             await UniTask.CompletedTask;
         }
 
