@@ -64,7 +64,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private void StartGameLevel()
         {
-            LevelModel levelModel = this._rawLevelConfigDataController.BuildLevelModel(1);
+            LevelModel levelModel = this._rawLevelConfigDataController.BuildLevelModel(1, this._playCardManager);
             this.InitializeWordPool(levelModel);
             this.SetupLevelModel(levelModel).Forget();
         }

@@ -69,7 +69,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 
         #region Creating Level Model
 
-        public LevelModel BuildLevelModel(int level)
+        public LevelModel BuildLevelModel(int level, PlayCardManager playCardManager)
         {
             LevelConfigData levelConfigData = this.GetLevelConfigData(level);
             if (levelConfigData == null)
@@ -83,14 +83,15 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
                 numberOfColumns = levelConfigData.WordColumns
             };
 
-            List<CategoryData> availableCategories = BuildAvailableCardCategories(levelConfigData);
+            List<CategoryData> availableCategories = BuildAvailableCardCategories(levelConfigData, playCardManager);
             levelModel.availableCategories = availableCategories;
             List<CardColumnModel> cardColumnModel = BuildCardColumnData(levelConfigData, availableCategories);
             levelModel.cardColumnModel = cardColumnModel;
             return levelModel;
         }
 
-        private List<CategoryData> BuildAvailableCardCategories(LevelConfigData levelConfigData)
+        private List<CategoryData> BuildAvailableCardCategories(LevelConfigData levelConfigData,
+            PlayCardManager playCardManager)
         {
             List<CategoryData> levelCategoryData = new List<CategoryData>();
             List<CategoryConfigData> cardCategory = levelConfigData.Categories;
@@ -106,6 +107,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
                         cardContent = cardCategoryData.CategoryName,
                         contentType = cardContentType,
                         cardType = CardType.Foundation,
+                        PlayCardManager = playCardManager,
                     }
                 };
 
@@ -117,6 +119,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
                         cardContent = cardWord,
                         contentType = cardContentType,
                         cardType = CardType.Normal,
+                        PlayCardManager = playCardManager,
                     });
                 }
 
@@ -136,13 +139,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         {
             List<CardModel> totalCardModels = new List<CardModel>();
             List<CardColumnModel> result = new List<CardColumnModel>();
-            List<CardModel> cardInColumnModels = new List<CardModel>();
 
             int categoryCount = availableCategories.Count;
             for (int i = 0; i < categoryCount; i++)
                 totalCardModels.AddRange(availableCategories[i].cards);
 
-            List<int> columnCounts = levelConfigData.ColumnCounts;
+            List<int> columnCounts = new(levelConfigData.ColumnCounts);
+            columnCounts.RemoveAll(matchValue => matchValue == 0);
             int columnCount = columnCounts.Count;
 
             int currentIndex = 0;
@@ -151,7 +154,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 
             for (int i = 0; i < columnCount; i++)
             {
-                cardInColumnModels.Clear();
+                List<CardModel> cardInColumnModels = new();
                 int cardCountInColumn = columnCounts[i];
                 if (currentIndex + cardCountInColumn <= totalCardModels.Count)
                 {
