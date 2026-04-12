@@ -10,6 +10,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 {
     public class GameController : MonoBehaviour
     {
+        [SerializeField] private Camera mainCamera;
+        
         [Header("Card Mapping")]
         [SerializeField] private Transform cardPlaceholderContainer;
         [SerializeField] private Transform foundationPlaceholderStartPoint;
@@ -57,9 +59,10 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private void InitializeGame()
         {
             this._playCardManager = new PlayCardManager();
-            this._cardFactory = new CardFactory(this.playingCardPrefab);
+            this._cardFactory = new CardFactory(this.playingCardPrefab, this.mainCamera);
             this.dragAndDropController.SetPlayCardManager(this._playCardManager);
-            this.cardSupplier.InitServices(this._playCardManager, this._cardSupplyProbabilityConfigDataController);
+            this.cardSupplier.InitServices(this._playCardManager, this._cardFactory,
+                this._cardSupplyProbabilityConfigDataController);
         }
 
         private void StartGameLevel()
@@ -100,6 +103,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 this._playCardManager, this._levelManager, this.cardPlaceholderContainer, this.cardContainerPoint,
                 this._cardFactory, this._wordPool);
             this._cardPlaceholderManager.BuildLevel(levelModel);
+            this.dragAndDropController.SetCardPlaceholderManager(this._cardPlaceholderManager);
             this.cardSupplier.SetLevelModel(levelModel, this._wordPool);
         }
 

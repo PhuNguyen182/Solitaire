@@ -95,7 +95,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
             this._isCardDragging = true;
             this._pickedCard = closestCard;
-            this._pickedCardPlaceholderID = closestCard.CardPlaceholder.CardPlaceHolderID;
+            this._pickedCardPlaceholderID = closestCard.CardPlaceholder?.CardPlaceHolderID ?? 0;
             this._pickedCardPlaceholder = this._cardPlaceholderManager.GetCardPlaceholder(this._pickedCardPlaceholderID);
             this._pickedCard.CardPickedUp();
         }

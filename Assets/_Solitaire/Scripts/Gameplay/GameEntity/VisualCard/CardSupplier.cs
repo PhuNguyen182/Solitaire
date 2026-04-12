@@ -34,9 +34,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.RegisterButtons();
         }
 
-        public void InitServices(PlayCardManager playCardManager,
+        public void InitServices(PlayCardManager playCardManager, CardFactory cardFactory,
             CardSupplyProbabilityConfigDataController dataController)
         {
+            this._cardFactory = cardFactory;
             this._playCardManager = playCardManager;
             this._cardSupplyProbabilityConfigDataController = dataController;
             this._generousProbability = this._cardSupplyProbabilityConfigDataController.GetGenerousProbability();
@@ -79,6 +80,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                     Position = this.cardPositions[supplyCardCount].position,
                     CardModel = providedCardModel,
                 };
+                
                 ICard supplyCard = this._cardFactory.Create(cardParam);
                 supplyCard.FlipCard(true, true);
                 this._supplyCards.Add(supplyCard);

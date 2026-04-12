@@ -62,6 +62,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public async UniTask FlipCard(bool isFaceUp, bool isImmediately)
         {
             this._isFaceUp = isFaceUp;
+            this.SetCardInteractable(isFaceUp);
             if (isFaceUp)
                 this._cardModel.PlayCardManager?.AddGenerousCategory(this.CardCategory);
 

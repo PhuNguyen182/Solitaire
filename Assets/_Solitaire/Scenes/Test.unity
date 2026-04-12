@@ -1107,6 +1107,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7987997197180651190, guid: 7bc20ba9458bd0845bca588526cb910a, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 2003745724}
+    - target: {fileID: 7987997197180651190, guid: 7bc20ba9458bd0845bca588526cb910a, type: 3}
       propertyPath: cardContainerPoint
       value: 
       objectReference: {fileID: 873164857}
