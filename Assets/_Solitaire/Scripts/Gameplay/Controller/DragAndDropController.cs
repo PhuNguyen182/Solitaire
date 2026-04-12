@@ -146,13 +146,16 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private bool SnapToCardPlaceholder()
         {
             Vector2 pointerPosition = this.inputController.WorldPointerPosition;
-            Collider2D cardPlaceholderCollider = Physics2D.OverlapPoint(pointerPosition, this.visualCardLayer);
+            Collider2D cardPlaceholderCollider = Physics2D.OverlapPoint(pointerPosition, this.cardPlaceholderLayer);
 
             if (!cardPlaceholderCollider ||
                 !cardPlaceholderCollider.TryGetComponent(out ICardPlaceholder cardPlaceholder))
                 return false;
 
             bool result = cardPlaceholder.TryAppendCard(this._pickedCard);
+            if (result)
+                this._pickedCard.UpdateNewInitialPosition(cardPlaceholder.CurrentTransform.position);
+            
             return result;
         }
 

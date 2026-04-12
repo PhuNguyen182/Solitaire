@@ -79,6 +79,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                         this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
                     this.AppendSingleCard(card, step, stepPosition, assignGroupToCard);
                 }
+
+                card.UpdateCardPlacingState(true);
             }
 
             this.OnCardAdded?.Invoke();

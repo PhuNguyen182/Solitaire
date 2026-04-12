@@ -26,6 +26,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         [SerializeField] private BoxCollider2D cardCollider;
 
         private bool _isFaceUp;
+        private bool _hasCardPlacedInColumn;
+        
         private CardModel _cardModel;
         private ICardGroup _cardGroup;
         private ICardPlaceholder _cardPlaceholder;
@@ -34,6 +36,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private IAssetBundleLoader _assetLoader;
 
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
+        public bool HasCardPlacedInColumn => this._hasCardPlacedInColumn;
 
         public string CardCategory => this._cardModel.cardCategory;
         public CardType CardType => this.cardType;
@@ -59,11 +62,16 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.cardSortingGroup.sortingOrder = sortingOrder;
         }
 
+        public void UpdateCardPlacingState(bool isPlacedInColumn)
+        {
+            this._hasCardPlacedInColumn = isPlacedInColumn;
+        }
+
         public async UniTask FlipCard(bool isFaceUp, bool isImmediately)
         {
             this._isFaceUp = isFaceUp;
             this.SetCardInteractable(isFaceUp);
-            if (isFaceUp)
+            if (isFaceUp && this._hasCardPlacedInColumn)
                 this._cardModel.PlayCardManager?.AddGenerousCategory(this.CardCategory);
 
             if (this.content && this.backVisual)

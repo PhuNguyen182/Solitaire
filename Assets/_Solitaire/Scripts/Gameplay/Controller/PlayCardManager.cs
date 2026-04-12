@@ -61,8 +61,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         
         public void AddGenerousCategory(string cardCategory)
         {
-            if (this._generousCategories.Contains(cardCategory)) 
-                this._generousCategories.Add(cardCategory);
+            this._generousCategories.Add(cardCategory);
         }
 
         private void RemoveGenerousCategory(string cardCategory)

@@ -82,6 +82,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 };
                 
                 ICard supplyCard = this._cardFactory.Create(cardParam);
+                supplyCard.UpdateCardPlacingState(false);
                 supplyCard.FlipCard(true, true);
                 this._supplyCards.Add(supplyCard);
             }

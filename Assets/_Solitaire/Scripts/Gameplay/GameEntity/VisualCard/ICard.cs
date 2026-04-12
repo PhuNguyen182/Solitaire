@@ -10,6 +10,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     public interface ICard : IFollowable
     {
         public bool IsSingleCard { get; }
+        public bool HasCardPlacedInColumn { get; }
         public string CardCategory { get; }
         public CardType CardType { get; }
         public ICardGroup CardGroup { get; }
@@ -20,6 +21,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void BindModel(CardModel model);
         public UniTask FlipCard(bool isFaceUp, bool isImmediately);
         public void CardPickedUp();
+        public void UpdateCardPlacingState(bool isPlacedInColumn);
         public void SetOrderLayer(int sortingOrder);
         public void SetCardGroup(ICardGroup cardGroup);
         public void SetCardPlaceholder(ICardPlaceholder cardPlaceholder);
