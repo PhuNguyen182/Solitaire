@@ -10,6 +10,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         private readonly Dictionary<string, CardModelByCategory> _wordsPool = new();
 
+        public int GetCardCountByCategory(string categoryName)
+        {
+            CardModelByCategory cardModelByCategory = this._wordsPool.GetValueOrDefault(categoryName);
+            return cardModelByCategory?.CardCount ?? 0;
+        }
+        
         public CardModel GetFullyRandomWord()
         {
             CardModelByCategory cardModelByCategory = this._wordsPool.GetRandomValue();
@@ -81,6 +87,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private readonly HashSet<CardModel> _cardModels;
         
         public string CategoryName { get; private set; }
+        public int CardCount => this._cardModels?.Count ?? 0;
 
         public CardModelByCategory(string categoryName, int numberOfWord)
         {

@@ -61,16 +61,24 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         {
             ICard closestCard = null;
             int count = cards.Count;
+            if (count <= 0)
+                return null;
+            
             float minDistance = Mathf.Infinity;
+            bool hasCardPlacedInColumn = cards[0].HasCardPlacedInColumn;
 
             for (int i = 0; i < count; i++)
             {
-                float squaredDistance = (cards[i].WorldPosition - pointerPosition).sqrMagnitude;
-                if (squaredDistance < minDistance * minDistance)
-                {
-                    closestCard = cards[i];
-                    minDistance = Mathf.Sqrt(squaredDistance);
-                }
+                float distance = hasCardPlacedInColumn 
+                    ? (cards[i].WorldPosition - pointerPosition).y
+                    : (cards[i].WorldPosition - pointerPosition).x;
+                
+                distance = Mathf.Abs(distance);
+                if (distance >= minDistance) 
+                    continue;
+                
+                closestCard = cards[i];
+                minDistance = distance;
             }
 
             return closestCard;

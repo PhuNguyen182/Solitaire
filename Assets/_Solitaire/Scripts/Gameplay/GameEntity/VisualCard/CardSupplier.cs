@@ -120,15 +120,33 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             float random = Random.value;
             if (random > this._generousProbability)
             {
-                HashSet<string> incompletedCategory = this._playCardManager.GetIncompletedCategories();
-                string randomCategory = incompletedCategory.GetRandomElement();
+                string randomCategory = this.GetRandomCardCategoryCard();
                 cardModel = this._wordPool.GetRandomWordByCategory(randomCategory);
                 return cardModel;
             }
             
-            string cardCategory = this._playCardManager.GetRandomGenerousCategory();
+            string cardCategory = this.GetGenerousRandomCardCategoryCard();
             cardModel = this._wordPool.GetRandomWordByCategory(cardCategory);
             return cardModel;
+        }
+
+        private string GetRandomCardCategoryCard()
+        {
+            HashSet<string> incompletedCategory = this._playCardManager.GetIncompletedCategories()
+                .Where(category => this._wordPool.GetCardCountByCategory(category) > 0).ToHashSet();
+            string randomCategory = incompletedCategory.GetRandomElement();
+            return randomCategory;
+        }
+
+        private string GetGenerousRandomCardCategoryCard()
+        {
+            HashSet<string> categories = this._playCardManager.GenerousCategories
+                .Where(category => this._wordPool.GetCardCountByCategory(category) > 0)
+                .ToHashSet();
+            string result = categories.Count <= 0 
+                ? this.GetRandomCardCategoryCard() 
+                : categories.GetRandomElement();
+            return result;
         }
 
         private void OnDisable()

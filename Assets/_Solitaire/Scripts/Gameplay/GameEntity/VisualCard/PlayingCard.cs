@@ -37,6 +37,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private Collider2D[] _cardColliders;
         private IAssetBundleLoader _assetLoader;
         private CardSupplier _cardSupplier;
+        private WordPool _wordPool;
 
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
         public bool HasCardPlacedInColumn => this._hasCardPlacedInColumn;
@@ -53,6 +54,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this._initialPosition = this.transform.position;
             this._cardSupplier = ServiceLocator.ForSceneOf(this).Get<CardSupplier>();
+            this._wordPool = ServiceLocator.ForSceneOf(this).Get<WordPool>();
         }
 
         #region Card Visuals
@@ -123,7 +125,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this._cardGroup?.SetCardsInGroupInteractable(true);
             
             if (this.HasCardPlacedInColumn)
+            {
                 this._cardSupplier?.TryRemoveCardExternally(this);
+                this._wordPool?.RemoveWordByCategory(this.CardCategory, this._cardModel);
+            }
             
             this._cardColliders = null;
         }

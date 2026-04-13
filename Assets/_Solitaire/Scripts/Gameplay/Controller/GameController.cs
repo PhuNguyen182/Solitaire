@@ -94,6 +94,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             }
             
             this.dragAndDropController.SetWordPool(this._wordPool);
+            ServiceLocator.ForSceneOf(this).Register(this._wordPool);
         }
 
         private async UniTask SetupLevelModel(LevelModel levelModel)

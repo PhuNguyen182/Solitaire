@@ -14,6 +14,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private bool _isDisposed;
 
+        public HashSet<string> GenerousCategories => this._generousCategories;
+
         #region Card Management
 
         public void AddCard(ICard card)
@@ -56,8 +58,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         #endregion
 
         #region Check Generous Categories
-        
-        public string GetRandomGenerousCategory() => this._generousCategories.GetRandomElement();
         
         public void AddGenerousCategory(string cardCategory)
         {
