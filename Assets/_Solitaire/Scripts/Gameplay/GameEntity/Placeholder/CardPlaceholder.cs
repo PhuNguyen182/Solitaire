@@ -21,6 +21,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         private WordPool _wordPool;
 
         public int CardPlaceHolderID { get; private set; }
+        public CardType CardType => this.cardType;
 
         public Transform CurrentTransform => this.transform;
         
@@ -78,6 +79,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                     this._wordPool.RemoveWordByCategory(cardInstance.CardCategory, cardInstance.CardModel);
                 }
                 
+                cardInstance.SetCardPlaceholder(this);
                 this.TryAppendCard(cardInstance);
             }
         }

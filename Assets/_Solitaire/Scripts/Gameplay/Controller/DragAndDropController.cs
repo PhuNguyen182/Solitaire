@@ -153,10 +153,12 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 return false;
 
             bool result = cardPlaceholder.TryAppendCard(this._pickedCard);
-            if (result)
-                this._pickedCard.UpdateNewInitialPosition(cardPlaceholder.CurrentTransform.position);
+            if (!result) 
+                return false;
             
-            return result;
+            this._pickedCard.UpdateNewInitialPosition(cardPlaceholder.CurrentTransform.position);
+            this._pickedCard.CardReleased(cardPlaceholder.CurrentTransform.position);
+            return true;
         }
 
         private bool StackCardInAGroup()
@@ -170,7 +172,10 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 return false;
 
             if (this._pickedCard.CardGroup == null)
+            {
+                this._pickedCard.SetCardPlaceholder(sampleCard.CardPlaceholder);
                 sampleCard.AppendCardToGroup(this._pickedCard);
+            }
             else
             {
                 ICard[] elementCards = this._pickedCard.CardGroup.ElementCards.ToArray();

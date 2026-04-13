@@ -94,6 +94,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void SetCardPlaceholder(ICardPlaceholder cardPlaceholder)
         {
             this._cardPlaceholder = cardPlaceholder;
+            this._cardGroup?.SetCardPlaceholder(this._cardPlaceholder);
         }
 
         #region Drag And Drop
@@ -106,7 +107,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 this._cardGroup.SetCardsInGroupInteractable(false);
         }
 
-        private void CardReleased(Vector3 snapPosition)
+        public void CardReleased(Vector3 snapPosition)
         {
             this._cardGroup?.SnapDown(snapPosition);
             this._cardGroup?.ReleaseDraggingCard();
@@ -156,6 +157,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void AppendCardToGroup(params ICard[] card)
         {
             this._cardGroup ??= new CardGroup(this.cardLayer);
+            this._cardGroup.SetCardPlaceholder(this.CardPlaceholder);
             this._cardGroup.AppendCards(true, card);
         }
 

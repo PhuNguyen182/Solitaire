@@ -5,6 +5,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 {
     public interface ICardPlaceholder
     {
+        public CardType CardType { get; }
         public int CardPlaceHolderID { get; }
         public Transform CurrentTransform { get; }
         

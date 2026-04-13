@@ -93,7 +93,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             if (assignGroupToCard)
                 card.SetCardGroup(this);
             
-            this.SetCardPlaceholder(card.CardPlaceholder);
+            card.SetCardPlaceholder(this.CardPlaceholder);
+            if (this.CardPlaceholder is { CardType: CardType.Foundation })
+                card.UpdateNewInitialPosition(this.CardPlaceholder.CurrentTransform.position);
+            
             this._elementCards.Add(card);
         }
 
