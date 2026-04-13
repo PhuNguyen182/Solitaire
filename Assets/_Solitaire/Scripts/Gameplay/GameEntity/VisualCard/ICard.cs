@@ -11,6 +11,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     {
         public bool IsSingleCard { get; }
         public bool HasCardPlacedInColumn { get; }
+        public int SortingOrder { get; }
         public string CardCategory { get; }
         public CardType CardType { get; }
         public ICardGroup CardGroup { get; }

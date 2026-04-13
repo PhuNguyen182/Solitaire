@@ -13,6 +13,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         private readonly List<ICard> _elementCards;
         
         private bool _isDisposed;
+        private int _firstSortingOrder;
+        
         private ICard _selectedCard;
         private Vector3 _initialPosition;
         private ICardPlaceholder _selectedCardPlaceholder;
@@ -70,14 +72,16 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 if (this._elementCards.Count <= 0)
                 {
                     this._initialPosition = card.WorldPosition;
-                    this.AppendSingleCard(card, 0, this._initialPosition, assignGroupToCard);
+                    this._firstSortingOrder = card.SortingOrder;
+                    this.AppendSingleCard(card, this._firstSortingOrder, this._initialPosition, assignGroupToCard);
                 }
                 else
                 {
                     int step = currentCardsInGroupCount + i;
+                    int sortingOrder = this._firstSortingOrder + i;
                     Vector3 stepPosition =
                         this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
-                    this.AppendSingleCard(card, step, stepPosition, assignGroupToCard);
+                    this.AppendSingleCard(card, sortingOrder, stepPosition, assignGroupToCard);
                 }
 
                 card.UpdateCardPlacingState(true);

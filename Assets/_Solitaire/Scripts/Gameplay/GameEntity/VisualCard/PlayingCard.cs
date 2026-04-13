@@ -28,6 +28,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         private bool _isFaceUp;
         private bool _hasCardPlacedInColumn;
+        private int _originalLayer;
         
         private CardModel _cardModel;
         private ICardGroup _cardGroup;
@@ -39,6 +40,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
         public bool HasCardPlacedInColumn => this._hasCardPlacedInColumn;
+        public int SortingOrder => this.cardSortingGroup.sortingOrder;
 
         public string CardCategory => this._cardModel.cardCategory;
         public CardType CardType => this.cardType;
@@ -63,6 +65,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void SetOrderLayer(int sortingOrder)
         {
             this.cardSortingGroup.sortingOrder = sortingOrder;
+            this._originalLayer = sortingOrder;
         }
 
         public void UpdateCardPlacingState(bool isPlacedInColumn)
@@ -104,6 +107,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void CardPickedUp()
         {
+            this.cardSortingGroup.sortingOrder = CardConstants.TopCardSortingLayer;
             if (this._cardGroup == null)
                 this.SetCardInteractable(false);
             else
@@ -112,6 +116,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void CardReleased(Vector3 snapPosition)
         {
+            this.cardSortingGroup.sortingOrder = this._originalLayer;
             this._cardGroup?.SnapDown(snapPosition);
             this._cardGroup?.ReleaseDraggingCard();
             this.SetCardInteractable(true);

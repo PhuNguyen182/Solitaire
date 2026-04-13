@@ -167,6 +167,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             if (checkCards is not { Count: > 0 })
                 return false;
 
+            int checkCardCount = checkCards.Count;
+            for (int i = 0; i < checkCardCount; i++)
+            {
+                if (!checkCards[i].HasCardPlacedInColumn)
+                    return false;
+            }
+
             ICard sampleCard = checkCards[0];
             if (!sampleCard.IsSameCategory(this._pickedCard))
                 return false;

@@ -57,7 +57,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 return;
             
             this._supplyCards.Remove(card);
-            this.RecalculateSuppliedCardPositions();
+            this.RecalculateSuppliedCardPositionsAndLayers();
         }
 
         private void RegisterButtons()
@@ -70,13 +70,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.provideCardButton.onClick.RemoveListener(this.ProvideCard);
         }
 
-        private void RecalculateSuppliedCardPositions()
+        private void RecalculateSuppliedCardPositionsAndLayers()
         {
             int count = this._supplyCards.Count;
             for (int i = 0; i < count; i++)
             {
                 Vector3 recalculatedPosition = this.cardPositions[i].position;
                 this._supplyCards[i].MoveToPositionImmediately(recalculatedPosition);
+                this._supplyCards[i].SetOrderLayer(i);
             }
         }
 
@@ -104,6 +105,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 supplyCard.UpdateCardPlacingState(false);
                 supplyCard.FlipCard(true, true);
                 this._supplyCards.Add(supplyCard);
+                this.RecalculateSuppliedCardPositionsAndLayers();
             }
         }
 
