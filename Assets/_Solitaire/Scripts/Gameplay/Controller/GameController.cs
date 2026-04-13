@@ -4,6 +4,7 @@ using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using DracoRuan.Foundation.DataFlow.MasterDataController;
 using Cysharp.Threading.Tasks;
+using ServiceLocators.Core;
 using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
@@ -63,6 +64,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this.dragAndDropController.SetPlayCardManager(this._playCardManager);
             this.cardSupplier.InitServices(this._playCardManager, this._cardFactory,
                 this._cardSupplyProbabilityConfigDataController);
+            ServiceLocator.ForSceneOf(this).Register(this.cardSupplier);
         }
 
         private void StartGameLevel()

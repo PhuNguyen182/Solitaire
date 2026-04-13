@@ -3,6 +3,7 @@ using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using Cysharp.Threading.Tasks;
 using DracoRuan.CoreSystems.AssetBundleSystem.Runtime.Interfaces;
+using ServiceLocators.Core;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -34,6 +35,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private Vector3 _initialPosition;
         private Collider2D[] _cardColliders;
         private IAssetBundleLoader _assetLoader;
+        private CardSupplier _cardSupplier;
 
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
         public bool HasCardPlacedInColumn => this._hasCardPlacedInColumn;
@@ -48,6 +50,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private void Awake()
         {
             this._initialPosition = this.transform.position;
+            this._cardSupplier = ServiceLocator.ForSceneOf(this).Get<CardSupplier>();
         }
 
         #region Card Visuals
@@ -113,6 +116,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this._cardGroup?.ReleaseDraggingCard();
             this.SetCardInteractable(true);
             this._cardGroup?.SetCardsInGroupInteractable(true);
+            this._cardSupplier?.TryRemoveCardExternally(this);
             this._cardColliders = null;
         }
 
