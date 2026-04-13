@@ -27,6 +27,16 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void AddWordCategory(CardModelByCategory cardModelByCategory) =>
             this._wordsPool.Add(cardModelByCategory.CategoryName, cardModelByCategory);
 
+        public void AddNewWordByCategory(string categoryName, CardModel word)
+        {
+            CardModelByCategory cardModelByCategory = this._wordsPool.GetValueOrDefault(categoryName);
+            if (cardModelByCategory == null)
+                return;
+            
+            cardModelByCategory.AddCardModel(word);
+            this._wordsPool[categoryName] = cardModelByCategory;
+        }
+
         public void RemoveWordByCategory(string categoryName, CardModel word)
         {
             CardModelByCategory cardModelByCategory = this._wordsPool.GetValueOrDefault(categoryName);

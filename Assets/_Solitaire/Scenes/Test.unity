@@ -672,7 +672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55, y: 755}
+  m_AnchoredPosition: {x: 60, y: 755}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2003745722
@@ -844,7 +844,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -95, y: 755}
+  m_AnchoredPosition: {x: -100, y: 755}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2112078880
@@ -1114,7 +1114,7 @@ PrefabInstance:
     - target: {fileID: 1593588524298413505, guid: 7bc20ba9458bd0845bca588526cb910a, type: 3}
       propertyPath: 'cardPositions.Array.data[0]'
       value: 
-      objectReference: {fileID: 2074250603}
+      objectReference: {fileID: 1866378864}
     - target: {fileID: 1593588524298413505, guid: 7bc20ba9458bd0845bca588526cb910a, type: 3}
       propertyPath: 'cardPositions.Array.data[1]'
       value: 
@@ -1122,7 +1122,7 @@ PrefabInstance:
     - target: {fileID: 1593588524298413505, guid: 7bc20ba9458bd0845bca588526cb910a, type: 3}
       propertyPath: 'cardPositions.Array.data[2]'
       value: 
-      objectReference: {fileID: 1866378864}
+      objectReference: {fileID: 2074250603}
     - target: {fileID: 2082413496555518216, guid: 7bc20ba9458bd0845bca588526cb910a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

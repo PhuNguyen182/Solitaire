@@ -99,8 +99,13 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             
             card.SetCardPlaceholder(this.CardPlaceholder);
             if (this.CardPlaceholder is { CardType: CardType.Foundation })
-                card.UpdateNewInitialPosition(this.CardPlaceholder.CurrentTransform.position);
-            
+            {
+                if (card.CardType != CardType.Foundation)
+                    card.SetCardActive(false);
+                else
+                    card.UpdateNewInitialPosition(position);
+            }
+
             this._elementCards.Add(card);
         }
 

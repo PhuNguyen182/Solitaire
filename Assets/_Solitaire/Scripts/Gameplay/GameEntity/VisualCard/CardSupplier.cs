@@ -86,7 +86,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             if (this._supplyCards.Count >= this.maxSupplyCardCount)
             {
                 foreach (ICard card in this._supplyCards)
+                {
+                    this._wordPool.AddNewWordByCategory(card.CardCategory, card.CardModel);
                     card.Cleanup();
+                }
+                
                 this._supplyCards.Clear();
             }
             else
@@ -105,6 +109,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 supplyCard.UpdateCardPlacingState(false);
                 supplyCard.FlipCard(true, true);
                 this._supplyCards.Add(supplyCard);
+                this._wordPool.RemoveWordByCategory(providedCardModel.cardCategory, providedCardModel);
                 this.RecalculateSuppliedCardPositionsAndLayers();
             }
         }

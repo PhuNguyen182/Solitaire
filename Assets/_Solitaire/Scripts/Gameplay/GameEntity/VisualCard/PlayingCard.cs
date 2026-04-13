@@ -40,7 +40,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
         public bool HasCardPlacedInColumn => this._hasCardPlacedInColumn;
-        public int SortingOrder => this.cardSortingGroup.sortingOrder;
+        public int SortingOrder => this._originalLayer;
 
         public string CardCategory => this._cardModel.cardCategory;
         public CardType CardType => this.cardType;
@@ -121,7 +121,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this._cardGroup?.ReleaseDraggingCard();
             this.SetCardInteractable(true);
             this._cardGroup?.SetCardsInGroupInteractable(true);
-            this._cardSupplier?.TryRemoveCardExternally(this);
+            
+            if (this.HasCardPlacedInColumn)
+                this._cardSupplier?.TryRemoveCardExternally(this);
+            
             this._cardColliders = null;
         }
 
@@ -254,6 +257,8 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         }
 
         #endregion
+        
+        public void SetCardActive(bool isActive) => this.gameObject.SetActive(isActive);
 
         public void Cleanup()
         {
