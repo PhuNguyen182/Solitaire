@@ -74,11 +74,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                 ICard cardInstance = this._cardFactory.Create(param);
                 cardInstance.UpdateCardPlacingState(true);
                 if (i == count - 1)
-                {
                     cardInstance.FlipCard(true, true);
-                    this._wordPool.RemoveWordByCategory(cardInstance.CardCategory, cardInstance.CardModel);
-                }
-                
+
+                this._wordPool.RemoveWordByCategory(cardInstance.CardCategory, cardInstance.CardModel);
                 cardInstance.SetCardPlaceholder(this);
                 this.TryAppendCard(cardInstance);
             }
