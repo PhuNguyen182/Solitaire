@@ -137,6 +137,33 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             this.OnCardAdded?.Invoke();
         }
 
+        public void ChangeLayerOnDragging()
+        {
+            int highestLayer = CardConstants.HighestCardSortingOrder;
+            int count = this._elementCards.Count;
+            for (int i = 0; i < count; i++)
+            {
+                int cardLayer = this._elementCards[i].SortingOrder;
+                int newLayer = cardLayer + highestLayer;
+                this._elementCards[i].SetOrderLayer(newLayer);
+            }
+        }
+
+        public void BackToOriginalLayer()
+        {
+            int highestLayer = CardConstants.HighestCardSortingOrder;
+            int count = this._elementCards.Count;
+            for (int i = 0; i < count; i++)
+            {
+                int cardLayer = this._elementCards[i].SortingOrder;
+                if (cardLayer <= highestLayer)
+                    continue;
+                
+                int newLayer = cardLayer - highestLayer;
+                this._elementCards[i].SetOrderLayer(newLayer);
+            }
+        }
+
         public void FollowPosition(Vector3 pointerPosition)
         {
             this.PrepareToDragAndMove(pointerPosition);
@@ -151,9 +178,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             }
         }
 
-        public void SnapDown(Vector3 snappedPosition)
+        public void SnapDownToOldPosition()
         {
-            this.FollowPosition(snappedPosition);
+            int count = this._elementCards.Count;
+            for (int i = 0; i < count; i++)
+                this._elementCards[i].SnapBackToInitialedPosition(false);
         }
 
         public void ReleaseDraggingCard()
@@ -189,7 +218,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             int count = this._elementCards.Count;
             for (int i = 0; i < count; i++)
             {
-                Vector3 offset = this._elementCards[0].WorldPosition - this._elementCards[i].WorldPosition;
+                Vector3 offset = this._elementCards[i].WorldPosition - this._elementCards[0].WorldPosition;
                 this._cardPositionOffsets.Add(offset);
             }
         }

@@ -66,6 +66,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.cardSortingGroup.worldCamera = canvasCamera;
         }
 
+        public void BackToOriginalLayer()
+        {
+            this.SetOrderLayer(this._originalLayer);
+        }
+
         public void SetOrderLayer(int sortingOrder)
         {
             if (!this._hasSetupLayer)
@@ -117,17 +122,23 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void CardPickedUp()
         {
-            this.cardSortingGroup.sortingOrder = CardConstants.HighestCardSortingOrder;
             if (this._cardGroup == null)
+            {
                 this.SetCardInteractable(false);
+                this.cardSortingGroup.sortingOrder = CardConstants.HighestCardSortingOrder;
+            }
             else
+            {
                 this._cardGroup.SetCardsInGroupInteractable(false);
+                this._cardGroup.ChangeLayerOnDragging();
+            }
         }
 
         public void CardReleased(Vector3 snapPosition)
         {
             this.cardSortingGroup.sortingOrder = this._currentLayer;
-            this._cardGroup?.SnapDown(snapPosition);
+            this._cardGroup?.SnapDownToOldPosition();
+            this._cardGroup?.BackToOriginalLayer();
             this._cardGroup?.ReleaseDraggingCard();
             this.SetCardInteractable(true);
             this._cardGroup?.SetCardsInGroupInteractable(true);
@@ -164,10 +175,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 this._cardGroup.FollowPosition(position);
         }
 
-        public void SnapBackToInitialedPosition()
+        public void SnapBackToInitialedPosition(bool shouldReleaseCard)
         {
             this.transform.position = this._initialPosition;
-            this.CardReleased(this._initialPosition);
+            if (shouldReleaseCard)
+                this.CardReleased(this._initialPosition);
         }
 
         #endregion
@@ -280,7 +292,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this.SetCardGroup(null);
             this.SetCardPlaceholder(null);
-            this.SetOrderLayer(this._originalLayer);
+            this.BackToOriginalLayer();
             this._cardModel = null;
             GameObjectPoolManager.Despawn(this.gameObject);
         }

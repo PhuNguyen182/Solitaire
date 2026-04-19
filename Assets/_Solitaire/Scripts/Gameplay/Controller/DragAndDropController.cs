@@ -147,7 +147,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             
             void DropInvalidatedCard()
             {
-                this._pickedCard.SnapBackToInitialedPosition();
+                this._pickedCard.SnapBackToInitialedPosition(true);
                 this.OnCardDropped?.Invoke(false);
             }
         }

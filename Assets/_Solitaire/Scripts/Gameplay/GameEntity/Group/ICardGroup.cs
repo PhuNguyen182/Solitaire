@@ -17,13 +17,15 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public event Action OnCardGroupFreed;
 
         public ICard GetLastCard();
+        public void ChangeLayerOnDragging();
+        public void BackToOriginalLayer();
         public bool ContainFoundationCard();
         public bool ContainNormalCard(ICard normalCard);
         public void SetCardPlaceholder(ICardPlaceholder placeholder);
         public void SetCardsInGroupInteractable(bool isInteractable);
         public void AppendCards(bool assignGroupToCard, ICard sampleCard = null, params ICard[] cards);
         public void RemoveCard(params ICard[] cards);
-        public void SnapDown(Vector3 snappedPosition);
+        public void SnapDownToOldPosition();
         public void ReleaseDraggingCard();
         public void Cleanup();
     }
