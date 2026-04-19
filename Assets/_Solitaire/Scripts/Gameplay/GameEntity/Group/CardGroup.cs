@@ -76,7 +76,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             return this._elementCards.Count > 0 ? this._elementCards[^1] : null;
         }
 
-        public void AppendCards(bool assignGroupToCard, ICard sampleCard = null, params ICard[] cards)
+        public void AppendCards(bool assignGroupToCard, Vector3 samplePosition, params ICard[] cards)
         {
             int count = cards.Length;
             for (int i = 0; i < count; i++)
@@ -84,7 +84,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 ICard card = cards[i];
                 if (this._elementCards.Count <= 0)
                 {
-                    this._initialPosition = sampleCard?.WorldPosition ?? card.WorldPosition;
+                    this._initialPosition = samplePosition;
                     this._firstSortingOrder = card.SortingOrder;
                     this.AppendSingleCard(card, this._firstSortingOrder, this._initialPosition, assignGroupToCard);
                 }

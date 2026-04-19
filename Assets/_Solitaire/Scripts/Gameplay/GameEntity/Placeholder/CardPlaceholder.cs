@@ -112,7 +112,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                     return false;
             }
 
-            this._cardGroup.AppendCards(assignGroupToCard, null, card);
+            this._cardGroup.AppendCards(assignGroupToCard, this.transform.position, card);
             this._playCardManager.AddCard(card);
             return true;
         }
@@ -126,7 +126,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             }
 
             ICard[] cards = card.CardGroup.ElementCards.ToArray();
-            this._cardGroup.AppendCards(assignGroupToCard, null, cards);
+            this._cardGroup.AppendCards(assignGroupToCard, this.transform.position, cards);
             
             int count = cards.Length;
             for (int i = 0; i < count; i++)
