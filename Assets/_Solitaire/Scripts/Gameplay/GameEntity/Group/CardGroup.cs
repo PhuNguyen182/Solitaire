@@ -139,16 +139,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
 
         public void FollowPosition(Vector3 pointerPosition)
         {
-            if (this._selectedCard == null)
-            {
-                Collider2D cardCollider = Physics2D.OverlapPoint(pointerPosition, this._visualCardLayer);
-                if (cardCollider && cardCollider.TryGetComponent(out ICard card))
-                {
-                    this._selectedCard = card;
-                    this.CalculateCardPositionOffsets();
-                }
-            }
-
+            this.PrepareToDragAndMove(pointerPosition);
             if (this._selectedCard == null)
                 return;
             
@@ -177,6 +168,19 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 card.Cleanup();
             
             this._elementCards.Clear();
+        }
+
+        private void PrepareToDragAndMove(Vector3 pointerPosition)
+        {
+            if (this._selectedCard != null) 
+                return;
+            
+            Collider2D cardCollider = Physics2D.OverlapPoint(pointerPosition, this._visualCardLayer);
+            if (!cardCollider || !cardCollider.TryGetComponent(out ICard card)) 
+                return;
+            
+            this._selectedCard = card;
+            this.CalculateCardPositionOffsets();
         }
 
         private void CalculateCardPositionOffsets()
