@@ -59,10 +59,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
 
         public ICard GetLastCard()
         {
-            return this._elementCards[^1];
+            return this._elementCards.Count > 0 ? this._elementCards[^1] : null;
         }
 
-        public void AppendCards(bool assignGroupToCard, params ICard[] cards)
+        public void AppendCards(bool assignGroupToCard, ICard sampleCard = null, params ICard[] cards)
         {
             int count = cards.Length;
             int currentCardsInGroupCount = this._elementCards.Count;
@@ -71,7 +71,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 ICard card = cards[i];
                 if (this._elementCards.Count <= 0)
                 {
-                    this._initialPosition = card.WorldPosition;
+                    this._initialPosition = sampleCard?.WorldPosition ?? card.WorldPosition;
                     this._firstSortingOrder = card.SortingOrder;
                     this.AppendSingleCard(card, this._firstSortingOrder, this._initialPosition, assignGroupToCard);
                 }

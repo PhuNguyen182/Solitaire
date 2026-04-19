@@ -175,7 +175,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this._cardGroup ??= new CardGroup(this.cardLayer);
             this._cardGroup.SetCardPlaceholder(this.CardPlaceholder);
-            this._cardGroup.AppendCards(true, card);
+            this._cardGroup.AppendCards(true, this, card);
         }
 
         public bool IsSameCategory(ICard card)

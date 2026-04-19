@@ -20,7 +20,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public bool ContainFoundationCard();
         public void SetCardPlaceholder(ICardPlaceholder placeholder);
         public void SetCardsInGroupInteractable(bool isInteractable);
-        public void AppendCards(bool assignGroupToCard, params ICard[] cards);
+        public void AppendCards(bool assignGroupToCard, ICard sampleCard = null, params ICard[] cards);
         public void RemoveCard(params ICard[] cards);
         public void SnapDown(Vector3 snappedPosition);
         public void ReleaseDraggingCard();
