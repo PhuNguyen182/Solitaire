@@ -27,8 +27,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         [SerializeField] private BoxCollider2D cardCollider;
 
         private bool _isFaceUp;
+        private bool _hasSetupLayer;
         private bool _hasCardPlacedInColumn;
         private int _originalLayer;
+        private int _currentLayer;
         
         private CardModel _cardModel;
         private ICardGroup _cardGroup;
@@ -41,7 +43,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
         public bool HasCardPlacedInColumn => this._hasCardPlacedInColumn;
-        public int SortingOrder => this._originalLayer;
+        public int SortingOrder => this._currentLayer;
 
         public string CardCategory => this._cardModel.cardCategory;
         public CardType CardType => this.cardType;
@@ -66,8 +68,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void SetOrderLayer(int sortingOrder)
         {
+            if (!this._hasSetupLayer)
+            {
+                this._hasSetupLayer = true;
+                this._originalLayer = sortingOrder;
+            }
+            
             this.cardSortingGroup.sortingOrder = sortingOrder;
-            this._originalLayer = sortingOrder;
+            this._currentLayer = sortingOrder;
         }
 
         public void UpdateCardPlacingState(bool isPlacedInColumn)
@@ -109,7 +117,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void CardPickedUp()
         {
-            this.cardSortingGroup.sortingOrder = CardConstants.TopCardSortingLayer;
+            this.cardSortingGroup.sortingOrder = CardConstants.HighestCardSortingOrder;
             if (this._cardGroup == null)
                 this.SetCardInteractable(false);
             else
@@ -118,7 +126,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void CardReleased(Vector3 snapPosition)
         {
-            this.cardSortingGroup.sortingOrder = this._originalLayer;
+            this.cardSortingGroup.sortingOrder = this._currentLayer;
             this._cardGroup?.SnapDown(snapPosition);
             this._cardGroup?.ReleaseDraggingCard();
             this.SetCardInteractable(true);
@@ -272,6 +280,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this.SetCardGroup(null);
             this.SetCardPlaceholder(null);
+            this.SetOrderLayer(this._originalLayer);
             this._cardModel = null;
             GameObjectPoolManager.Despawn(this.gameObject);
         }
