@@ -143,11 +143,15 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             {
                 Collider2D cardCollider = Physics2D.OverlapPoint(pointerPosition, this._visualCardLayer);
                 if (cardCollider && cardCollider.TryGetComponent(out ICard card))
+                {
                     this._selectedCard = card;
-                
-                this.CalculateCardPositionOffsets(pointerPosition);
+                    this.CalculateCardPositionOffsets();
+                }
             }
 
+            if (this._selectedCard == null)
+                return;
+            
             int count = this._elementCards.Count;
             for (int i = 0; i < count; i++)
             {
@@ -175,13 +179,13 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             this._elementCards.Clear();
         }
 
-        private void CalculateCardPositionOffsets(Vector3 pointerPosition)
+        private void CalculateCardPositionOffsets()
         {
             this._cardPositionOffsets.Clear();
             int count = this._elementCards.Count;
             for (int i = 0; i < count; i++)
             {
-                Vector3 offset = pointerPosition - this._elementCards[i].WorldPosition;
+                Vector3 offset = this._elementCards[0].WorldPosition - this._elementCards[i].WorldPosition;
                 this._cardPositionOffsets.Add(offset);
             }
         }

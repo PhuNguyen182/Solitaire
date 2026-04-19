@@ -213,7 +213,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             for (int i = 0; i < count; i++)
             {
                 List<ICard> cards = sampleCard.CardGroup.ElementCards[i].CheckAvailableCardOnDropDown();
-                result.AddRange(cards);
+                if (cards is { Count: > 0 })
+                    result.AddRange(cards);
             }
 
             return result;
