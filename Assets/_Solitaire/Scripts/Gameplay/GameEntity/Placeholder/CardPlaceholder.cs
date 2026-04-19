@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.Controller;
 using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
@@ -125,11 +126,15 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                     return false;
             }
 
-            ICard[] cards = card.CardGroup.ElementCards.ToArray();
-            this._cardGroup.AppendCards(assignGroupToCard, this.transform.position, cards);
+            int cardCount = card.CardGroup.ElementCards.Count;
+            List<ICard> cards = card.CardGroup.ElementCards;
+            for (int i = 0; i < cardCount; i++)
+            {
+                this._cardGroup.AppendCards(assignGroupToCard, this.transform.position,
+                    cards[i]);
+            }
             
-            int count = cards.Length;
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < cardCount; i++)
                 this._playCardManager.AddCard(cards[i]);
             
             return true;
