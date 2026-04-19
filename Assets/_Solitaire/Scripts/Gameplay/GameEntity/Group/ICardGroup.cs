@@ -18,6 +18,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
 
         public ICard GetLastCard();
         public bool ContainFoundationCard();
+        public bool ContainNormalCard(ICard normalCard);
         public void SetCardPlaceholder(ICardPlaceholder placeholder);
         public void SetCardsInGroupInteractable(bool isInteractable);
         public void AppendCards(bool assignGroupToCard, ICard sampleCard = null, params ICard[] cards);

@@ -175,6 +175,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this._cardGroup ??= new CardGroup(this.cardLayer);
             this._cardGroup.SetCardPlaceholder(this.CardPlaceholder);
+            if (!this._cardGroup.ContainNormalCard(this))
+                this._cardGroup.AppendCards(true, this, this);
+            
             this._cardGroup.AppendCards(true, this, card);
         }
 

@@ -149,6 +149,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                 return;
 
             ICard lastCard = this._cardGroup.GetLastCard();
+            if (lastCard == null) 
+                return;
+            
             lastCard.FlipCard(true, true);
             this._wordPool.RemoveWordByCategory(lastCard.CardCategory, lastCard.CardModel);
         }

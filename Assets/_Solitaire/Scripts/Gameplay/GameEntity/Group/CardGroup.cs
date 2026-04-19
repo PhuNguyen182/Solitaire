@@ -45,6 +45,19 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             return false;
         }
 
+        public bool ContainNormalCard(ICard normalCard)
+        {
+            int cardCount = this._elementCards.Count;
+            for (int i = 0; i < cardCount; i++)
+            {
+                if (string.CompareOrdinal(this._elementCards[i].CardModel.cardContent,
+                        normalCard.CardModel.cardContent) == 0)
+                    return true;
+            }
+
+            return false;
+        }
+
         public void SetCardPlaceholder(ICardPlaceholder placeholder)
         {
             this._selectedCardPlaceholder = placeholder;
@@ -65,7 +78,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public void AppendCards(bool assignGroupToCard, ICard sampleCard = null, params ICard[] cards)
         {
             int count = cards.Length;
-            int currentCardsInGroupCount = this._elementCards.Count;
             for (int i = 0; i < count; i++)
             {
                 ICard card = cards[i];
@@ -77,8 +89,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 }
                 else
                 {
+                    int currentCardsInGroupCount = this._elementCards.Count;
                     int step = currentCardsInGroupCount + i;
-                    int sortingOrder = this._firstSortingOrder + i;
+                    int sortingOrder = this._firstSortingOrder + currentCardsInGroupCount + i;
                     Vector3 stepPosition =
                         this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
                     this.AppendSingleCard(card, sortingOrder, stepPosition, assignGroupToCard);
