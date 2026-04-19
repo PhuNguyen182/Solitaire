@@ -27,7 +27,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void SetOrderLayer(int sortingOrder);
         public void SetCardGroup(ICardGroup cardGroup);
         public void SetCardPlaceholder(ICardPlaceholder cardPlaceholder);
-        public void CardReleased(Vector3 snapPosition);
+        public void CardReleased();
         public void UpdateNewInitialPosition(Vector3 position);
         public void SnapBackToInitialedPosition(bool shouldReleaseCard);
         public void MoveToPositionImmediately(Vector3 position);

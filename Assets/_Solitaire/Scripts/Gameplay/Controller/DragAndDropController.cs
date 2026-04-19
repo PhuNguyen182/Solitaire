@@ -142,6 +142,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 this._wordPool.RemoveWordByCategory(this._pickedCard.CardCategory, this._pickedCard.CardModel);
                 this._pickedCardPlaceholder?.RemoveCard(this._pickedCard);
                 this._pickedCardPlaceholder?.FlipLastCard();
+                this._pickedCard.SetCardInteractable(true);
                 this.OnCardDropped?.Invoke(true);
             }
             
@@ -166,7 +167,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 return false;
             
             this._pickedCard.UpdateNewInitialPosition(cardPlaceholder.CurrentTransform.position);
-            this._pickedCard.CardReleased(cardPlaceholder.CurrentTransform.position);
+            this._pickedCard.CardReleased();
             return true;
         }
 

@@ -134,7 +134,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             }
         }
 
-        public void CardReleased(Vector3 snapPosition)
+        public void CardReleased()
         {
             this.cardSortingGroup.sortingOrder = this._currentLayer;
             this._cardGroup?.SnapDownToOldPosition();
@@ -179,7 +179,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this.transform.position = this._initialPosition;
             if (shouldReleaseCard)
-                this.CardReleased(this._initialPosition);
+                this.CardReleased();
         }
 
         #endregion

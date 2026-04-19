@@ -131,7 +131,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                     continue;
 
                 this._elementCards.Remove(cards[i]);
-                cards[i].SetCardGroup(null);
             }
 
             this.OnCardAdded?.Invoke();
