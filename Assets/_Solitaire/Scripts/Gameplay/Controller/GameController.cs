@@ -105,6 +105,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
                 this._playCardManager, this._levelManager, this.cardPlaceholderContainer, this.cardContainerPoint,
                 this._cardFactory, this._wordPool);
+            this._levelManager.SetCardPlaceholderManager(this._cardPlaceholderManager);
             this._cardPlaceholderManager.BuildLevel(levelModel);
             this.dragAndDropController.SetCardPlaceholderManager(this._cardPlaceholderManager);
             this.cardSupplier.SetLevelModel(levelModel, this._wordPool);

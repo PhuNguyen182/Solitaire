@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_TargetDisplay: 0
 --- !u!114 &6074889799082843284
 MonoBehaviour:
@@ -213,6 +213,7 @@ MonoBehaviour:
   cardLayer:
     serializedVersion: 2
     m_Bits: 64
+  cardCanvas: {fileID: 5101575190960895282}
 --- !u!61 &1387996313190238346
 BoxCollider2D:
   m_ObjectHideFlags: 0

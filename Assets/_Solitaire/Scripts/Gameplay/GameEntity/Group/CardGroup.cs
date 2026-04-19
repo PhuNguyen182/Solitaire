@@ -19,6 +19,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         private Vector3 _initialPosition;
         private ICardPlaceholder _selectedCardPlaceholder;
         
+        public string CardCategory => this._elementCards is {Count: > 0} ? this._elementCards[0].CardCategory : null; 
         public List<ICard> ElementCards => this._elementCards;
         public ICardPlaceholder CardPlaceholder => this._selectedCardPlaceholder;
         public bool IsEmpty => this._elementCards.Count <= 0;

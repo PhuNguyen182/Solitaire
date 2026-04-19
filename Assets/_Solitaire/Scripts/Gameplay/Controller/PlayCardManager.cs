@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using System.Collections.Generic;
-using Extensions;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
 {

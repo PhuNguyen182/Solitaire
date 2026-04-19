@@ -94,5 +94,18 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         {
             return this._cardPlaceholderMap.GetValueOrDefault(cardPlaceholderKey);
         }
+
+        public void CleanupCompletedPlaceholder(string cardCategory)
+        {
+            foreach (var kvp in _cardPlaceholderMap)
+            {
+                ICardPlaceholder cardPlaceholder = kvp.Value;
+                if (string.CompareOrdinal(cardPlaceholder.CardCategory, cardCategory) != 0) 
+                    continue;
+                
+                cardPlaceholder.Cleanup();
+                return;
+            }
+        }
     }
 }

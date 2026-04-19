@@ -11,6 +11,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         [SerializeField] private GameObject foundationMark;
         [SerializeField] private BoxCollider2D placeholderCollider;
         [SerializeField] private LayerMask cardLayer;
+        [SerializeField] private Canvas cardCanvas;
 
         private ICardGroup _cardGroup;
         private CardFactory _cardFactory;
@@ -22,11 +23,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 
         public int CardPlaceHolderID { get; private set; }
         public CardType CardType => this.cardType;
-
+        public string CardCategory => this._cardGroup?.CardCategory;
         public Transform CurrentTransform => this.transform;
         
         private void Awake()
         {
+            this.cardCanvas.worldCamera = Camera.main;
             this._cardGroup = new CardGroup(this.cardLayer);
             this._cardGroup.SetCardPlaceholder(this);
         }
@@ -173,6 +175,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         {
             if (this.foundationMark)
                 this.foundationMark.SetActive(isFoundation);
+        }
+
+        public void Cleanup()
+        {
+            this._cardGroup.Cleanup();
         }
     }
 }

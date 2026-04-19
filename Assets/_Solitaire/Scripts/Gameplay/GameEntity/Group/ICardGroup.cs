@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.GameEntity.Interfaces;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
-using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
 {
     public interface ICardGroup : IFollowable
     {
+        public string CardCategory { get; }
         public List<ICard> ElementCards { get; }
         public ICardPlaceholder CardPlaceholder { get; }
         public bool IsEmpty { get; }

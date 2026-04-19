@@ -1,3 +1,4 @@
+using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.Level;
 
 namespace _Solitaire.Scripts.Gameplay.Controller
@@ -6,12 +7,16 @@ namespace _Solitaire.Scripts.Gameplay.Controller
     {
         private readonly LevelModel _levelModel;
         private readonly PlayCardManager _playCardManager;
+        private CardPlaceholderManager _cardPlaceholderManager;
 
         public LevelManager(LevelModel levelModel, PlayCardManager playCardManager)
         {
             this._levelModel = levelModel;
             this._playCardManager = playCardManager;
         }
+
+        public void SetCardPlaceholderManager(CardPlaceholderManager cardPlaceholderManager) =>
+            this._cardPlaceholderManager = cardPlaceholderManager;
 
         public bool CheckCategory(string cardCategory, int cardCount)
         {
@@ -33,6 +38,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             
             this._playCardManager.MarkCategoryAsCompleted(cardCategory);
             this._playCardManager.RemoveCardCategory(cardCategory);
+            this._cardPlaceholderManager.CleanupCompletedPlaceholder(cardCategory);
             return true;
         }
     }

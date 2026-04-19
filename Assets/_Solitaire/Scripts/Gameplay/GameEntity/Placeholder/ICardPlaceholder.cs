@@ -8,6 +8,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public CardType CardType { get; }
         public int CardPlaceHolderID { get; }
         public Transform CurrentTransform { get; }
+        public string CardCategory { get; }
         
         public void SetCardContainer(Transform cardContainer);
         public void BindModelData(CardPlaceholderModel model);
@@ -15,5 +16,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public void RemoveCard(ICard card);
         public void FlipLastCard();
         public void SetCardID(int cardID);
+        public void Cleanup();
     }
 }
