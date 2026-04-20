@@ -23,7 +23,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public UniTask FlipCard(bool isFaceUp, bool isImmediately);
         public void CardPickedUp();
         public void UpdateCardPlacingState(bool isPlacedInColumn);
-        public void BackToOriginalLayer();
         public void SetOrderLayer(int sortingOrder);
         public void SetCardGroup(ICardGroup cardGroup);
         public void SetCardPlaceholder(ICardPlaceholder cardPlaceholder);

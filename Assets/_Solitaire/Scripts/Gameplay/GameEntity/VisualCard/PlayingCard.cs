@@ -66,7 +66,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.cardSortingGroup.worldCamera = canvasCamera;
         }
 
-        public void BackToOriginalLayer()
+        private void BackToOriginalLayer()
         {
             this.SetOrderLayer(this._originalLayer);
         }
