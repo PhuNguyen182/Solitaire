@@ -194,5 +194,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             this._cardGroup.Cleanup();
             this.CheckCardPlaceholderCollider();
         }
+
+        private void OnDisable()
+        {
+            this.Cleanup();
+        }
     }
 }

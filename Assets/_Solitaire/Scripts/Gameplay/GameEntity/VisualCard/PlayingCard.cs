@@ -17,6 +17,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         [Header("Card Visual")] 
         [SerializeField] private Image cardIcon;
         [SerializeField] private TMP_Text cardText;
+        [SerializeField] private TMP_Text progressionText;
         [SerializeField] private GameObject foundationMark;
         [SerializeField] private Canvas cardSortingGroup;
         [SerializeField] private GameObject content;
@@ -45,7 +46,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public bool HasCardPlacedInColumn => this._hasCardPlacedInColumn;
         public int SortingOrder => this._currentLayer;
 
-        public string CardCategory => this._cardModel.cardCategory;
+        public string CardCategory => this._cardModel?.cardCategory;
         public CardType CardType => this.cardType;
         public ICardGroup CardGroup => this._cardGroup;
         public ICardPlaceholder CardPlaceholder => this._cardPlaceholder;
@@ -93,7 +94,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this._isFaceUp = isFaceUp;
             this.SetCardInteractable(isFaceUp);
             if (isFaceUp && this._hasCardPlacedInColumn)
-                this._cardModel.PlayCardManager?.AddGenerousCategory(this.CardCategory);
+                this._cardModel?.PlayCardManager?.AddGenerousCategory(this.CardCategory);
 
             if (this.content && this.backVisual)
             {
@@ -101,7 +102,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 this.backVisual.SetActive(!isFaceUp);
             }
 
-            this.ToggleFoundationMark(this._isFaceUp && this._cardModel.cardType == CardType.Foundation);
+            this.ToggleFoundationMark(this._isFaceUp && this._cardModel?.cardType == CardType.Foundation);
             await UniTask.CompletedTask;
         }
 

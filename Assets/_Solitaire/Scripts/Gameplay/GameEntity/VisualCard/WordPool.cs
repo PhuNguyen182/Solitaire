@@ -45,6 +45,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         public void RemoveWordByCategory(string categoryName, CardModel word)
         {
+            if (string.IsNullOrEmpty(categoryName))
+                return;
+            
             CardModelByCategory cardModelByCategory = this._wordsPool.GetValueOrDefault(categoryName);
             if (cardModelByCategory == null)
                 return;
