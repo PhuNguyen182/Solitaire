@@ -26,7 +26,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public void SetCardPlaceholder(ICardPlaceholder placeholder);
         public void SetCardsInGroupInteractable(bool isInteractable);
         public void AppendCards(bool assignGroupToCard, Vector3 samplePosition, params ICard[] cards);
-        public void RemoveCard(params ICard[] cards);
+        public void RemoveCard(ICard card);
         public void ReupdateCardGroupInitialPosition(Vector3 samplePosition);
         public void SnapDownToOldPosition();
         public void ReleaseDraggingCard();

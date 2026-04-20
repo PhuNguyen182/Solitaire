@@ -142,7 +142,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 
         public void RemoveCard(ICard card)
         {
-            this._cardGroup.RemoveCard(card);
+            List<ICard> cards = card.CardGroup.ElementCards;
+            foreach (ICard cardToRemove in cards)
+                this._cardGroup.RemoveCard(cardToRemove);
+
             this.CheckCardPlaceholderCollider();
         }
 
@@ -183,6 +186,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public void Cleanup()
         {
             this._cardGroup.Cleanup();
+            this.CheckCardPlaceholderCollider();
         }
     }
 }

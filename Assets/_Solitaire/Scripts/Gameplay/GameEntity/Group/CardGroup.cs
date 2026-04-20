@@ -129,17 +129,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             this._elementCards.Add(card);
         }
 
-        public void RemoveCard(params ICard[] cards)
+        public void RemoveCard(ICard card)
         {
-            int count = cards.Length;
-            for (int i = 0; i < count; i++)
-            {
-                if (!this._elementCards.Contains(cards[i]))
-                    continue;
+            if (!this._elementCards.Contains(card))
+                return;
 
-                this._elementCards.Remove(cards[i]);
-            }
-
+            this._elementCards.Remove(card);
             this.OnCardAdded?.Invoke();
         }
 
