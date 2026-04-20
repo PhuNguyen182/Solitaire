@@ -27,6 +27,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public string CardCategory => this._cardGroup?.CardCategory;
         public Transform CurrentTransform => this.transform;
         public ICard FoundationCard => this._foundationCard;
+        public bool IsEmpty => this._cardGroup.IsEmpty;
         
         private void Awake()
         {

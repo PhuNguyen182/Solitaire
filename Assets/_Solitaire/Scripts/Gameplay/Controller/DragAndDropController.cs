@@ -208,8 +208,15 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             }
             else
             {
-                ICard[] elementCards = this._pickedCard.CardGroup.ElementCards.ToArray();
-                sampleCard.AppendCardToGroup(elementCards);
+                ICardPlaceholder inspectingPlaceholder = this._pickedCard.CardPlaceholder;
+                CardType placeholderCardType = inspectingPlaceholder.CardType;
+                if (placeholderCardType == CardType.Normal && !inspectingPlaceholder.IsEmpty &&
+                    this._pickedCard.CardGroup.ContainFoundationCard())
+                    return false;
+                
+                List<ICard> elementCards = this._pickedCard.CardGroup.ElementCards;
+                foreach (ICard card in elementCards)
+                    sampleCard.AppendCardToGroup(card);
             }
 
             return true;

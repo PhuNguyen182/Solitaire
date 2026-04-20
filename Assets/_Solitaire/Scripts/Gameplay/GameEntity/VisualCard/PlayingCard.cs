@@ -191,16 +191,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.cardCollider.enabled = isInteractable;
         }
 
-        public void AppendCardToGroup(params ICard[] card)
+        public void AppendCardToGroup(ICard card)
         {
             this._cardGroup ??= new CardGroup(this.cardLayer);
             this._cardGroup.SetCardPlaceholder(this.CardPlaceholder);
             if (!this._cardGroup.ContainNormalCard(this))
                 this._cardGroup.AppendCards(true, this.WorldPosition, this);
 
-            int cardCount = card.Length;
-            for (int i = 0; i < cardCount; i++)
-                this._cardGroup.AppendCards(true, this.WorldPosition, card[i]);
+            this._cardGroup.AppendCards(true, this.WorldPosition, card);
         }
 
         public bool IsSameCategory(ICard card)

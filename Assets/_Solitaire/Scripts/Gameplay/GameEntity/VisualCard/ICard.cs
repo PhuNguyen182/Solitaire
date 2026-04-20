@@ -32,7 +32,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         public void SnapBackToInitialedPosition(bool shouldReleaseCard);
         public void MoveToPositionImmediately(Vector3 position);
         public void SetCardInteractable(bool isInteractable);
-        public void AppendCardToGroup(params ICard[] card);
+        public void AppendCardToGroup(ICard card);
         public bool IsSameCategory(ICard card);
         public List<ICard> CheckAvailableCardOnDropDown();
         public void SetCardActive(bool isActive);

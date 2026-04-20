@@ -11,6 +11,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public Transform CurrentTransform { get; }
         public string CardCategory { get; }
         public ICard FoundationCard { get; }
+        public bool IsEmpty { get; }
         
         public void SetCardContainer(Transform cardContainer);
         public void BindModelData(CardPlaceholderModel model);
