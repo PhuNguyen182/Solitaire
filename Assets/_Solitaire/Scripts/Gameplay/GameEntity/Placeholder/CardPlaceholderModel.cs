@@ -11,7 +11,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public Vector3 Position;
         public CardColumnModel CardColumnModel;
         public PlayCardManager PlayCardManager;
-        public LevelManager LevelManager;
         public WordPool WordPool;
     }
 }

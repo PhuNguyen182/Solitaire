@@ -12,13 +12,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         private readonly CardPlaceholderFactory _cardPlaceholderFactory;
         private readonly Dictionary<int, ICardPlaceholder> _cardPlaceholderMap;
         private readonly PlayCardManager _playCardManager;
-        private readonly LevelManager _levelManager;
         private readonly Vector3 _foundationPlaceholderStartPosition;
         private readonly Vector3 _normalPlaceholderStartPosition;
         private readonly WordPool _wordPool;
 
         public CardPlaceholderManager(ICardPlaceholder cardPlaceholder, Vector3 foundationPlaceholderStartPosition,
-            Vector3 normalPlaceholderStartPosition, PlayCardManager playCardManager, LevelManager levelManager, 
+            Vector3 normalPlaceholderStartPosition, PlayCardManager playCardManager,
             Transform cardPlaceholderParentTransform, Transform cardContainerTransform, CardFactory cardFactory,
             WordPool wordPool)
         {
@@ -26,7 +25,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             this._foundationPlaceholderStartPosition = foundationPlaceholderStartPosition;
             this._normalPlaceholderStartPosition = normalPlaceholderStartPosition;
             this._playCardManager = playCardManager;
-            this._levelManager = levelManager;
             this._cardPlaceholderFactory = new CardPlaceholderFactory(cardPlaceholder, cardPlaceholderParentTransform,
                 cardContainerTransform);
             this._cardFactory = cardFactory;
@@ -67,7 +65,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                     CardType = cardType,
                     CardColumnModel = cardColumnModel,
                     PlayCardManager = this._playCardManager,
-                    LevelManager = this._levelManager,
                     WordPool = this._wordPool,
                 };
 
@@ -93,19 +90,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public ICardPlaceholder GetCardPlaceholder(int cardPlaceholderKey)
         {
             return this._cardPlaceholderMap.GetValueOrDefault(cardPlaceholderKey);
-        }
-
-        public void CleanupCompletedPlaceholder(string cardCategory)
-        {
-            foreach (var kvp in _cardPlaceholderMap)
-            {
-                ICardPlaceholder cardPlaceholder = kvp.Value;
-                if (string.CompareOrdinal(cardPlaceholder.CardCategory, cardCategory) != 0) 
-                    continue;
-                
-                cardPlaceholder.Cleanup();
-                return;
-            }
         }
     }
 }

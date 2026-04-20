@@ -82,31 +82,25 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
             this._initialPosition = samplePosition;
         }
 
-        public void AppendCards(bool assignGroupToCard, Vector3 samplePosition, params ICard[] cards)
+        public void AppendCards(bool assignGroupToCard, Vector3 samplePosition, ICard card)
         {
-            int count = cards.Length;
-            for (int i = 0; i < count; i++)
+            if (this._elementCards.Count <= 0)
             {
-                ICard card = cards[i];
-                if (this._elementCards.Count <= 0)
-                {
-                    this._initialPosition = samplePosition;
-                    this._firstSortingOrder = card.SortingOrder;
-                    this.AppendSingleCard(card, this._firstSortingOrder, this._initialPosition, assignGroupToCard);
-                }
-                else
-                {
-                    int currentCardsInGroupCount = this._elementCards.Count;
-                    int step = currentCardsInGroupCount + i;
-                    int sortingOrder = this._firstSortingOrder + currentCardsInGroupCount + i;
-                    Vector3 stepPosition =
-                        this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
-                    this.AppendSingleCard(card, sortingOrder, stepPosition, assignGroupToCard);
-                }
-
-                card.UpdateCardPlacingState(true);
+                this._initialPosition = samplePosition;
+                this._firstSortingOrder = card.SortingOrder;
+                this.AppendSingleCard(card, this._firstSortingOrder, this._initialPosition, assignGroupToCard);
+            }
+            else
+            {
+                int currentCardsInGroupCount = this._elementCards.Count;
+                int step = currentCardsInGroupCount;
+                int sortingOrder = this._firstSortingOrder + currentCardsInGroupCount;
+                Vector3 stepPosition =
+                    this._initialPosition + Vector3.down * (step * CardConstants.CardPositionOffset);
+                this.AppendSingleCard(card, sortingOrder, stepPosition, assignGroupToCard);
             }
 
+            card.UpdateCardPlacingState(true);
             this.OnCardAdded?.Invoke();
         }
 

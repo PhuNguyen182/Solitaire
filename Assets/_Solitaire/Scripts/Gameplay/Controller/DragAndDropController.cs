@@ -127,20 +127,20 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             {
                 bool isCurrentCardAddedToNewGroup = this.StackCardInAGroup();
                 if (!isCurrentCardAddedToNewGroup)
-                    DropInvalidatedCard();
+                    DropInvalidCard();
                 else
-                    DropValidatedCard();
+                    DropValidCard();
             }
             else
             {
-                DropValidatedCard();
+                DropValidCard();
             }
 
             this._pickedCard = null;
             this._cardColliders = null;
             return;
 
-            void DropValidatedCard()
+            void DropValidCard()
             {
                 if (isCardFromSupplier)
                     this._playCardManager.AddCard(this._pickedCard);
@@ -159,7 +159,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 this.OnCardDropped?.Invoke(true);
             }
             
-            void DropInvalidatedCard()
+            void DropInvalidCard()
             {
                 this._pickedCard.SnapBackToInitialedPosition(true);
                 this.OnCardDropped?.Invoke(false);

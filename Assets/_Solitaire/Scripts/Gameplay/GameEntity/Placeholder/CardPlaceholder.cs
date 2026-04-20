@@ -142,9 +142,14 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
 
         public void RemoveCard(ICard card)
         {
-            List<ICard> cards = card.CardGroup.ElementCards;
-            foreach (ICard cardToRemove in cards)
-                this._cardGroup.RemoveCard(cardToRemove);
+            List<ICard> cards = card?.CardGroup?.ElementCards;
+            if (cards is not { Count: > 0 })
+                this._cardGroup.RemoveCard(card);
+            else
+            {
+                foreach (ICard cardToRemove in cards)
+                    this._cardGroup.RemoveCard(cardToRemove);
+            }
 
             this.CheckCardPlaceholderCollider();
         }

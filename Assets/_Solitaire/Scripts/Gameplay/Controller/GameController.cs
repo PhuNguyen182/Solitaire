@@ -103,8 +103,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this._levelManager = new LevelManager(levelModel, this._playCardManager);
             this._cardPlaceholderManager = new CardPlaceholderManager(this.cardPlaceholderPrefab,
                 this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
-                this._playCardManager, this._levelManager, this.cardPlaceholderContainer, this.cardContainerPoint,
-                this._cardFactory, this._wordPool);
+                this._playCardManager, this.cardPlaceholderContainer, this.cardContainerPoint, this._cardFactory, 
+                this._wordPool);
             this.dragAndDropController.SetLevelManager(this._levelManager);
             this._cardPlaceholderManager.BuildLevel(levelModel);
             this.dragAndDropController.SetCardPlaceholderManager(this._cardPlaceholderManager);
