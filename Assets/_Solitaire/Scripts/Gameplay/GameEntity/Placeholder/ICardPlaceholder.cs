@@ -1,4 +1,5 @@
-﻿using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
+﻿using _Solitaire.Scripts.Gameplay.GameEntity.Group;
+using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using UnityEngine;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
@@ -9,6 +10,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public int CardPlaceHolderID { get; }
         public Transform CurrentTransform { get; }
         public string CardCategory { get; }
+        public ICard FoundationCard { get; }
         
         public void SetCardContainer(Transform cardContainer);
         public void BindModelData(CardPlaceholderModel model);

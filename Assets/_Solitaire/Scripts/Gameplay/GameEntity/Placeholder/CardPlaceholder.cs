@@ -14,11 +14,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         [SerializeField] private LayerMask cardLayer;
         [SerializeField] private Canvas cardCanvas;
 
+        private ICard _foundationCard;
         private ICardGroup _cardGroup;
         private CardFactory _cardFactory;
         private CardPlaceholderModel _cardPlaceholderModel;
         private PlayCardManager _playCardManager;
-        private LevelManager _levelManager;
         private Transform _cardContainer;
         private WordPool _wordPool;
 
@@ -26,6 +26,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
         public CardType CardType => this.cardType;
         public string CardCategory => this._cardGroup?.CardCategory;
         public Transform CurrentTransform => this.transform;
+        public ICard FoundationCard => this._foundationCard;
         
         private void Awake()
         {
@@ -39,7 +40,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
             this._cardPlaceholderModel = model;
             this.cardType = model.CardType;
             this._playCardManager = model.PlayCardManager;
-            this._levelManager = model.LevelManager;
             this._wordPool = model.WordPool;
             this.ToggleFoundationMark(model.CardType == CardType.Foundation);
             this.SetupCardPlaceholderInitialEnableState();
@@ -94,14 +94,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
                 ? this.AppendSingleCard(card, assignGroupToCard) 
                 : this.AppendMultipleCards(card, assignGroupToCard);
             this.CheckCardPlaceholderCollider();
+            if (result && assignGroupToCard)
+                this._foundationCard = card;
 
-            if (this.cardType != CardType.Foundation) 
-                return result;
+            if (!assignGroupToCard && card.CardGroup != null)
+                card.CardGroup.ReupdateCardGroupInitialPosition(this.transform.position);
             
-            bool canClearThisCategory =
-                this._levelManager.CheckCategory(card.CardCategory, this._cardGroup.ElementCards.Count);
-            if (canClearThisCategory)
-                this._cardGroup.Cleanup();
             return result;
         }
 

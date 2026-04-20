@@ -21,6 +21,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private ICardPlaceholder _pickedCardPlaceholder;
         private CardPlaceholderManager _cardPlaceholderManager;
         private PlayCardManager _playCardManager;
+        private LevelManager _levelManager;
         private WordPool _wordPool;
         
         public event Action<bool> OnCardDropped;
@@ -41,6 +42,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         public void SetPlayCardManager(PlayCardManager playCardManager)
         {
             this._playCardManager = playCardManager;
+        }
+
+        public void SetLevelManager(LevelManager levelManager)
+        {
+            this._levelManager = levelManager;
         }
 
         public void SetCardPlaceholderManager(CardPlaceholderManager cardPlaceholderManager)
@@ -143,6 +149,13 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 this._pickedCardPlaceholder?.RemoveCard(this._pickedCard);
                 this._pickedCardPlaceholder?.FlipLastCard();
                 this._pickedCard.SetCardInteractable(true);
+                
+                ICardPlaceholder cardPlaceholder = this._pickedCard.CardPlaceholder;
+                if (cardPlaceholder is { CardType: CardType.Foundation })
+                {
+                    this._levelManager.CheckCategory(cardPlaceholder);
+                }
+                    
                 this.OnCardDropped?.Invoke(true);
             }
             

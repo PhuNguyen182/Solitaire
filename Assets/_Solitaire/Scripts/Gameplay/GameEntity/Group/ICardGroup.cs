@@ -12,6 +12,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public string CardCategory { get; }
         public List<ICard> ElementCards { get; }
         public ICardPlaceholder CardPlaceholder { get; }
+        public int ElementCount { get; }
         public bool IsEmpty { get; }
         
         public event Action OnCardAdded;
@@ -26,6 +27,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public void SetCardsInGroupInteractable(bool isInteractable);
         public void AppendCards(bool assignGroupToCard, Vector3 samplePosition, params ICard[] cards);
         public void RemoveCard(params ICard[] cards);
+        public void ReupdateCardGroupInitialPosition(Vector3 samplePosition);
         public void SnapDownToOldPosition();
         public void ReleaseDraggingCard();
         public void Cleanup();

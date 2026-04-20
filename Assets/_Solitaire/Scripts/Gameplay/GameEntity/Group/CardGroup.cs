@@ -22,6 +22,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public string CardCategory => this._elementCards is {Count: > 0} ? this._elementCards[0].CardCategory : null; 
         public List<ICard> ElementCards => this._elementCards;
         public ICardPlaceholder CardPlaceholder => this._selectedCardPlaceholder;
+        public int ElementCount => this._elementCards.Count;
         public bool IsEmpty => this._elementCards.Count <= 0;
         
         public event Action OnCardAdded;
@@ -74,6 +75,11 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
         public ICard GetLastCard()
         {
             return this._elementCards.Count > 0 ? this._elementCards[^1] : null;
+        }
+
+        public void ReupdateCardGroupInitialPosition(Vector3 samplePosition)
+        {
+            this._initialPosition = samplePosition;
         }
 
         public void AppendCards(bool assignGroupToCard, Vector3 samplePosition, params ICard[] cards)
@@ -197,6 +203,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.Group
                 card.Cleanup();
             
             this._elementCards.Clear();
+            this._cardPositionOffsets.Clear();
+            this._selectedCard = null;
+            this._firstSortingOrder = 0;
+            this._initialPosition = Vector3.zero;
         }
 
         private void PrepareToDragAndMove(Vector3 pointerPosition)

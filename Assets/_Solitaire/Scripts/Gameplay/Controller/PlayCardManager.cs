@@ -32,12 +32,18 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             }
         }
 
-        #endregion
-
         public void RemoveCardCategory(string cardCategory)
         {
             this._existingCards.Remove(cardCategory);
         }
+
+        public int GetWordCountByCategory(string category)
+        {
+            int result = this._existingCards.TryGetValue(category, out HashSet<string> cards) ? cards.Count : 0;
+            return result;
+        }
+        
+        #endregion
 
         #region Check Card Category Complete
 

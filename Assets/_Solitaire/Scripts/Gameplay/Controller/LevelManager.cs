@@ -7,7 +7,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller
     {
         private readonly LevelModel _levelModel;
         private readonly PlayCardManager _playCardManager;
-        private CardPlaceholderManager _cardPlaceholderManager;
 
         public LevelManager(LevelModel levelModel, PlayCardManager playCardManager)
         {
@@ -15,30 +14,27 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this._playCardManager = playCardManager;
         }
 
-        public void SetCardPlaceholderManager(CardPlaceholderManager cardPlaceholderManager) =>
-            this._cardPlaceholderManager = cardPlaceholderManager;
-
-        public bool CheckCategory(string cardCategory, int cardCount)
+        public bool CheckCategory(ICardPlaceholder cardPlaceholder)
         {
             CategoryData cardCategoryData = null;
             int categoryCount = this._levelModel.availableCategories.Count;
             for (int i = 0; i < categoryCount; i++)
             {
-                if (this._levelModel.availableCategories[i].categoryName != cardCategory) 
+                if (string.CompareOrdinal(this._levelModel.availableCategories[i].categoryName, cardPlaceholder.CardCategory) != 0) 
                     continue;
                 
                 cardCategoryData = this._levelModel.availableCategories[i];
                 break;
             }
-
-            // Check if cardCount is equal to max card count (including foundation card)
-            bool isCategoryComplete = cardCategoryData != null && cardCategoryData.maxCardCount == cardCount - 1;
+            
+            int cardCountByCategory = cardPlaceholder.FoundationCard?.CardGroup?.ElementCount ?? 0;
+            bool isCategoryComplete = cardCategoryData != null && cardCategoryData.maxCardCount == cardCountByCategory - 1;
             if (!isCategoryComplete) 
                 return false;
             
-            this._playCardManager.MarkCategoryAsCompleted(cardCategory);
-            this._playCardManager.RemoveCardCategory(cardCategory);
-            this._cardPlaceholderManager.CleanupCompletedPlaceholder(cardCategory);
+            this._playCardManager.MarkCategoryAsCompleted(cardPlaceholder.CardCategory);
+            this._playCardManager.RemoveCardCategory(cardPlaceholder.CardCategory);
+            cardPlaceholder.Cleanup();
             return true;
         }
     }

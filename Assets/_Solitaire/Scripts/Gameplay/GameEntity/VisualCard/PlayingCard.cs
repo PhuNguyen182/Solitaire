@@ -197,8 +197,10 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this._cardGroup.SetCardPlaceholder(this.CardPlaceholder);
             if (!this._cardGroup.ContainNormalCard(this))
                 this._cardGroup.AppendCards(true, this.WorldPosition, this);
-            
-            this._cardGroup.AppendCards(true, this.WorldPosition, card);
+
+            int cardCount = card.Length;
+            for (int i = 0; i < cardCount; i++)
+                this._cardGroup.AppendCards(true, this.WorldPosition, card[i]);
         }
 
         public bool IsSameCategory(ICard card)
