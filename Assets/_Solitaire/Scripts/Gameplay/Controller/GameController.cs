@@ -3,7 +3,6 @@ using _Solitaire.Scripts.Gameplay.Level;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
 using DracoRuan.Foundation.DataFlow.MasterDataController;
-using Cysharp.Threading.Tasks;
 using ServiceLocators.Core;
 using UnityEngine;
 
@@ -24,8 +23,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         [SerializeField] private CardPlaceholder cardPlaceholderPrefab;
         [SerializeField] private PlayingCard playingCardPrefab;
         [SerializeField] private CardSupplier cardSupplier;
-
-        private bool _isDataInitialized;
+        
         private CardFactory _cardFactory;
         private PlayCardManager _playCardManager;
         private CardPlaceholderManager _cardPlaceholderManager;
@@ -37,7 +35,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private void Awake()
         {
-            this.TestInitializeData().Forget();
+            this.InitializeGame();
         }
 
         private void Start()
@@ -45,20 +43,14 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this.StartGameLevel();
         }
 
-        private async UniTask TestInitializeData()
+        private void InitializeGame()
         {
-            this._mainDataManager = new MainDataManager();
-            await this._mainDataManager.InitializeDataHandlers();
+            this._mainDataManager = ServiceLocator.Global.Get<MainDataManager>();
             this._rawLevelConfigDataController =
                 this._mainDataManager.GetStaticDataController<RawLevelConfigDataController>();
             this._cardSupplyProbabilityConfigDataController = this._mainDataManager
                 .GetStaticDataController<CardSupplyProbabilityConfigDataController>();
-            this._isDataInitialized = true;
-            this.InitializeGame();
-        }
-
-        private void InitializeGame()
-        {
+            
             this._playCardManager = new PlayCardManager();
             this._cardFactory = new CardFactory(this.playingCardPrefab, this.mainCamera);
             this.dragAndDropController.SetPlayCardManager(this._playCardManager);
@@ -71,7 +63,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         {
             LevelModel levelModel = this._rawLevelConfigDataController.BuildLevelModel(1, this._playCardManager);
             this.InitializeWordPool(levelModel);
-            this.SetupLevelModel(levelModel).Forget();
+            this.SetupLevelModel(levelModel);
         }
 
         private void InitializeWordPool(LevelModel levelModel)
@@ -97,9 +89,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             ServiceLocator.ForSceneOf(this).Register(this._wordPool);
         }
 
-        private async UniTask SetupLevelModel(LevelModel levelModel)
+        private void SetupLevelModel(LevelModel levelModel)
         {
-            await UniTask.WaitUntil(() => this._isDataInitialized);
             this._levelManager = new LevelManager(levelModel, this._playCardManager);
             ServiceLocator.ForSceneOf(this).Register(this._levelManager);
 

@@ -54,7 +54,7 @@ namespace ServiceLocators.Core
         /// <summary>
         /// Gets the global ServiceLocator instance. Creates new if none exists.
         /// </summary>        
-        public static ServiceLocator global
+        public static ServiceLocator Global
         {
             get
             {
@@ -98,7 +98,7 @@ namespace ServiceLocators.Core
                 return bootstrapper.container;
             }
 
-            return global;
+            return Global;
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace ServiceLocators.Core
         /// </summary>
         public static ServiceLocator For(MonoBehaviour mb)
         {
-            return mb.GetComponentInParent<ServiceLocator>().OrNull() ?? ForSceneOf(mb) ?? global;
+            return mb.GetComponentInParent<ServiceLocator>().OrNull() ?? ForSceneOf(mb) ?? Global;
         }
 
         /// <summary>
