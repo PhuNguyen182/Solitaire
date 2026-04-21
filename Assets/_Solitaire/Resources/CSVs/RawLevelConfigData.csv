@@ -1,0 +1,801 @@
+Level,Difficulty,UseRandomize,WordColumns,Column1Count,Column2Count,Column3Count,Column4Count,Column5Count,Moves,CategoryIndex,ItemType,CategoryName,WordCount,Word1,Word2,Word3,Word4,Word5,Word6,Word7,Word8
+1,Easy1,FALSE,3,8,5,5,0,0,-1,0,Text,Pets,5,Dog,Cat,Hamster,Fish,Bird,,,
+,,,,,,,,,,1,Text,Trees,4,Maple,Oak,Pine,Willow,,,,
+,,,,,,,,,,2,Text,Game,4,Chess,Uno,Monopoly,Domino,,,,
+,,,,,,,,,,3,Text,Color,4,Red,Blue,Yellow,Green,,,,
+2,Easy1,TRUE,3,2,3,4,0,0,95,0,Text,Animals,6,Sheep,Pig,Goat,Horse,Monkey,Bear,,
+,,,,,,,,,,1,Text,Cinema,6,Western,Drama,Comedy,Horror,Popcorn,Ticket,,
+,,,,,,,,,,2,Text,Calendar,4,Day,Week,Month,Year,,,,
+,,,,,,,,,,3,Icon,Foods,4,Hamburger_img,Hotdog_img,Sandwich_img,Taco_img,,,,
+,,,,,,,,,,4,Text,Book,3,Page,Paper,Cover,,,,,
+,,,,,,,,,,5,Text,Continents,3,Asia,Africa,Europe,,,,,
+3,Medium1,TRUE,4,3,4,5,6,0,175,0,Text,Museum,7,Picture,Exhibit,Artifact,Hall,Display,Curator,Art,
+,,,,,,,,,,1,Text,Fabrics,7,Flannel,Cotton,Silk,Satin,Velvet,Linen,Felt,
+,,,,,,,,,,2,Text,Writer,7,Author,Novelist,Blogger,Letterer,Storyteller,Editor,Poet,
+,,,,,,,,,,3,Text,Weather,6,Sunny,Foggy,Snowy,Rainy,Windy,Stormy,,
+,,,,,,,,,,4,Text,Bowling,6,Strike,Gutter,Pins,Spare,Alley,Split,,
+,,,,,,,,,,5,Text,Pets,4,Ferret,Snake,Gecko,Cat,,,,
+,,,,,,,,,,6,Icon,Chess,4,Pawn_img,King_img,Bishop_img,Queen_img,,,,
+,,,,,,,,,,7,Text,Drinks,4,Soda,Coffee,Juice,Tea,,,,
+,,,,,,,,,,8,Text,Seasons,3,Spring,Summer,Autumn,,,,,
+,,,,,,,,,,9,Icon,Bird,3,Eagle_img,Dove_img,Swan_img,,,,,
+4,Medium1,TRUE,4,3,4,5,6,0,135,0,Text,Islands,8,Jamaica,Iceland,Sicily,Hawaii,Bali,Ibiza,Crete,Barbados
+,,,,,,,,,,1,Text,Jewelry,7,Necklace,Earring,Ring,Bracelet,Anklet,Locket,Diadem,
+,,,,,,,,,,2,Text,Flowers,7,Cherry_img,Daisy_img,Tulip_img,Rose_img,Hibiscus_img,Peony_img,Rosette_img,
+,,,,,,,,,,3,Text,Dances,6,Rumba,Tango,Salsa,Waltz,Samba,Flamenco,,
+,,,,,,,,,,4,Icon,Cinema,6,Western,Drama,Comedy,Horror,Popcorn,Ticket,,
+,,,,,,,,,,5,Icon,Animals,4,Bear,Wolf,Rabbit,Zebra,,,,
+,,,,,,,,,,6,Text,Months,4,February,March,April,May,,,,
+,,,,,,,,,,7,Text,Pizza,4,Cheese_img,Tomato_img,Pepperoni_img,Pizza1_img,,,,
+,,,,,,,,,,8,Icon,Book,3,Comic,Novel,Textbook,,,,,
+,,,,,,,,,,9,Text,Country,3,Canada_img,United_States_img,United_Kingdom_img,,,,,
+5,Hard1,TRUE,4,3,4,5,6,0,135,0,Text,Fish,8,Shark,Tilapia,Goldfish,Salmon,Tuna,Cod,Sardine,Anchovy
+,,,,,,,,,,1,Icon,Flag,8,United_States_img,Australia_img,Japan_img,Spain_img,France_img,Germany_img,Mexico_img,India_img
+,,,,,,,,,,2,Icon,Emoji,8,Smile_img,Laugh_img,Kiss_img,Cry_img,Angry_img,Shock_img,Thinking_img,Sleepy_img
+,,,,,,,,,,3,Text,Furniture,6,Chair,Table,Sofa,Bed,Desk,Armchair,,
+,,,,,,,,,,4,Text,Oceans,6,Wave,Tide,Beach,Coast,Bay,Island,,
+,,,,,,,,,,5,Text,Shoes,4,Sneakers,Boots,Sandals,Oxfords,,,,
+,,,,,,,,,,6,Text,Planets,4,Mercury,Venus,Earth,Mars,,,,
+,,,,,,,,,,7,Text,Molluscs,4,Slug,Oyster,Snail,Clam,,,,
+,,,,,,,,,,8,Text,Yoga,3,Posture,Stretch,Meditate,,,,,
+,,,,,,,,,,9,Text,House,3,Mansion,Palace,Villa,,,,,
+6,Hard2,TRUE,4,4,5,6,7,0,165,0,Text,Trees,8,Oak,Maple,Pine,Cedar,Birch,Willow,Ash,Palm
+,,,,,,,,,,1,Text,Jobs,8,Pilot,Teacher,Doctor,Engineer,Lawyer,Soldier,Artist,Musician
+,,,,,,,,,,2,Icon,Animals,7,Lion_img,Tiger_img,Elephant_img,Horse1_img,Cow_img,Kangaroo_img,Dolphin_img,
+,,,,,,,,,,3,Text,Music Genres,7,Pop,Hip hop,Rock,Jazz,Blues,Classical,R&B,
+,,,,,,,,,,4,Text,Dance,6,Waltz,Tango,Salsa,Cha cha,Rumba,Ballet,,
+,,,,,,,,,,5,Text,Festivals,6,Christmas,Easter,Halloween,Thanksgiving,New Year,Valentine,,
+,,,,,,,,,,6,Text,Furniture,5,Chair,Table,Sofa,Bed,Desk,,,
+,,,,,,,,,,7,Text,Hats,5,Cap,Beret,Helmet,Sunhat,Cowboy Hat,,,
+,,,,,,,,,,8,Icon,Cakes,4,Shortcake_img,Cupcake_img,Moon_cake_img,Pancakes_img,,,,
+,,,,,,,,,,9,Icon,Vegetables,4,Carrot_img,Potato_img,Tomato1_img,Onion_img,,,,
+,,,,,,,,,,10,Text,Islands,3,Jamaica,Hawaii,Bali,,,,,
+,,,,,,,,,,11,Text,Stones,3,Onyx,Diamond,Turquoise,,,,,
+7,Easy2,TRUE,3,2,3,4,0,0,95,0,Icon,Cakes,8,Shortcake_img,Cupcake_img,Moon_cake_img,Pancakes_img,Birthday_Cake_img,Macaron_img,Eclair_img,Donut_img
+,,,,,,,,,,1,Icon,Flag,7,United_States_img,Australia_img,Japan_img,Spain_img,France_img,Germany_img,Mexico_img,
+,,,,,,,,,,2,Text,Shopping,4,Price,Sale,Discount,Coupon,,,,
+,,,,,,,,,,3,Text,New York,4,Statue of Liberty,Times Square,Wall Street,Central Park,,,,
+,,,,,,,,,,4,Text,Texas,3,Cowboys,Texas BBQ,Rodeo,,,,,
+,,,,,,,,,,5,Text,Cozy,3,Comfy,Warm,Snug,,,,,
+8,Medium1,TRUE,4,3,4,5,6,0,140,0,Icon,Zodiac,8,Aries_img,Taurus_img,Gemini_img,Leo_img,Virgo_img,Libra_img,Scorpio_img,Pisces_img
+,,,,,,,,,,1,Text,Bathroom,8,Bathtub,Lotion,Shampoo,Shaver,Soap,Shower,Towel,Razor
+,,,,,,,,,,2,Text,Desert,8,Sand,Dune,Oasis,Mirage,Cactus,Dust,Rock,Dry
+,,,,,,,,,,3,Text,Stones,6,Granite,Marble,Basalt,Jade,Onyx,Ruby,,
+,,,,,,,,,,4,Text,TV Shows,6,The Simpsons,Seinfeld,The Walking Dead,Friends,Breaking Bad,Game of Thrones,,
+,,,,,,,,,,5,Text,Painters,4,Leonardo da Vinci,Raphael,Picasso,Van Gogh,,,,
+,,,,,,,,,,6,Text,Tools,4,Hammer,Screwdriver,Wrench,Pliers,,,,
+,,,,,,,,,,7,Text,Clouds,4,Fog,Cloudy,Raincloud,Puffy Cloud,,,,
+,,,,,,,,,,8,Text,Mountains,3,Everest,Denali,Fuji,,,,,
+,,,,,,,,,,9,Icon,Wooden,3,Pencil_img,Guitar_img,Chair_img,,,,,
+9,Medium2,TRUE,4,3,4,5,6,0,150,0,Text,Language,8,English,Italian,Japanese,Danish,Chinese,Spanish,German,Korean
+,,,,,,,,,,1,Text,Color,8,Red,Black,White,Green,Violet,Gray,Beige,Cyan
+,,,,,,,,,,2,Text,Car,8,Tesla,Toyota,Honda,Audi,Kia,Hyundai,Nissan,Ford
+,,,,,,,,,,3,Icon,Cakes,6,Shortcake_img,Cupcake_img,Moon_cake_img,Pancakes_img,Birthday_Cake_img,Macaron_img,,
+,,,,,,,,,,4,Text,Rock Bands,6,Queen,Eagles,The Beatles,Kiss,Nirvana,Metallica,,
+,,,,,,,,,,5,Text,Cocktails,4,Margarita,Martini,Old Fashioned,Gimlet,,,,
+,,,,,,,,,,6,Text,Superheroes,4,Superman,Batman,Iron Man,Thor,,,,
+,,,,,,,,,,7,Text,Sports,4,Baseball,Soccer,Tennis,Golf,,,,
+,,,,,,,,,,8,Text,Spiky,3,Hedgehog,Cactus,Durian,,,,,
+,,,,,,,,,,9,Text,Snow,3,Sleet,Slush,Snowflake,,,,,
+10,Hard1,TRUE,4,3,4,5,6,0,130,0,Text,Birds,8,Dove,Eagle,Swan,Owl,Heron,Robin,Finch,Vulture
+,,,,,,,,,,1,Text,Trees,8,Oak,Maple,Pine,Cedar,Birch,Willow,Ash,Palm
+,,,,,,,,,,2,Text,Weather,8,Cloudy,Sunny,Rainy,Snowy,Stormy,Windy,Foggy,Misty
+,,,,,,,,,,3,Text,House,6,Bathroom,Bedroom,Kitchen,Basement,Garage,Parlor,,
+,,,,,,,,,,4,Text,Spices,6,Salt,Pepper,Clove,Chili Powder,Basil,Ginger,,
+,,,,,,,,,,5,Icon,BBQ,4,Lamb_img,Ribs_img,Sausage_img,Chicken_img,,,,
+,,,,,,,,,,6,Text,Movie Genres,4,Action,Adventure,Horror,Drama,,,,
+,,,,,,,,,,7,Text,Clothing,4,Shirt,Pants,Jeans,Dress,,,,
+,,,,,,,,,,8,Text,States,3,Texas,California,Florida,,,,,
+,,,,,,,,,,9,Text,Universities,3,Harvard,Princeton,Stanford,,,,,
+11,Hard2,TRUE,4,3,4,5,6,0,180,0,Icon,Planet,8,Mercury_img,Jupiter_img,Saturn_img,Uranus_img,Neptune_img,Mars_img,Earth_img,Venus_img
+,,,,,,,,,,1,Text,Chess,8,King,Queen,Rook,Bishop,Knight,Pawn,Gambit,Tactics
+,,,,,,,,,,2,Text,Lessons,8,Biology,Physics,Geometry,Algebra,History,Calculus,Philosophy,Chemistry
+,,,,,,,,,,3,Text,Face,8,Cheeks,Lips,Brows,Nose,Chin,Eyes,Mouth,Nostrils
+,,,,,,,,,,4,Text,Transport,6,Car,Bus,Train,Subway,Bicycle,Airplane,,
+,,,,,,,,,,5,Text,Reptiles,6,Crocodile,Snake,Lizard,Gecko,Cobra,Turtle,,
+,,,,,,,,,,6,Text,Wardrobe,5,Jumper,Jacket,Sweater,Jeans,Pants,,,
+,,,,,,,,,,7,Text,Flowers,5,Cherry_img,Daisy_img,Tulip_img,Rose_img,Hibiscus_img,,,
+,,,,,,,,,,8,Text,Snacks,4,Chips,Popcorn,Candy,Donut,,,,
+,,,,,,,,,,9,Text,Senses,4,Smell,Touch,Taste,Sight,,,,
+,,,,,,,,,,10,Text,Sunny,3,Warm,Hot,Sun,,,,,
+,,,,,,,,,,11,Text,Snow,3,Sleet,Flake,Blizzard,,,,,
+12,Easy2,TRUE,3,3,4,5,0,0,75,0,Text,School,8,Classroom,Notebook,Eraser,Teacher,Student,Homework,Subject,Principal
+,,,,,,,,,,1,Icon,Fruits,8,Apple_img,Banana_img,Orange_img,Lemon_img,Mango_img,Pineapple_img,Peach_img,Strawberry_img
+,,,,,,,,,,2,Icon,Shapes,4,Circle_img,Square_img,Triangle_img,Pentagon_img,,,,
+,,,,,,,,,,3,Text,Calendar,4,Day,Week,Month,Year,,,,
+,,,,,,,,,,4,Text,Cinema,3,Movie,Popcorn,Ticket,,,,,
+,,,,,,,,,,5,Text,Philosophers,3,Plato,Aristotle,Socrates,,,,,
+13,Medium1,TRUE,4,4,5,6,7,0,130,0,Icon,Foods,8,Bread_img,Pizza_img,Pasta_img,Noodles_img,Soup_img,Cheese1_img,Curry_img,Sushi_img
+,,,,,,,,,,1,Text,Villains,8,Joker,Thanos,Harley Quinn,Magneto,Ultron,Loki,Darkseid,Hela
+,,,,,,,,,,2,Text,Cheese,8,Brie,Gouda,Cheddar,Parmesan,Feta,Ricotta,Edam,Dorblu
+,,,,,,,,,,3,Text,Garden,6,Flower,Seeds,Shovel,Bush,Plants,Buds,,
+,,,,,,,,,,4,Text,Jewelry,6,Ring,Necklace,Bracelet,Earrings,Watch,Pearl,,
+,,,,,,,,,,5,Text,Game,4,Chess,Uno,Monopoly,Domino,,,,
+,,,,,,,,,,6,Text,Rain,4,Shower,Downpour,Thunder,Drizzle,,,,
+,,,,,,,,,,7,Icon,Candy,4,Candy1_img,Marshmallow_img,Chocolate_img,Lollipop_img,,,,
+,,,,,,,,,,8,Text,Snake,3,Python,Viper,Cobra,,,,,
+,,,,,,,,,,9,Text,Transport,3,Airplane,Ship,Truck,,,,,
+14,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Dogs,8,Bulldog,Beagle,Poodle,Husky,Dalmatian,Corgi,Maltese,Golden Retriever
+,,,,,,,,,,1,Text,Hats,8,Beanie,Fedora,Beret,Kepi,Cap,Panama,Helmet,Visor
+,,,,,,,,,,2,Icon,Flag,8,United_States_img,Australia_img,Japan_img,Spain_img,France_img,Germany_img,Mexico_img,India_img
+,,,,,,,,,,3,Text,Religions,6,Islam,Buddhism,Christianity,Hinduism,Judaism,Orthodoxy,,
+,,,,,,,,,,4,Text,Music,6,Rock,Pop ,Jazz,Opera,Punk,R&B,,
+,,,,,,,,,,5,Text,Hunting,4,Trap,Hunter,Trophy,License,,,,
+,,,,,,,,,,6,Text,Taste,4,Sweet,Sour,Salty,Bitter,,,,
+,,,,,,,,,,7,Text,Sick,4,Fever,Flu,Headache,Toothache,,,,
+,,,,,,,,,,8,Text,Unite,3,Alliance,League,Union,,,,,
+,,,,,,,,,,9,Text,Ballet,3,Pointe,Tutu,Barre,,,,,
+15,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Computer,8,Monitor,Keyboard,Mouse,Drive,CPU,Software,RAM,Laptop
+,,,,,,,,,,1,Text,US States ,8,California,Texas,Florida,New York,Ohio,Colorado,Michigan,Georgia
+,,,,,,,,,,2,Text,Farm,8,Tractor,Farmer,Field,Corn,Hay,Scarecrow,Farmhouse,Crop
+,,,,,,,,,,3,Text,Camping,6,Tent,Sleeping Bag,Campfire,Map,Compass,Matches,,
+,,,,,,,,,,4,Icon,Coffee Drinks,6,Espresso_img,Americano_img,Cappuccino_img,Latte_img,Macchiato_img,Mocha_img,,
+,,,,,,,,,,5,Text,Dance,4,Rumba,Tango,Salsa,Waltz,,,,
+,,,,,,,,,,6,Text,Days,4,Sunday,Monday,Tuesday,Thursday,,,,
+,,,,,,,,,,7,Icon,Emoji,4,Smile_img,Laugh_img,Kiss_img,Cry_img,,,,
+,,,,,,,,,,8,Text,Cartoons,3,Tom,Jerry,Mickey,,,,,
+,,,,,,,,,,9,Text,Sports,3,Basketball,Golf,Boxing,,,,,
+16,Hard1,TRUE,4,5,6,7,8,0,200,0,Icon,Halloween,8,Pumpkin_img,Ghost_img,Witch_img,Vampire_img,Zombie_img,Mask_img,Candy_img,Costume_img
+,,,,,,,,,,1,Text,Christmas,8,Christmas Tree,Santa Claus,Reindeer,Sleigh,Elf,Snowman,Gift,Stocking
+,,,,,,,,,,2,Text,Woods,8,Tree,Leaf,Branch,Root,Bark,Berry,Stump,Moss
+,,,,,,,,,,3,Icon,Rodents,8,Mouse_img,Squirrel_img,Beaver_img,Porcupine_img,Capybara_img,Muskrat_img,Nutria_img,Chipmunk_img
+,,,,,,,,,,4,Text,Bedroom,6,Bed,Pillow,Blanket,Sheet,Mattress,Alarm Clock,,
+,,,,,,,,,,5,Text,Hospital,6,Doctor,Nurse,Medicine,Bandage,Ambulance,Wheelchair,,
+,,,,,,,,,,6,Text,Fruits,5,Grapes,Papaya,Pear,Kiwi,Coconut,,,
+,,,,,,,,,,7,Text,Myths,5,Zeus,Poseidon,Hera,Athena,Apollo,,,
+,,,,,,,,,,8,Text,Energy,4,Solar,Nuclear,Kinetic,Thermal,,,,
+,,,,,,,,,,9,Text,Paint ,4,Brush,Canvas,Acrylic,Draw,,,,
+,,,,,,,,,,10,Text,Habitat ,3,Desert,Ocean,Savanna,,,,,
+,,,,,,,,,,11,Icon,Spicy,3,Sriracha_img,Wasabi_img,Habanero_img,,,,,
+17,Easy2,TRUE,3,3,4,5,0,0,75,0,Icon,Book,8,Don_Quixote_img,Moby_Dick_img,Pride_Prejudice_img,War_and_Peace_img,To_Kill_a_Mockingbird_img,Harry_Potter_img,The_Lord_of_the_Rings_img,The_Great_Gatsby_img
+,,,,,,,,,,1,Text,Coding,8,Code,Program,Bug,Algorithm,Function,Loop,SQL,Script
+,,,,,,,,,,2,Text,Song,4,Lyrics,Melody,Chorus,Verse,,,,
+,,,,,,,,,,3,Text,Liquid,4,Water,Soda,Vinegar,Wine,,,,
+,,,,,,,,,,4,Text,Time,3,Second,Minute,Hour,,,,,
+,,,,,,,,,,5,Icon,Sushi,3,Nigiri_img,Temaki_img,Uramaki_img,,,,,
+18,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Mountain,8,Etna,Denali,Everest,Fuji,Andes,Himalayas,Volcano,Elbrus
+,,,,,,,,,,1,Icon,Cakes,8,Cheesecake_img,Cupcake1_img,Brownie_img,Muffin_img,Fruit_Cake_img,Red_Velvet_img,Tiramisu_img,Sponge_Cake_img
+,,,,,,,,,,2,Text,Bird,8,Eagle,Hawk,Owl,Crow,Pigeon,Sparrow,Parrot,Swan
+,,,,,,,,,,3,Text,Fish,6,Salmon,Tuna,Cod,Trout,Catfish,Carp,,
+,,,,,,,,,,4,Text,Photography,6,Camera,Lens,Tripod,ISO,Zoom,Photo,,
+,,,,,,,,,,5,Text,Fame,4,Idol,Star,Famous,Popular,,,,
+,,,,,,,,,,6,Text,Linguist,4,Syntax,Polyglot,Grammar,Scholar,,,,
+,,,,,,,,,,7,Text,Kitchen,4,Pan,Knife,Fork,Spoon,,,,
+,,,,,,,,,,8,Text,Pop,3,Lyrics,Verse,Rhyme,,,,,
+,,,,,,,,,,9,Icon,Car,3,Coupe_img,Van_img,Supercar_img,,,,,
+19,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Office,8,Desk,Chair,Printer,Pen,Pencil,Folder,Stapler,Computer
+,,,,,,,,,,1,Text,Plants,8,Tree,Flower,Leaf,Root,Grass,Moss,Bush,Vine
+,,,,,,,,,,2,Icon,Transport,8,Car_img,Bus_img,Train_img,Subway_img,Bicycle_img,Motorcycle_img,Taxi_img,Truck_img
+,,,,,,,,,,3,Text,Winter,6,Snow,Ice,Frost,Blizzard,Cold,Christmas,,
+,,,,,,,,,,4,Text,Taste,6,Sweet,Sour,Salty,Bitter,Umami,Spicy,,
+,,,,,,,,,,5,Text,Spiky,4,Cactus,Thorn,Porcupine,Durian,,,,
+,,,,,,,,,,6,Text,Utensils,4,Knife,Spoon,Cup,Plate,,,,
+,,,,,,,,,,7,Text,Sleep,4,Bed,Pillow,Rest,Blanket,,,,
+,,,,,,,,,,8,Text,Airplane,3,Pilot,Landing,Jet,,,,,
+,,,,,,,,,,9,Text,Citrus,3,Orange,Tangerine,Pomelo,,,,,
+20,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Hobby,8,Drawing,Singing,Dancing,Cooking,Baking,Traveling,Knitting,Gaming
+,,,,,,,,,,1,Icon,Bugs,8,Ant_img,Bee_img,Wasp_img,Beetle_img,Ladybug_img,Fly_img,Mosquito_img,Moth_img
+,,,,,,,,,,2,Text,Veggie,8,Carrot,Potato,Tomato,Cucumber,Onion,Garlic,Lettuce,Broccoli
+,,,,,,,,,,3,Text,Color,6,Red,Blue,Green,Yellow,Orange,Pink,,
+,,,,,,,,,,4,Text,Summer,6,Sun,Beach,Holiday,Travel,Hot,Wave,,
+,,,,,,,,,,5,Text,Sour,4,Lemon,Lime,Tamarind,Vinegar,,,,
+,,,,,,,,,,6,Text,Countries,4,United States,Australia,Japan,Spain,,,,
+,,,,,,,,,,7,Text,Flowers,4,Daisy,Lily,Tulip,Rose,,,,
+,,,,,,,,,,8,Text,Cats,3,Persian,Siamese,Bengal,,,,,
+,,,,,,,,,,9,Text,Folder,3,File,Document,Contract,,,,,
+21,Hard1,TRUE,4,5,6,7,8,0,180,0,Icon,Japan,8,Samurai_img,Sushi1_img,Kimono_img,Mount_Fuji_img,Anime_img,Ramen_img,Tempura_img,Origami_img
+,,,,,,,,,,1,Text,Metal,8,Iron,Gold,Silver,Copper,Steel,Lead,Zinc,Bronze
+,,,,,,,,,,2,Icon,Fish,8,Salmon_img,Tuna_img,Shark_img,Goldfish_img,Trout_img,Cod_img,Mackerel_img,Carp_img
+,,,,,,,,,,3,Text,Band,8,Singer,Drums,Guitar,Stage,Album,Bass,Fans,Music
+,,,,,,,,,,4,Text,Age,6,Young,Old,Teen,Adult,Child,Elder,,
+,,,,,,,,,,5,Text,Scissors,6,Cut,Snip,Carve,Trim,Shear,Sharp,,
+,,,,,,,,,,6,Text,Groups,5,Family,Party,Club,Crowd,Tribe,,,
+,,,,,,,,,,7,Text,Scales,5,Weight,Balance,Heavy,Light,Measure,,,
+,,,,,,,,,,8,Text,Sea ,4,Ocean,Beach,Sand,Wave,,,,
+,,,,,,,,,,9,Text,Alien,4,UFO,Galaxy,ET,Rocket,,,,
+,,,,,,,,,,10,Text,Egypt,3,Pyramid,Pharaoh,Mummy,,,,,
+,,,,,,,,,,11,Text,Italy,3,Rome,Venice,Florence,,,,,
+22,Easy2,TRUE,3,3,4,5,0,0,75,0,Icon,Instruments,8,Piano_img,Guitar_img,Violin_img,Bass_img,Ukulele_img,Drum_img,Flute_img,Trumpet_img
+,,,,,,,,,,1,Text,Fast,8,Quick,Rapid,Speedy,Swift,Prompt,Brisk,Hasty,Zippy
+,,,,,,,,,,2,Text,Fuel,4,Coal,Gasoline,Firewood,Kerosene,,,,
+,,,,,,,,,,3,Text,Soccer,4,Dribble,Penalty,Red card,Goal,,,,
+,,,,,,,,,,4,Text,Hair,3,Wavy,Curly,Coily,,,,,
+,,,,,,,,,,5,Text,Lock,3,Secure,Sturdy,Trusty,,,,,
+23,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Snake,8,Viper,Python,Cobra,Anaconda,Boa,Keelback,Taipan,Mamba
+,,,,,,,,,,1,Icon,Aquatics,8,Whale_img,Seahorse_img,Otter_img,Orca_img,Dolphin1_img,Octopus_img,Dugong_img,Shark1_img
+,,,,,,,,,,2,Icon,Sky,7,Clouds_img,Stars_img,Sun_img,Moon_img,Eclipse_img,Rainbow_img,Planes_img,
+,,,,,,,,,,3,Text,Police,6,Badge,Uniform,Arrest,Officer,Handcuff,Baton,,
+,,,,,,,,,,4,Text,Volcano,6,Lava,Ash,Eruption,Crater,Magma,Fire,,
+,,,,,,,,,,5,Text,Galaxy,4,Black hole,Planets,Nebulae,Quasars,,,,
+,,,,,,,,,,6,Text,Drum,4,Bongo,Djembe,Tabla,Ashiko,,,,
+,,,,,,,,,,7,Text,Cowboy,4,Lasso,Pistol,Boots,Saddle,,,,
+,,,,,,,,,,8,Text,Medals,3,Gold,Silver,Bronze,,,,,
+,,,,,,,,,,9,Text,King,3,Power,Castle,Noble,,,,,
+24,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Sizes,8,L,XXS,XXXL,S,M,XS,XL,One size
+,,,,,,,,,,1,Text,UI,8,Button,Toggle,Menu,Sidebar,Switch,Slider,Icon,Check box
+,,,,,,,,,,2,Icon,BBQ,8,Pork_img,Skewers_img,Chicken1_img,Steak_img,Ribs_img,Marinade_img,Brisket_img,Charcoal_img
+,,,,,,,,,,3,Text,Relation,6,Neighbor,Spouse,Family,Partner,Friend,Relative,,
+,,,,,,,,,,4,Text,Forest,6,Tree,Waterfall,Fruit,Leaf,Root,Bush,,
+,,,,,,,,,,5,Text,Castle,4,Guard,Tower,Knight,King,,,,
+,,,,,,,,,,6,Text,Dinosaur,4,Fossil,Skeleton,Bone,Skull,,,,
+,,,,,,,,,,7,Text,Farmer,4,Field,Corn,Hoe,Harvest,,,,
+,,,,,,,,,,8,Icon,Art,3,The_Starry_Night_img,Sunflowers_img,Mona_Lisa_img,,,,,
+,,,,,,,,,,9,Text,Skin,3,Normal,Dry,Oily,,,,,
+25,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Sounds,8,Whisper,Bang,Click,Buzz,Roar,Sigh,Crash,Screech
+,,,,,,,,,,1,Icon,Egg,8,Chicken2_img,Duck_img,Quail_img,Goose_img,Turkey_img,Ostrich_img,Swan_img,Penguin_img
+,,,,,,,,,,2,Text,Sandwich,8,Toast,Cheese,Ham,Lettuce,Mayo,Tomato,Pickles,Sausage
+,,,,,,,,,,3,Text,Imagination,6,Fantasy,Daydream,Idea,Concept,Image,Insight,,
+,,,,,,,,,,4,Text,Thunder,6,Hum,Clap,Rumble,Boom,Flash,Electric,,
+,,,,,,,,,,5,Text,Badminton,4,Racket,Shuttlecock,Net,Smash,,,,
+,,,,,,,,,,6,Icon,Bugs,4,Beetle_img,Termite_img,Mosquito1_img,Ant_img,,,,
+,,,,,,,,,,7,Text,Bones,4,Skull,Spine,Rib,Femur,,,,
+,,,,,,,,,,8,Text,Rivers,3,Nile,Amazon,Mekong,,,,,
+,,,,,,,,,,9,Text,Chain,3,Chainsaw,Swing,Anchor,,,,,
+26,Hard2,TRUE,5,5,6,7,8,9,200,0,Icon,Swords,8,Katana_img,Rapier_img,Scimitar_img,Falcata_img,Saber_img,Claymore_img,Cutlass_img,Falchion_img
+,,,,,,,,,,1,Text,Zombies,8,Undead,Infection,Bite,Grave,Virus,Brain,Rot,Survivor
+,,,,,,,,,,2,Text,Artists,8,Leonardo,Van Gogh,Picasso,Dali,Warhol,Munch,Vermeer,Monet
+,,,,,,,,,,3,Text,Fashion,8,Versace,Balmain,Kenzo,Prada,Gucci,Dior,Chanel,Armani
+,,,,,,,,,,4,Text,Fantasy,6,Magic,Spell,Spirit,Elf,Dragon,Rune,,
+,,,,,,,,,,5,Text,Echo,6,Voice,Reverb,Call,Noise,Cave,Bell,,
+,,,,,,,,,,6,Icon,Clothes,6,Jacket_img,Sweater_img,Pullover_img,Blouse_img,Jeans_img,Skirt_img,,
+,,,,,,,,,,7,Text,Smell,5,Nose,Perfume,Bouquet,Aroma,Scent,,,
+,,,,,,,,,,8,Text,Movie,5,Scene,Actor,Action,Director,Script,,,
+,,,,,,,,,,9,Text,Pay,4,Price,Bill,Tip,Debt,,,,
+,,,,,,,,,,10,Text,Language,4,Chinese,Korean,English,Turkish,,,,
+,,,,,,,,,,11,Text,Rice,4,Risotto,Congee,Paella,Sushi,,,,
+,,,,,,,,,,12,Text,Armor,3,Helmet,Shield,Gauntlet,,,,,
+,,,,,,,,,,13,Text,Lists,3,Menu,Playlist,Agenda,,,,,
+27,Easy2,TRUE,3,3,4,5,0,0,75,0,Text,File,8,TXT,PDF,CSV,HTML,JPEG,PNG,GIF,DOCX
+,,,,,,,,,,1,Icon,Crystal,8,Crystal1_img,Crystal2_img,Crystal3_img,Crystal4_img,Crystal5_img,Crystal6_img,Crystal7_img,Crystal8_img
+,,,,,,,,,,2,Text,Time,4,Future,Present,Past,Moment,,,,
+,,,,,,,,,,3,Text,River,4,Nile,Amazon,Mekong,Seine,,,,
+,,,,,,,,,,4,Text,Book,3,Story,Knowledge,Word,,,,,
+,,,,,,,,,,5,Text,Dynamics,3,Motion,Inertia,Velocity,,,,,
+28,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Hot,8,Sun,Geyser,Volcano,Steam,Campfire,Fire,Lava,Embers
+,,,,,,,,,,1,Icon,Money,8,Dollar_img,Yen_img,Franc_img,Euro_img,Peso_img,Yuan_img,Rupee_img,Lira_img
+,,,,,,,,,,2,Text,Habitats,8,Forest,Zoo,Tundra,Wetlands,Desert,Prairie,Aquarium,Marsh
+,,,,,,,,,,3,Text,Red,6,Cherry,Tomato,Chili,Beetroot,Plum,Blood,,
+,,,,,,,,,,4,Text,Library,6,Book,Shelf,Lamp,Table,Author,Librarian,,
+,,,,,,,,,,5,Icon,Yellow,4,Banana1_img,Mango1_img,Lemon1_img,Melon_img,,,,
+,,,,,,,,,,6,Text,Bed,4,Chill,Relax,Rest,Sleep,,,,
+,,,,,,,,,,7,Text,Clown,4,Jolly,Funny,Playful,Fun,,,,
+,,,,,,,,,,8,Text,Racing,3,Pit stop,Finish,Speedway,,,,,
+,,,,,,,,,,9,Text,Potato,3,Soup,Pie,Bread,,,,,
+29,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Moving,8,Riding,Hiking,Flying,Swimming,Running,Going,Jogging,Sailing
+,,,,,,,,,,1,Text,Big Cats,8,Lion,Tiger,Leopard,Cheetah,Jaguar,Lynx,Ocelot,Caracal
+,,,,,,,,,,2,Icon,Spices,8,Pepper_img,Ginger_img,Saffron_img,Paprika_img,Chili_img,Cumin_img,Basil_img,Cloves_img
+,,,,,,,,,,3,Text,Question,6,When,Where,How,Why,Who,What,,
+,,,,,,,,,,4,Text,Week,6,Tuesday,Sunday,Friday,Thursday,Monday,Saturday,,
+,,,,,,,,,,5,Text,Polygon,4,Nonagon,Octagon,Heptagon,Hexagon,,,,
+,,,,,,,,,,6,Text,Axe,4,Chop,Hew,Fell,Split,,,,
+,,,,,,,,,,7,Text,Tomatoes,4,Salsa,Gazpacho,Marinara,Ketchup,,,,
+,,,,,,,,,,8,Text,Romance,3,Date,Kisses,Flirt,,,,,
+,,,,,,,,,,9,Text,Xmas,3,Gift,Stocking,Santa,,,,,
+30,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Months,8,March,April,July,June,August,November,January,October
+,,,,,,,,,,1,Icon,Eats,8,Pizza_img,Taco_img,Fries_img,Burger_img,Kebab_img,Sandwich_img,Burrito_img,Hotdog_img
+,,,,,,,,,,2,Text,Poker,8,Cards,Chips,Table,Bet,Bluff,Rake,Casino,Vegas
+,,,,,,,,,,3,Text,Time of Day,6,Night,Evening,Morning,Noon,Dawn,Midday,,
+,,,,,,,,,,4,Text,Cupid,6,Love,Romance,Passion,Quiver,Arrow,Crush,,
+,,,,,,,,,,5,Text,Olympus,4,Zeus,Immortal,Myths,Pantheon,,,,
+,,,,,,,,,,6,Text,Novel,4,Narrator,Subplot,Climax,Conflict,,,,
+,,,,,,,,,,7,Text,Paper,4,A0,A1,A2,A3,,,,
+,,,,,,,,,,8,Icon,Monsters,3,Beast_img,Vampire1_img,Dragon_img,,,,,
+,,,,,,,,,,9,Text,Greeting,3,Hi,Hello,Ciao,,,,,
+31,Hard2,TRUE,5,5,6,7,8,9,220,0,Icon,Smoothie,8,Banana_img,Mango2_img,Pear_img,Peach_img,Melon1_img,Orange_img,Pineapple_img,Blueberry_img
+,,,,,,,,,,1,Text,Wealth ,8,Treasury,Coin,Bank,Asset,Savings,Bond,Riches,Gold
+,,,,,,,,,,2,Text,Dances ,8,Samba,Rumba,Tango,Waltz,Salsa,Foxtrot,Polka,Cancan
+,,,,,,,,,,3,Text,Study ,8,Examine,Research,Learn,Education,Knowledge,Lesson,Student,Homework
+,,,,,,,,,,4,Text,Fashion ,6,Style,Trend,Vogue,Chic,Flair,Glamour,,
+,,,,,,,,,,5,Text,Dossier,6,Papers,Info,Report,Files,Notes,Records,,
+,,,,,,,,,,6,Text,Traffic ,6,Traffic jam,Traffic light,Toll booth,Speed bump,Car,Bike,,
+,,,,,,,,,,7,Icon,Emotion ,5,Happy_img,Sad_img,Angry_img,Annoyed_img,Bored_img,,,
+,,,,,,,,,,8,Text,Tracking ,5,GPS,Radar,Locator,Map,Phone,,,
+,,,,,,,,,,9,Text,Textures ,5,Rough,Smooth,Silky,Grainy,Fuzzy,,,
+,,,,,,,,,,10,Text,Wings ,4,Firefly,Butterfly,Eagle,Bat,,,,
+,,,,,,,,,,11,Text,Frost ,4,Winter,Ice,Snow,Freeze,,,,
+,,,,,,,,,,12,Text,Haunts ,4,Ghost,Specter,Ghoul,Spirit,,,,
+,,,,,,,,,,13,Text,Relaxing ,3,Nap,Yoga,Sauna,,,,,
+,,,,,,,,,,14,Text,Ninja,3,Katana,Shadow,Kunai,,,,,
+32,Easy2,TRUE,3,3,4,5,0,0,75,0,Icon,Planet,8,Mercury_img,Jupiter_img,Saturn_img,Uranus_img,Neptune_img,Mars_img,Earth_img,Venus_img
+,,,,,,,,,,1,Text,Skincare ,8,Cleanser,Serum,Pores,Retinol,Sunscreen,Mask,Toner,Scrub
+,,,,,,,,,,2,Text,Gambling ,4,Dice,Roulette,Betting,Casino,,,,
+,,,,,,,,,,3,Text,Hazard ,4,Flammable,Toxic,Venom,Gun,,,,
+,,,,,,,,,,4,Text,Island ,3,Palm,Coconut,Boat,,,,,
+,,,,,,,,,,5,Text,Parent ,3,Son,Daughter,Father,,,,,
+33,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Luggage ,8,Suitcase,Backpack,Bag,Handbag,Travel trunk,Tote bag,Trolley,Pouch
+,,,,,,,,,,1,Icon,Dwelling ,8,Mansion_img,Castle_img,Palace_img,Chalet_img,Bungalow_img,Cottage_img,Duplex_img,Hut_img
+,,,,,,,,,,2,Text,Leg ,8,Thigh,Knee,Calf,Ankle,Foot,Shin,Heel,Toes
+,,,,,,,,,,3,Text,RPG Game,6,Hero,Saga,Quest,Rune,Lore,Beast,,
+,,,,,,,,,,4,Text,Moss,6,Green,Damp,Stone,Carpet,Soft,Wet,,
+,,,,,,,,,,5,Text,Imitate,4,Copy,Mimic ,Fake,Clone,,,,
+,,,,,,,,,,6,Text,Cobra ,4,Venom,Snake,Bite,Toxic,,,,
+,,,,,,,,,,7,Text,Eagle ,4,Falcon,Hawk,Erne,Griffon,,,,
+,,,,,,,,,,8,Text,Feline ,3,Tiger,Lion,Leopard,,,,,
+,,,,,,,,,,9,Text,Assist ,3,Help,Aid,Support,,,,,
+34,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Bitter ,8,Coffee,Chicory,Chocolate,Bitter Melon,Cocoa,Black Tea,Lemon Peel,Kale
+,,,,,,,,,,1,Icon,Magic,8,Spell_img,Rune_img,Charm_img,Curse_img,Power_img,Energy_img,Ritual_img,Wizard_img
+,,,,,,,,,,2,Text,Metal,8,Iron,Steel,Copper,Gold,Silver,Bronze,Tin,Zinc
+,,,,,,,,,,3,Text,Electrical,6,Battery,Motor,Current,Computer,Aptomat,Charge,,
+,,,,,,,,,,4,Text,City,6,Street,Building,Tower,Market,Park,Square,,
+,,,,,,,,,,5,Text,Korea ,4,K-pop,Idols,Kimchi,Seoul,,,,
+,,,,,,,,,,6,Text,Salary ,4,Payment,Wage,Stipend,Income,,,,
+,,,,,,,,,,7,Text,Honey,4,Bee,Hive,Nectar,Flower,,,,
+,,,,,,,,,,8,Text,Crown,3,King,Queen,Throne,,,,,
+,,,,,,,,,,9,Text,Tool ,3,Saw,Wrench,Pliers,,,,,
+35,Medium2,TRUE,4,4,5,6,7,0,130,0,Icon,Pink ,8,Pig1_img,Flamingo_img,Pink_lipstick_img,Lotus_img,Sakura_img,Tongue_img,Radish_img,Rose1_img
+,,,,,,,,,,1,Text,Nature ,8,Tree,Mountain,Forest,Ocean,River,Lake,Shore ,Valley 
+,,,,,,,,,,2,Text,Feelings ,8,Grateful,Confused,Bored,Nervous,Curious,Anxious,Worried,Happy
+,,,,,,,,,,3,Text,Time ,6,Day,Night,Dawn,Morning,Dusk,Evening,,
+,,,,,,,,,,4,Text,Saw ,6,Cut,Log,Teeth,Blade,Hand,Sharp,,
+,,,,,,,,,,5,Text,Pronoun ,4,My,Your,His,Her,,,,
+,,,,,,,,,,6,Icon,Beetles ,4,Scarab_img,Weevil_img,Carabus_img,Junebug_img,,,,
+,,,,,,,,,,7,Text,Canada,4,Maple Leaf,Aurora,Snow,Toronto,,,,
+,,,,,,,,,,8,Text,Camp ,3,Tent,Camp fire,Lantern,,,,,
+,,,,,,,,,,9,Text,Cattle ,3,Hereford,Angus,Jersey,,,,,
+36,Hard1,TRUE,4,5,6,7,8,0,180,0,Icon,Energy,8,Oil_img,Gas_img,Coal_img,Solar_img,Wind_img,Water_img,Nuclear_img,Thermal_img
+,,,,,,,,,,1,Text,Delay ,8,Late,Wait,Pause,Hold,Lag,Stall,Postpone,Slow
+,,,,,,,,,,2,Text,Event ,8,New Year,Valentine,Easter,Mother’s Day,Halloween,Thanksgiving,Black Friday,Christmas
+,,,,,,,,,,3,Text,Love,8,Cupid,Romance,Care,Heart,Kiss,Couple,Soulmate,Fondness
+,,,,,,,,,,4,Text,Driving,6,Drive,Car,Speed,Brake,Tire,Traffic,,
+,,,,,,,,,,5,Text,Senses,6,Hearing,Smell,Taste,Sight,Touch,Sensation,,
+,,,,,,,,,,6,Text,Martial Arts,5,Fight,Punch,Kick,Block,Strike,,,
+,,,,,,,,,,7,Text,Fingers,5,Thumb,Index,Middle,Little,Ring,,,
+,,,,,,,,,,8,Icon,Oranges ,4,Orange_slices_img,Orange_juice_img,Orange_peels_img,Orange_tree_img,,,,
+,,,,,,,,,,9,Text,Lemon,4,Yellow,Oval,Vitamin C,Sour,,,,
+,,,,,,,,,,10,Text,Shuffle,3,Mix,Stir,Blend,,,,,
+,,,,,,,,,,11,Text,Bucket ,3,Tub,Bin,Pail,,,,,
+37,Easy2,TRUE,3,3,4,5,0,0,75,0,Icon,Deck,8,Ace_img,King1_img,Queen1_img,Jack_img,2_img,3_img,4_img,5_img
+,,,,,,,,,,1,Text,Hearing,8,Ear,Sound,Echo,Shout,Tone,Pitch,Deafness,Listen
+,,,,,,,,,,2,Icon,Cakes,4,Cheesecake_img,Cupcake_img,Brownie1_img,Muffin_img,,,,
+,,,,,,,,,,3,Text,Display,4,LCD,LED,OLED,AMOLED,,,,
+,,,,,,,,,,4,Text,Sky,3,Stars,Sun,Moon,,,,,
+,,,,,,,,,,5,Text,Lovely,3,Adorable,Pretty,Cute,,,,,
+38,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Traffic ,8,Road,Street,Highway,Crosswalk,Bridge,Tunnel,Bus,Truck
+,,,,,,,,,,1,Icon,Big cats,8,Leopard_img,Cheetah_img,Jaguar_img,Puma_img,Lion1_img,Tiger1_img,Cougar_img,Bobcat_img
+,,,,,,,,,,2,Text,Wear,8,Clothes,Shirt,Pants,Shorts,Skirt,Dress,Jacket,Coat
+,,,,,,,,,,3,Text,Teaching,6,Homework,Exercise,Tutorial,Seminar,Lecture,Webinar,,
+,,,,,,,,,,4,Text,Asia,6,China,Thailand,Myanmar,Vietnam,Laos,Taiwan,,
+,,,,,,,,,,5,Text,Dice,4,Roll,Toss,Shake,Throw,,,,
+,,,,,,,,,,6,Text,Poultry,4,Chicken,Duck,Goose,Turkey,,,,
+,,,,,,,,,,7,Text,Memes,4,Funny,Laugh,Joke,Humor,,,,
+,,,,,,,,,,8,Text,Vintage,3,Retro,Classic,Oldie,,,,,
+,,,,,,,,,,9,Text,Medals,3,Gold,Silver,Bronze,,,,,
+39,Medium2,TRUE,4,4,5,6,7,0,130,0,Text,Europe,8,France,Germany,Italy,Spain,Portugal,United Kingdom,Ireland,Belgium
+,,,,,,,,,,1,Text,Army,8,Soldier,Commander,Captain,Sergeant,Recruit,Squad,Mission,Battle
+,,,,,,,,,,2,Icon,Event ,8,New_Year_img,Valentine_img,Easter_img,Mother_Day_img,Halloween_img,Thanksgiving_img,Black_Friday_img,Christmas_img
+,,,,,,,,,,3,Text,Gods ,6,Apollo,Thor,Ares,Loki,Kali,Hera,,
+,,,,,,,,,,4,Icon,Vikings,6,Shield_img,Sword_img,Axe_img,Helm_img,Ship_img,Spear_img,,
+,,,,,,,,,,5,Text,Shower ,4,Bathroom,Shampoo,Sponge,Soap,,,,
+,,,,,,,,,,6,Text,Dream,4,Sleep,Night,Illusion,Fantasy,,,,
+,,,,,,,,,,7,Text,Sound ,4,Chime,Buzz,Moo,Beep,,,,
+,,,,,,,,,,8,Text,Superheroes,3,Superman,Batman,Iron Man,,,,,
+,,,,,,,,,,9,Text,Mirror,3,Reflection,Glass,Image,,,,,
+40,Medium2,TRUE,4,4,5,6,7,0,130,0,Icon,Planes ,8,Glider_img,Biplane_img,Jet_img,Seaplane_img,Airliner_img,Fighter_img,Bomber_img,Turbojet_img
+,,,,,,,,,,1,Text,Careers ,8,Teacher,Doctor,Chef,Farmer,Baker,Pilot,Sailor,Miner
+,,,,,,,,,,2,Text,Wonders,8,Colosseum,Pyramid,Great Wall,Eiffel,Big Ben,Fuji,Petra,Everest
+,,,,,,,,,,3,Text,Weapons ,6,Sword,Gun,Axe,Dagger,Bow,Spear,,
+,,,,,,,,,,4,Text,Circle,6,Round,Sphere,Ring,Wheel,Loop,Orbit,,
+,,,,,,,,,,5,Text,Vegetable,4,Carrot,Pumpkin,Zucchini,Eggplant,,,,
+,,,,,,,,,,6,Icon,Jewel ,4,Topaz_img,Opal_img,Peridot_img,Spinel_img,,,,
+,,,,,,,,,,7,Text,Mix ,4,Blend,Combine,Merge,Jumble,,,,
+,,,,,,,,,,8,Text,Library  ,3,Book,Bookshelves,Magazine,,,,,
+,,,,,,,,,,9,Text,Pope ,3,Pontiff,Vatican,Holiness,,,,,
+41,Hard2,TRUE,5,5,6,7,8,9,200,0,Icon,Horrors ,8,Zombie1_img,Vampire2_img,Werewolf_img,Ghost1_img,Witch1_img,Mummy_img,Skeleton_img,Monster_img
+,,,,,,,,,,1,Text,Sick,8,Fever,Cold,Flu,Malaria,Cholera,Smallpox,Vomit,Allergy
+,,,,,,,,,,2,Text,Zodiac ,8,Aries,Taurus,Gemini,Cancer,Leo,Virgo,Libra,Scorpio
+,,,,,,,,,,3,Text,Lab tool,8,Beaker,Pipette,Funnel,Tube,Dropper,Stirrer,Scale,Gloves
+,,,,,,,,,,4,Text,U.S States,6,Alabama,California,Colorado,Delaware,Florida,Georgia,,
+,,,,,,,,,,5,Icon,Sphere,6,Ball_img,Earth_img,Moon1_img,Bubble_img,Pearl_img,Disco_ball_img,,
+,,,,,,,,,,6,Text,Fangs ,6,Snake,Wolf,Tiger,Leopard,Vampire Bat,Spider,,
+,,,,,,,,,,7,Text,For hair,5,Comb,Hairpin,Hair Dryer,Shampoo,Headband,,,
+,,,,,,,,,,8,Text,Mexico Foods,5,Tacos,Burrito,Nachos,Tamales,Pozole,,,
+,,,,,,,,,,9,Text,Colorful ,5,Macaw,Rainbow,Peacock,Quetzal,Mosaic,,,
+,,,,,,,,,,10,Text,Wrinkle ,4,Crease,Fold,Furrow,Crumple,,,,
+,,,,,,,,,,11,Text,Deities ,4,Zeus,Odin,Ra,Thor,,,,
+,,,,,,,,,,12,Text,Crumbs ,4,Bread,Cookie,Cake,Pie,,,,
+,,,,,,,,,,13,Text,Anger ,3,Rage,Fury,Wrath,,,,,
+,,,,,,,,,,14,Text,Savor ,3,Taste,Flavor,Tang,,,,,
+42,Easy2,TRUE,3,3,4,5,0,0,75,0,Text,Dreamscape,8,Dream,Memory,Vision,Whisper,Sleep,Shadow,Light,Echo
+,,,,,,,,,,1,Icon,Fantasy,8,Fairy_img,Elf_img,Goblin_img,Troll_img,Unicorn_img,Giant_img,Sprite_img,Mermaid_img
+,,,,,,,,,,2,Text,Technology,4,Robot,Chip,Wire,Code,,,,
+,,,,,,,,,,3,Text,Adventure,4,Map,Compass,Backpack,Lantern,,,,
+,,,,,,,,,,4,Text,Toys,3,Dice,Card,Doll,,,,,
+,,,,,,,,,,5,Text,Time,3,Past,Present,Future,,,,,
+43,Medium2,TRUE,4,4,5,6,7,0,120,0,Text,Sports,8,Football,Basketball,Tennis,Running,Swimming,Volleyball,Golf,Boxing
+,,,,,,,,,,1,Icon,Clothes,8,Shirt_img,Pants_img,Dress_img,Shoes_img,Hat_img,Jacket1_img,Scarf_img,Gloves_img
+,,,,,,,,,,2,Text,Household,8,Chair,Table,Bed,Lamp,Clock,Mirror,Window,Door
+,,,,,,,,,,3,Text,Jobs,6,Teacher,Doctor,Chef,Farmer,Artist,Pilot,,
+,,,,,,,,,,4,Text,Tastes,6,Sweet,Sour,Salty,Bitter,Spicy,Creamy,,
+,,,,,,,,,,5,Text,School,4,Book,Bag,Eraser,Ruler,,,,
+,,,,,,,,,,6,Text,Beach,4,Sand,Wave,Shell,Sun,,,,
+,,,,,,,,,,7,Text,Feelings ,4,Happy,Sad,Excited,Scared,,,,
+,,,,,,,,,,8,Text,Gem ,3,Topaz,Amethyst,Onyx,,,,,
+,,,,,,,,,,9,Icon,Travel,3,Luggage_img,Ticket_img,Map_img,,,,,
+44,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Mechanic’s Garage,8,Wrench_img,Tire_img,Oil1_img,Tool_Box_img,Screw_img,Rag_img,Engine_img,Screwdriver_img
+,,,,,,,,,,1,Text,Music Bar,8,Guitar,Piano,Light,Micro,Stage,Drink,Crowd,DJ
+,,,,,,,,,,2,Text,Cosmic Events,8,Black Hole,Halo,Galaxy,Meteor Shower,Aurora,Eclipse,Supernova,Shooting Star
+,,,,,,,,,,3,Text,Rain,6,Drizzle,Shower,Thunderstorm,Downpour,Flood,Cloudburst,,
+,,,,,,,,,,4,Icon,Dog Life,6,Bone_img,Ball1_img,Bowl_img,Kennel_img,Collar_img,Bark_img,,
+,,,,,,,,,,5,Text,Feelings ,4,Happy,Sleepy,Hungry,Curious,,,,
+,,,,,,,,,,6,Text,Poseidon,4,Trident,Sea,Storm,Ocean,,,,
+,,,,,,,,,,7,Text,Seasons ,4,Spring,Summer,Autumn,Winter,,,,
+,,,,,,,,,,8,Text,Games ,3,Poker,Jenga,Checkers,,,,,
+,,,,,,,,,,9,Text,Capitals ,3,London,Berlin,Caracas,,,,,
+45,Medium2,TRUE,4,4,5,6,7,0,110,0,Text,Shades ,8,Scarlet,Azure,Ochre,Emerald,Violet,Maroon,Olive,Teal
+,,,,,,,,,,1,Text,Imitate ,8,Fake,Replica,Copy,Remake,Adapt,Reprint,Emulate,Simulate
+,,,,,,,,,,2,Icon,Capitals ,8,Paris_img,London_img,Berlin_img,Vienna_img,Tokyo_img,Lima_img,Moscow_img,Lisbon_img
+,,,,,,,,,,3,Icon,Mammals ,6,Bear_img,Deer_img,Giraffe_img,Elephant1_img,Wolf_img,Monkey_img,,
+,,,,,,,,,,4,Text,Virtues ,6,Faith,Hope,Charity,Prudence,Kindness,Patience,,
+,,,,,,,,,,5,Text,Airport,4,Plane,Gate,Passport,Ticket,,,,
+,,,,,,,,,,6,Text,Sweets ,4,Candy,Caramel,Sugar,Ice cream,,,,
+,,,,,,,,,,7,Text,Months ,4,March,June,May,April,,,,
+,,,,,,,,,,8,Text,Sports ,3,Badminton,Soccer,Football,,,,,
+,,,,,,,,,,9,Text,Flowers ,3,Peony,Aster,Lily,,,,,
+46,Hard2,TRUE,5,5,6,7,8,9,170,0,Icon,Camping ,8,Tent_img,Compass_img,Lantern_img,Hammock_img,Backpack_img,Fire_img,Map1_img,Whistle_img
+,,,,,,,,,,1,Text,Cereals ,8,Wheat,Corn,Rice,Barley,Oats,Rye,Sorghum,Millet
+,,,,,,,,,,2,Text,Gym,8,Push Up,Squat,Plank,Lunge,Sit Up,Bench,Deadlift,Crunch
+,,,,,,,,,,3,Text,Technology,8,Computer,Robot,Drone,Circuit,Code,Battery,Server,Chip
+,,,,,,,,,,4,Text,Hospital,6,Nurse,Doctor,Mask,Medicine,Ambulance,Bandage,,
+,,,,,,,,,,5,Text,Insects,6,Butterfly,Bee,Ant,Spider,Dragonfly,Moth,,
+,,,,,,,,,,6,Icon,Furniture,6,Chair1_img,Table_img,Sofa_img,Lamp_img,Bed_img,Shelf_img,,
+,,,,,,,,,,7,Text,Mythology,5,Zeus,Thor,Medusa,Anubis,Poseidon,,,
+,,,,,,,,,,8,Text,Travel,5,Passport,Tourist,Luggage,Souvenir,Trip,,,
+,,,,,,,,,,9,Text,Volcanoes,4,Lava,Ash,Crater,Eruption,,,,
+,,,,,,,,,,10,Text,Art,4,Paint,Canvas,Brush,Easel,,,,
+,,,,,,,,,,11,Text,Trees ,4,Sequoia,Baobab,Ginkgo,Oak,,,,
+,,,,,,,,,,12,Icon,Flowers ,3,Peony1_img,Dahlia_img,Aster_img,,,,,
+,,,,,,,,,,13,Text,Desert,3,Sand,Mirage,Dune,,,,,
+47,Easy2,TRUE,3,3,4,5,0,0,70,0,Text,Farm,8,Tractor,Barn,Hay,Fence,Cow,Wheat,Chicken,Pig
+,,,,,,,,,,1,Icon,Fruits,8,Apple1_img,Banana2_img,Mango3_img,Pineapple1_img,Orange_img,Watermelon_img,Kiwi_img,Grape_img
+,,,,,,,,,,2,Text,Family,4,Father,Mother,Brother,Sister,,,,
+,,,,,,,,,,3,Text,Hobbies,4,Reading,Painting,Gaming,Traveling,,,,
+,,,,,,,,,,4,Text,Personality,3,Funny,Honest,Kind,,,,,
+,,,,,,,,,,5,Text,Time,3,Morning,Afternoon,Evening,,,,,
+48,Medium2,TRUE,4,4,5,6,7,0,120,0,Text,Economy,8,Bank,Credit,Stock,Loan,Tax,Profit,Debt,Wallet
+,,,,,,,,,,1,Text,Languages,8,English,French,Spanish,Japanese,Korean,Arabic,German,Italian
+,,,,,,,,,,2,Icon,Professions,8,Lawyer_img,Doctor_img,Pilot_img,Chef_img,Architect_img,Musician_img,Writer_img,Police_img
+,,,,,,,,,,3,Text,Show ,6,Theater,Concert,Fashion,TV,Variety,Circus,,
+,,,,,,,,,,4,Text,Dance ,6,Tango,Salsa,Rumba,Breakdance,Flamenco,Waltz,,
+,,,,,,,,,,5,Text,Savanna,4,Grass,Acacia,Hyena,Cheetah,,,,
+,,,,,,,,,,6,Text,Adorable ,4,Cute,Lovely,Lovable,Charming,,,,
+,,,,,,,,,,7,Icon,Sandwich ,4,Reuben_img,Po_boy_img,Panini_img,Banh_mi_img,,,,
+,,,,,,,,,,8,Text,Category ,3,Type,Sort,Class,,,,,
+,,,,,,,,,,9,Text,Towering,3,High,Lofty,Tall,,,,,
+49,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Hand Tools,8,Hammer_img,Screwdriver1_img,Wrench1_img,Saw_img,Pliers_img,TapeMeasure_img,Nail_img,Drill_img
+,,,,,,,,,,1,Text,Continents,8,Asia,Europe,Africa,America,Antarctica,Australia,Oceania,Arctic
+,,,,,,,,,,2,Text,Cities,8,Tokyo,Paris,New York,London,Rome,Dubai,Bangkok,Sydney
+,,,,,,,,,,3,Text,Time,6,Morning,Noon,Evening,Night,Afternoon,Hour,,
+,,,,,,,,,,4,Text,Time Zones,6,GMT,UTC,EST,PST,CET,IST,,
+,,,,,,,,,,5,Text,Ask ,4,Request,Demand,Solicit,Plead,,,,
+,,,,,,,,,,6,Text,Backbone ,4,Neck,Tailbone,Pelvis,Thorax,,,,
+,,,,,,,,,,7,Text,Cards ,4,Hearts,Spades,Clubs,Diamonds,,,,
+,,,,,,,,,,8,Text,Numbers ,3,One,Two,Three,,,,,
+,,,,,,,,,,9,Text,Baking ,3,Vanilla,Butter,Cocoa,,,,,
+50,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Sports ,8,Soccer_img,Tennis_img,Golf_img,Rugby_img,Boxing_img,Hockey_img,Cricket_img,Skiing_img
+,,,,,,,,,,1,Text,Numbers ,8,One,Two,Three,Four,Five,Six,Seven,Eight
+,,,,,,,,,,2,Text,Codes ,8,Morse,Binary,Caesar,Braille,Unicode,Enigma,Barcode,Zip code
+,,,,,,,,,,3,Text,Heroes ,6,Hercules,Odysseus,Perseus,Beowulf,Achilles,Theseus,,
+,,,,,,,,,,4,Text,Elements ,6,Hydrogen,Helium,Lithium,Fluorine,Boron,Carbon,,
+,,,,,,,,,,5,Icon,Footwear ,4,Sneaker_img,Oxford_img,Slipper_img,Clog_img,,,,
+,,,,,,,,,,6,Text,Vector ,4,Arrow,Line,Length,Point,,,,
+,,,,,,,,,,7,Text,Storms ,4,Tornado,Cyclone,Blizzard,Typhoon,,,,
+,,,,,,,,,,8,Text,Chords ,3,Major,Minor,Augment,,,,,
+,,,,,,,,,,9,Text,Weekdays ,3,Monday,Friday,Sunday,,,,,
+51,Hard2,TRUE,5,5,6,7,8,9,170,0,Icon,Cuisines ,8,Tacos_img,Sushi2_img,Curry_img,Kebab_img,Steak_img,Croissants_img,Gazpacho_img,Shawarma_img
+,,,,,,,,,,1,Text,Hobbies ,8,Sewing,Archery,Cycling,Climbing,Skiing,Diving,Birding,Weaving
+,,,,,,,,,,2,Text,Camping ,8,Shelter,Canoe,Compass,Tarp,Firepit,Hiker,Rope,Backpack
+,,,,,,,,,,3,Text,Drinks ,8,Coffee,Tea,Soda,Juice,Water,Milk,Smoothie,Lemonade
+,,,,,,,,,,4,Text,Wizards ,6,Magus,Warlock,Magician,Sorcerer,Conjurer,Diviner,,
+,,,,,,,,,,5,Icon,Fast Food,6,Burger_img,Fries_img,Hotdog_img,Pizza_img,Sandwich_img,Nuggets_img,,
+,,,,,,,,,,6,Text,Spices,6,Pepper,Salt,Chili,Onion,Ginger,Basil,,
+,,,,,,,,,,7,Text,Cooking Tools,5,Knife,Pan,Pot,Spoon,Oven,,,
+,,,,,,,,,,8,Text,Education,5,Teacher,Student,Professor,Principal,Class,,,
+,,,,,,,,,,9,Text,Samurai ,5,Katana,Bushido,Armor,Harakiri,Sensei,,,
+,,,,,,,,,,10,Text,Pet,4,Dog,Cat,Bird,Fish,,,,
+,,,,,,,,,,11,Text,Number ,4,Ordinal,Integer,Complex,Natural,,,,
+,,,,,,,,,,12,Text,Entertainment,4,TV,Movie,Music,Game,,,,
+,,,,,,,,,,13,Icon,Jewelry,3,Ring_img,Necklace_img,Watch_img,,,,,
+,,,,,,,,,,14,Text,Insects ,3,Beetle,Ant,Moth,,,,,
+52,Easy2,TRUE,3,3,4,5,0,0,75,0,Text,Business,8,Taxes,Costs,Consumer,Brand,Profit,Company,Finance,Revenue
+,,,,,,,,,,1,Icon,Currency,8,Dollar_img,Peso_img,Euro_img,Krona_img,Forint_img,Won_img,Rupee_img,Yen_img
+,,,,,,,,,,2,Text,Piano,4,Keys,Pedals,Pianist,Fingers,,,,
+,,,,,,,,,,3,Text,Chemical,4,NaCl,NH3,H2SO4,CH4,,,,
+,,,,,,,,,,4,Text,Line,3,Zigzag,Dashed,Wavy,,,,,
+,,,,,,,,,,5,Text,Action,3,John Wick,Fast & Furious,Mad Max,,,,,
+53,Medium2,TRUE,4,4,5,6,7,0,120,0,Text,Movies,8,John Wick,Fast & Furious,Mad Max,Home Alone,Mr Bean,IT,Titanic,Inception
+,,,,,,,,,,1,Icon,App,8,Call_img,Chat_img,Text_img,Ring1_img,Game_img,Photo_img,GPS_img,Video_img
+,,,,,,,,,,2,Text,Bedding,8,Comforter,Pillow,Cushion,Bolster,Mattress,Blanket,Duvet,Quilt
+,,,,,,,,,,3,Text,Tech,6,Robotics,Internet,Wi-Fi,Hardware,Patent,Progress,,
+,,,,,,,,,,4,Icon,Nuts,6,Pecan_img,Peanut_img,Almond_img,Cashew_img,Walnut_img,Hazelnut_img,,
+,,,,,,,,,,5,Text,Noise,4,Loud,Noisy,Sharp,Harsh,,,,
+,,,,,,,,,,6,Text,Candy,4,Gum,Choco,Fudge,Lollipop,,,,
+,,,,,,,,,,7,Text,Gems,4,Ruby,Diamond,Emerald,Pearl,,,,
+,,,,,,,,,,8,Text,Cut ,3,Chop,Slice,Slash,,,,,
+,,,,,,,,,,9,Text,Copy ,3,Clone,Twin,Replica,,,,,
+54,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Sandwich,8,Toast_img,Cheese_img,Ham_img,Lettuce_img,Mayo_img,Tomato2_img,Pickles_img,Sausage1_img
+,,,,,,,,,,1,Text,US State,8,Maine,Montana,Idaho,Oregon,Utah,Arizona,Iowa,Wyoming
+,,,,,,,,,,2,Text,Country ,8,Anthem,Flag,Identity,History,Borders,People,Culture,Heritage
+,,,,,,,,,,3,Text,Legal,6,Lawyer,Law,Duty,Judge,Court,Justice,,
+,,,,,,,,,,4,Icon,Gambling ,6,Dice_img,Roulette_img,Betting_img,Casino_img,Croupier_img,Card_img,,
+,,,,,,,,,,5,Text,Bison ,4,Buffalo,Ox,Cow,Yak,,,,
+,,,,,,,,,,6,Text,Coffee,4,Espresso,Americano,Latte,Cappuccino,,,,
+,,,,,,,,,,7,Text,Choose ,4,Select,Favor,Pick,Vote,,,,
+,,,,,,,,,,8,Text,Eagle ,3,Falcon,Hawk,Griffon,,,,,
+,,,,,,,,,,9,Text,Frame ,3,Mirrors,Pictures,Films,,,,,
+55,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Medical,8,Thermometer_img,Syringe_img,Bandage_img,Wheelchair_img,Medicine_img,Doctor1_img,Nurse_img,Hospital_img
+,,,,,,,,,,1,Text,Brand,8,Zara,H&M,Uniqlo,Nike,Adidas,Puma,Levi’s,Chanel
+,,,,,,,,,,2,Text,USA,8,New York,Times Square,Fast food,Harvard,Los Angeles,Chicago,Texas,White House
+,,,,,,,,,,3,Text,Deserts,6,Sahara,Namib,Kalahari,Libyan,Atacama,Mojave,,
+,,,,,,,,,,4,Icon,Knight,6,Sword1_img,Lance_img,Shield1_img,Dagger_img,Helmet_img,Armor_img,,
+,,,,,,,,,,5,Text,Battle,4,War,Fight,Conflict,Combat,,,,
+,,,,,,,,,,6,Text,Sky,4,Cloud,Sun,Star,Moon,,,,
+,,,,,,,,,,7,Text,Fossils,4,Bones,Amber,Shells,Skull,,,,
+,,,,,,,,,,8,Text,Colors,3,Pink,Brown,White,,,,,
+,,,,,,,,,,9,Text,Expand ,3,Enlarge,Dilate,Amplify,,,,,
+56,Hard2,TRUE,5,5,6,7,8,9,170,0,Icon,Instruments,8,Violin_img,Cello_img,Guitar1_img,Electric_guitar_img,Ukulele_img,Banjo_img,Drum_img,Flute_img
+,,,,,,,,,,1,Text,Dwelling ,8,Mansion,Castle,Palace,Chalet,Bungalow,Cottage,Duplex,Hut
+,,,,,,,,,,2,Text,Bone ,8,Skull,Rib,Kneecap,Pelvis,Spine,Sternum,Femur,Humerus
+,,,,,,,,,,3,Text,Herbs,8,Basil,Parsley,Mint,Thyme,Sage,Lavender,Tarragon,Lemongrass
+,,,,,,,,,,4,Icon,Devices,6,Phone_img,Tablet_img,Laptop_img,Smartwatch_img,Mouse1_img,Printer_img,,
+,,,,,,,,,,5,Text,Ninja ,6,Mask,Katana,Stealth,Kunai,Shadow,Silent,,
+,,,,,,,,,,6,Text,Twigs ,6,Branch,Stick,Leaf,Nest,Wood,Bark,,
+,,,,,,,,,,7,Text,Sleep,5,Bed,Rest,Dreams,Pajamas,Pillow,,,
+,,,,,,,,,,8,Text,Math ,5,Add,Subtract,Divide,Multiply,Equals,,,
+,,,,,,,,,,9,Text,Happy ,4,Joyful,Cheery,Jolly,Merry,,,,
+,,,,,,,,,,10,Text,Storm ,4,Rain,Thunder,Wind,Clouds,,,,
+,,,,,,,,,,11,Icon,Reptile,4,Lizard_img,Gecko_img,Iguana_img,Komodo_dragon_img,,,,
+,,,,,,,,,,12,Text,Aroma ,3,Smell,Perfume,Odor,,,,,
+,,,,,,,,,,13,Text,Chili ,3,Pepper,Spicy,Hot,,,,,
+57,Easy2,TRUE,3,3,4,5,0,0,75,0,Text,Transport,8,Bike,Car,Van,Bus,Train,Airplane,Boat,Ship
+,,,,,,,,,,1,Icon,Household,8,Bottle_img,Cup_img,Plate_img,Bowl1_img,Spoon_img,Fork_img,Knife_img,Bucket_img
+,,,,,,,,,,2,Text,Santa,4,Gifts,Stocking,Beard,Claus,,,,
+,,,,,,,,,,3,Text,Pencil,4,Mark,Draw,Write,Paint,,,,
+,,,,,,,,,,4,Text,Pharaoh,3,Mummy,Pyramid,Egypt,,,,,
+,,,,,,,,,,5,Text,Phone,3,Call,Chat,Photo,,,,,
+58,Medium2,TRUE,4,4,5,6,7,0,120,0,Text,Gases,8,Mist,Fog,Haze,Dew,Cloud,Steam,Gas,Smoke
+,,,,,,,,,,1,Text,Tropical,8,Rainy,Rainforest,Monsoon,Fruit,Flower,Banana,Humidity,Heatwave
+,,,,,,,,,,2,Text,Game Genres,8,FPS,Platformer,Puzzle,Match 3,MMORPG,JRPG,Tower Defense,Simulation
+,,,,,,,,,,3,Icon,Emotion ,6,Love_img,Delight_img,Anger_img,Sadness_img,Fear_img,Surprise_img,,
+,,,,,,,,,,4,Text,Craft ,6,Knitting,Woodwork,Beadwork,Pottery,Quilting,Carving,,
+,,,,,,,,,,5,Text,Units,4,Meter,Mile,Pound,Gram,,,,
+,,,,,,,,,,6,Text,Snacks,4,Chips,Popcorn,Candy,Donut,,,,
+,,,,,,,,,,7,Text,Hot,4,Sun,Geyser,Volcano,Fire,,,,
+,,,,,,,,,,8,Text,Location ,3,Here,There,Near,,,,,
+,,,,,,,,,,9,Text,Error ,3,Bug,Glitch,Fault,,,,,
+59,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Soup,8,Ramen1_img,Gazpacho1_img,Tom yum_img,Borscht_img,Broth_img,Chowder_img,Gumbo_img,Bisque_img
+,,,,,,,,,,1,Text,Work Roles,8,CEO,CFO,Founder,Manager,General Manager,Accountant,HR Officer,Sales Manager
+,,,,,,,,,,2,Text,Strings,8,Violin,Guitar,Cello,Viola,Banjo,Harp,Ukulele,Mandolin
+,,,,,,,,,,3,Text,Hobbies,6,Crafting,Gaming,Fishing,Journaling,Gardening,Reading,,
+,,,,,,,,,,4,Icon,Ships,6,Boat_img,Canoe_img,Barge_img,Frigate_img,Yacht_img,Ferry_img,,
+,,,,,,,,,,5,Text,Place,4,On,In,From,Next to,,,,
+,,,,,,,,,,6,Text,Europe,4,Belgium,France,Greece,Italy,,,,
+,,,,,,,,,,7,Text,Cartoon ,4,Aladdin,Toy Story,Shrek,Finding Nemo,,,,
+,,,,,,,,,,8,Text,Flow ,3,River,Time,Air,,,,,
+,,,,,,,,,,9,Text,Dusk ,3,Twilight,Shadows,Sunset,,,,,
+60,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Keyboard,8,Enter_img,Q_img,W_img,E_img,Ctrl_img,Alt_img,Del_img,9_img
+,,,,,,,,,,1,Text,U.S. Presidents,8,Washington,Jefferson,Lincoln,Roosevelt,Kennedy,Reagan,Obama,Biden
+,,,,,,,,,,2,Text,Chord ,8,Harmony,Note,Scale,Octave,Interval,Major,Minor,Strum
+,,,,,,,,,,3,Text,Film ,6,Terminator,Star Wars,Titanic,Frozen,Matrix,Jurassic Park,,
+,,,,,,,,,,4,Text,Russia ,6,Moscow,Kremlin,Tsar,Siberia,Samovar,Sochi,,
+,,,,,,,,,,5,Icon,Pink,4,Pig_img,Flamingo_img,Pink_lipstick_img,Lotus_img,,,,
+,,,,,,,,,,6,Text,Coral ,4,Calcium,Seabed,Atoll,Sponge,,,,
+,,,,,,,,,,7,Text,Cartoon ,4,Tom,Mickey,Donald,Casper,,,,
+,,,,,,,,,,8,Text,Camel ,3,Hump,Caravan,Desert,,,,,
+,,,,,,,,,,9,Text,Spin ,3,Tornado,Cyclone,Rotor,,,,,
+61,Hard2,TRUE,5,5,6,7,8,9,170,0,Icon,Jobs,8,Lawyer_img,Doctor_img,Pilot_img,Chef_img,Architect_img,Musician_img,Writer_img,Police_img
+,,,,,,,,,,1,Text,Roads ,8,Highway,Byway,Motorway,Bypath,Avenue,Street,Freeway,Drive
+,,,,,,,,,,2,Icon,Brass instruments,8,Trumpet_1_img,Trombone_img,Cornet_img,Tuba_img,Saxophone_img,Clarinet_img,Flute_1_img,Bassoon_img
+,,,,,,,,,,3,Text,Conifer ,8,Cedar,Cypress,Pine,Juniper,Fir,Redwood,Larch,Spruce
+,,,,,,,,,,4,Text,Prophecy,6,Fate,Destiny,Fortune,Karma,Omen,Premonition,,
+,,,,,,,,,,5,Text,Fortress ,6,Bastion,Rampart,Moat,Gatehouse,Keep,Barracks,,
+,,,,,,,,,,6,Text,Meat,6,Bacon,Ham,Sausage,Salami,Beef,Meatloaf,,
+,,,,,,,,,,7,Text,Alarm ,5,Horn,Whistle,Siren,Bell,Alert,,,
+,,,,,,,,,,8,Text,Sauces ,5,Teriyaki,Sriracha,Mustard,Mayonnaise,Soy sauce,,,
+,,,,,,,,,,9,Text,Yummy,5,Tasty ,Savory,Flavorful,Juicy,Delicious,,,
+,,,,,,,,,,10,Text,Rowing,4,Oar,Boat,Coxswain,Paddle,,,,
+,,,,,,,,,,11,Icon,Race ,4,Elf_img,Dwarf_img,Gnome_img,Human_img,,,,
+,,,,,,,,,,12,Text,Royals ,4,Empress,Prince,Duchess,Sultan,,,,
+,,,,,,,,,,13,Text,Market,3,Vendor,Stall,Merchant,,,,,
+,,,,,,,,,,14,Text,Run ,3,Sprint,Jog,Dash,,,,,
+62,Easy2,TRUE,3,3,4,5,0,0,75,0,Text,Directions,8,North,East,South,West,Up,Down,In,Out
+,,,,,,,,,,1,Icon,Pirates,8,Captain_hat_img,Ship_1_img,Treasure_img,Parrot_62_img,Map_62_img,Sword_62_img,Plank_img,Jolly_roger_img
+,,,,,,,,,,2,Text,Alcoholic,4,Wine,Beer,Whiskey,Vodka,,,,
+,,,,,,,,,,3,Text,Clouds ,4,Cirrus,Cumulus,Stratus,Nimbus,,,,
+,,,,,,,,,,4,Text,Feelings ,3,Happy,Sleepy,Hungry,,,,,
+,,,,,,,,,,5,Text,Lessons,3,Biology,Physics,Geometry,,,,,
+63,Medium2,TRUE,4,4,5,6,7,0,120,0,Text,Gestures ,8,Wave,Shake head,Nod,Point,Thumbs up,Clap,Handshake,Wink
+,,,,,,,,,,1,Icon,Seafood ,8,Shrimp_img,Salmon_63_img,Cod_img,Tuna_63_img,Octopus_img,Mussel_img,Lobster_img,Crab_img
+,,,,,,,,,,2,Text,Space ,8,Pulsar,Nova,Comet,Meteor,Planet,Cosmos,Nebula,Quasar
+,,,,,,,,,,3,Text,Beams ,6,Ray,Laser,Infrared,Radio,Sound,X-ray,,
+,,,,,,,,,,4,Text,Banners,6,Flag,Poster,Slogan,Pennant,Streamer,Headline,,
+,,,,,,,,,,5,Text,Acid ,4,Nitric,Sulfuric,Gluconic,Acetic,,,,
+,,,,,,,,,,6,Text,Chords ,4,Major,Minor,Triad,Seventh,,,,
+,,,,,,,,,,7,Text,Fashion,4,Versace,Balmain,Kenzo,Prada,,,,
+,,,,,,,,,,8,Text,Fantasy,3,Magic,Spell,Spirit,,,,,
+,,,,,,,,,,9,Text,More ,3,Bonus,Extra,Else,,,,,
+64,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Market,8,Milk_img,Meat_img,Grains_img,Clothing_img,Seafood_img,Fruits_img,Vegetables_img,Eggs_img
+,,,,,,,,,,1,Text,Vices ,8,Greed,Envy,Wrath,Lust,Pride,Sloth,Gluttony,Avarice
+,,,,,,,,,,2,Text,Twilight ,8,Gloom,Dusk,Sunset,Moonrise,Darkness,Dimness,Shadows,Evening
+,,,,,,,,,,3,Icon,Beasts,6,Dragon_1_img,Hydra_img,Chimera_img,Cerberus_img,Minotaur_img,Griffin_img,,
+,,,,,,,,,,4,Text,Robots,6,Cyborg,Mecha,Android,AI,Nanobot,Drone,,
+,,,,,,,,,,5,Text,Fuels ,4,Petrol,Diesel,Ethanol,Coal,,,,
+,,,,,,,,,,6,Text,Greeting ,4,Hi,Hey,Yo,Aloha,,,,
+,,,,,,,,,,7,Text,Primes ,4,Two,Three,Five,Seven,,,,
+,,,,,,,,,,8,Text,Chemical ,3,NaCl,H2,H2O,,,,,
+,,,,,,,,,,9,Text,Near ,3,Close,Around,Nearby,,,,,
+65,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Shelled ,8,Conch_img,Scallop_img,Cockle_img,Mussel_img,Clam_img,Nail_1_img,Abalone_img,Limpet_img
+,,,,,,,,,,1,Text,Dream ,8,Delusion,Reverie,Daydream,Fantasy,Idea,Trance,Illusion,Ambition
+,,,,,,,,,,2,Icon,Landmarks,8,Statue_of_Liberty_img,Christ_the_Redeemer_img,Eiffel_img,Colosseum_img,Big_Ben_img,Mount_Fuji_1_img,Pyramids_img,The_Parthenon_img
+,,,,,,,,,,3,Text,Joking ,6,Kidding,Ironic,Mocking,Jesting,Jocular,Humorous,,
+,,,,,,,,,,4,Text,Travel ,6,Tickets,Passport,Luggage,Map,Tourist,Guide,,
+,,,,,,,,,,5,Text,Reptiles,4,Cobra,Crocodile,Gecko,Turtle,,,,
+,,,,,,,,,,6,Text,Harbor,4,Dock,Pier,Jetty,Quay,,,,
+,,,,,,,,,,7,Text,Meats ,4,Beef,Pork,Lamb,Veal,,,,
+,,,,,,,,,,8,Text,Apps ,3,Messages,Browser,Camera,,,,,
+,,,,,,,,,,9,Text,Wizards ,3,Wand,Robe,Spellbook,,,,,
+66,Hard2,TRUE,5,5,6,7,8,9,170,0,Icon,Blue Things,8,Sky_img,Ocean_66_img,Iceberg_img,Jeans_1_img,Blue_whale_img,Aqua_img,Bluebell_img,Sapphire_img
+,,,,,,,,,,1,Text,Crimes,8,Murder,Assault,Kidnap,Theft,Robbery,Pickpocket,Fraud,Hijack
+,,,,,,,,,,2,Text,Cities,8,Miami,Tokyo,Sydney,Hamburg,Osaka,Naples,Seattle,Mumbai
+,,,,,,,,,,3,Text,Characters,8,Harry Potter,Ron,Hermione,Voldemort,Dumbledore,Malfoy,McGonagall,Snape
+,,,,,,,,,,4,Icon,Green,6,Leaf_img,Grass_img,Broccoli_img,Lizard_1_img,Money_img,Frog_img,,
+,,,,,,,,,,5,Text,Fluffy ,6,Kitten,Bunny,Fuzzball,Towel,Pillow,Blanket,,
+,,,,,,,,,,6,Text,Poultry,6,Chicken,Duck,Goose,Turkey,Dove,Peacock,,
+,,,,,,,,,,7,Text,Echoing ,5,Reecho,Reverb,Resonate,Ripple,Resound,,,
+,,,,,,,,,,8,Text,Chord ,5,Tone,Note,Triad,Interval,Harmony,,,
+,,,,,,,,,,9,Text,Magic,4,Wizard,Wand,Curse,Prophecy,,,,
+,,,,,,,,,,10,Text,Adventure,4,Compass,Map,Backpack,Tent,,,,
+,,,,,,,,,,11,Text,Stones ,4,Jade,Opal,Onyx,Agate,,,,
+,,,,,,,,,,12,Text,Periods ,3,Epoch,Century,Year,,,,,
+,,,,,,,,,,13,Text,Ninjas ,3,Kunai,Shinobi,Ninjutsu,,,,,
+67,Easy2,TRUE,3,3,4,5,0,0,75,0,Text,Beasts,8,Dragon,Hydra,Chimera,Cerberus,Minotaur,Griffin,Basilisk,Kraken
+,,,,,,,,,,1,Icon,Jewels ,8,Peridot_67_img,Opal_1_img,Onyx_img,Topaz_67_img,Garnet_67_img,Amethyst_img,Emerald_67_img,Sapphire_img
+,,,,,,,,,,2,Text,Seasons,4,Summer,Autumn,Winter,Spring,,,,
+,,,,,,,,,,3,Text,Art,4,Canvas,Brush,Paint,Sculpture,,,,
+,,,,,,,,,,4,Text,Emotions,3,Fear,Sadness,Surprise,,,,,
+,,,,,,,,,,5,Text,Data ,3,Bit,Byte,Octet,,,,,
+68,Medium2,TRUE,4,4,5,6,7,0,120,0,Text,Internet ,8,Website,Domain,URL,Cookies,Network,IP,Online,DNS
+,,,,,,,,,,1,Icon,Adventure,8,Backpack_1_img,Tent_1_img,Map_68_img,Compass_1_img,Flashlight_img,Binoculars_img,Canteen_img,Rope_img
+,,,,,,,,,,2,Text,Fire,8,Flame,Spark,Smoke,Ash,Burn,Blaze,Hot,Ember
+,,,,,,,,,,3,Icon,Blossom ,6,Cherry_1_img,Peach_1_img,Plum_img,Lotus_1_img,Magnolia_img,Rose_1_img,,
+,,,,,,,,,,4,Text,Civilizations,6,Egypt,Mesopotamia,Greece,Rome,Indus Valley,Mayan,,
+,,,,,,,,,,5,Text,Cameras ,4,ISO,Zoom,Focus,Lens,,,,
+,,,,,,,,,,6,Text,Flute,4,Piccolo,Bansuri,Whistle,Alto,,,,
+,,,,,,,,,,7,Text,Chords ,4,Am,Em,C7,Fmaj7,,,,
+,,,,,,,,,,8,Text,Awards ,3,Oscar,Grammy,Nobel,,,,,
+,,,,,,,,,,9,Text,Cosmos ,3,Cluster,Pulsar,Galaxy,,,,,
+69,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Police,8,Badge_img,Handcuff_img,Car_1_img,Radio_img,Shield_1_img,Gun_img,Hat_1_img,Baton_img
+,,,,,,,,,,1,Text,Chemical,8,H2,NH3,H2O,NaCl,CO,H2SO4,CO2,C2H5OH
+,,,,,,,,,,2,Text,Routes ,8,Causeway,Highway,Drive,Path,Way,Alley,Street,Avenue
+,,,,,,,,,,3,Text,Labels ,6,Tag,Sticker,Seal,Emblem,Logo,Flag,,
+,,,,,,,,,,4,Icon,Flute,6,Piccolo_img,Bansuri_img,Dizi_img,Xiao_img,Whistle_1_img,Alto_img,,
+,,,,,,,,,,5,Text,Modules,4,Sensor,Motor,LED,Display,,,,
+,,,,,,,,,,6,Text,Painters ,4,Picasso,Monet,Vermeer,Matisse,,,,
+,,,,,,,,,,7,Text,Sorcery ,4,Spell,Mage,Talisman,Enchant,,,,
+,,,,,,,,,,8,Text,Sun ,3,Helios,Ra,Apollo,,,,,
+,,,,,,,,,,9,Text,Satire ,3,Irony,Parody,Sarcasm,,,,,
+70,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Firefighters,8,Uniform_img,Boots_img,Alarm_img,Axe_70_img,Mask_1_img,Truck_1_img,Helmet_1_img,Hose_img
+,,,,,,,,,,1,Text,Periods ,8,Epoch,Century,Hour,Season,Week,Month,Year,Decade
+,,,,,,,,,,2,Text,Cameras ,8,Tripod,ISO,Zoom,Focus,Lens,Shutter,Filter,Gimbal
+,,,,,,,,,,3,Text,Boxing ,6,Uppercut,Hook,Jab,Overhand,Counter,Punch,,
+,,,,,,,,,,4,Text,Deity ,6,Zeus,Odin,Ra,Thor,Vishnu,Ishtar,,
+,,,,,,,,,,5,Icon,Icons ,4,Home_img,Settings_img,Search_img,Camera_img,,,,
+,,,,,,,,,,6,Text,Gateways ,4,Opening,Archway,Portal,Doorway,,,,
+,,,,,,,,,,7,Text,Nuts,4,Peanut,Almond,Cashew,Walnut,,,,
+,,,,,,,,,,8,Text,Relation,3,Neighbor,Spouse,Family,,,,,
+,,,,,,,,,,9,Text,Fangs ,3,Snake,Wolf,Tiger,,,,,
+71,Hard2,TRUE,5,5,6,7,8,9,170,0,Icon,Tools,8,Octopus_1_img,Axe_71_img,Shovel_img,Clamp_img,Scissors_img,Tape_img,Drill_1_img,Screwdriver_1_img
+,,,,,,,,,,1,Text,Human Mind,8,Think,Know,Learn,Dream,Focus,Forget,Remember,Imagine
+,,,,,,,,,,2,Icon,Landscape,8,Mountain_img,Valley_img,River_img,Lake_img,Ocean_71_img,Field_img,Desert_img,Waterfall_img
+,,,,,,,,,,3,Text,Smell,8,Stinky,Rotten,Musty,Fishy,Fragrant,Aromatic,Woody,Earthy
+,,,,,,,,,,4,Text,Portable ,6,Laptop,Phone,SD card,Pendrive,E reader,Earbuds,,
+,,,,,,,,,,5,Text,Spain ,6,Flamenco,Paella,Valencia,Jamon,Sombrero,Sangria,,
+,,,,,,,,,,6,Text,Novels ,6,Lolita,1984,Beloved,It,Dune,Twilight,,
+,,,,,,,,,,7,Text,Candies ,5,Lollipop,Gummy,Toffee,Caramel,Bonbon,,,
+,,,,,,,,,,8,Text,Rotate ,5,Spin,Turn,Revolve,Pivot,Flip,,,
+,,,,,,,,,,9,Text,Pasta,5,Spaghetti,Penne,Lasagna,Macaroni,Linguine,,,
+,,,,,,,,,,10,Text,Monkeys ,4,Gorilla,Capuchin,Gibbon,Macaque,,,,
+,,,,,,,,,,11,Text,Homonym ,4,Sea,Si,C,See,,,,
+,,,,,,,,,,12,Icon,Arcade ,4,Joystick_img,Pixel_img,Token_img,Ticket_1_img,,,,
+,,,,,,,,,,13,Text,Units ,3,Amp,Ohm,Volt,,,,,
+,,,,,,,,,,14,Text,Timber ,3,Birch,Oak,Pine,,,,,
+72,Easy2,TRUE,3,3,4,5,0,0,75,0,Icon,Cereals,8,Wheat_img,Corn_img,Rice_img,Oats_img,Barley_img,Rye_img,Soy_img,Peas_img
+,,,,,,,,,,1,Text,Dog,8,Golden,Bulldog,Poodle,Beagle,Chihuahua,Husky,Shiba,Corgi
+,,,,,,,,,,2,Text,Stairs ,4,Spiral,Straight,Winder,Curved,,,,
+,,,,,,,,,,3,Text,Chorus ,4,Refrain,Choir,Anthem,Quire,,,,
+,,,,,,,,,,4,Text,Shortcut ,3,Ctrl+C,Ctrl+V,Ctrl+X,,,,,
+,,,,,,,,,,5,Text,Takeout ,3,Hamburger,Burrito,Chips,,,,,
+73,Medium2,TRUE,4,4,5,6,7,0,120,0,Icon,Gemstones,8,Diamond_img,Ruby_img,Sapphire_img,Emerald_73_img,Amethyst_73_img,Topaz_img,Garnet_73_img,Peridot_img
+,,,,,,,,,,1,Text,Loud,8,Noisy,Booming,Blasting,Shouting,Roaring,Screaming,Barking,Buzzing
+,,,,,,,,,,2,Text,Eternal ,8,Endless,Timeless,Infinite,Immortal,Undying,Unending,Ceaseless,Perpetual
+,,,,,,,,,,3,Text,Umami ,6,Miso,Anchovy,Parmesan,Tomato,Kimchi,Seaweed,,
+,,,,,,,,,,4,Icon,Ores ,6,Cobalt_img,Copper_img,Tin_img,Gold_img,Nickel_img,Silver_img,,
+,,,,,,,,,,5,Text,Beacon,4,Flash,Coast,Harbor,Tower,,,,
+,,,,,,,,,,6,Text,Smoke ,4,Haze,Puff,Soot,Fume,,,,
+,,,,,,,,,,7,Text,Flavors ,4,Umami,Tangy,Zesty,Bitter,,,,
+,,,,,,,,,,8,Text,Scales ,3,Tone,Pitch,Note,,,,,
+,,,,,,,,,,9,Text,Drums ,3,Conga,Bongo,Tabla,,,,,
+74,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Guns,8,Pistol_img,Revolver_74_img,Rifle_img,Carbine_img,Sniper_img,Shotgun_img,SMG_img,LMG_img
+,,,,,,,,,,1,Text,Climate ,8,Arid,Polar,Desert,Humid,Alpine,Marine,Monsoon,Tropical
+,,,,,,,,,,2,Text,Outpost ,8,Bastion,Citadel,Garrison,Fortress,Redoubt,Palisade,Bulwark,Stockade
+,,,,,,,,,,3,Text,Battle,6,Fight,War,Clash,Attack,Strike,Push,,
+,,,,,,,,,,4,Icon,Enemies ,6,Goblin_1_img,Orc_img,Troll_1_img,Zombie_1_img,Vampire_1_img,Demon_img,,
+,,,,,,,,,,5,Text,Films,4,Up,Wall·E,Shrek,Frozen,,,,
+,,,,,,,,,,6,Text,Abode ,4,House,Mansion,Villa,Lodge,,,,
+,,,,,,,,,,7,Text,Rhythm ,4,Beat,Tempo,Groove,Cadence,,,,
+,,,,,,,,,,8,Text,Swimming ,3,Pool,Sea,Lake,,,,,
+,,,,,,,,,,9,Text,Flower ,3,Daisy,Tulip,Petunia,,,,,
+75,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Western,8,Cowboy_img,Horse_1_img,Revolver_75_img,Boot_img,Saddle_img,Lasso_img,Badge_75_img,Cactus_img
+,,,,,,,,,,1,Text,Vintage ,8,Retro,Classic,Antique,Ageless,Aged,Faded,Timeless,Historic
+,,,,,,,,,,2,Text,Books ,8,Volume,Cover,Pages,Title,Epilogue,Chapters,Author,Prologue
+,,,,,,,,,,3,Text,Font ,6,Times New Roman,Garamond,Georgia,Arial,Futura,Impact,,
+,,,,,,,,,,4,Text,Auction,6,Hammer,Lot,Bid,Price,Catalog,Bidder,,
+,,,,,,,,,,5,Text,Interrogatives,4,What,When,Where,Who,,,,
+,,,,,,,,,,6,Text,Jumps ,4,Hop,Skip,Leap,Bounce,,,,
+,,,,,,,,,,7,Icon,Ship ,4,Frigate_1_img,Submarine_img,Cruise_img,Aircraft carrier_img,,,,
+,,,,,,,,,,8,Text,Banks ,3,Savings,Deposit,Teller,,,,,
+,,,,,,,,,,9,Text,Homonyms,3,Bat,Bank,Bark,,,,,
+76,Hard2,TRUE,5,5,6,7,8,9,170,0,Icon,Novels,8,Don_Quixote_1_img,Moby_Dick_1_img,Pride_Prejudice_1_img,War_and_Peace_1_img,To_Kill_a_Mockingbird_1_img,Harry_Potter_1_img,The_Lord_of_the_Rings_1_img,The_Great_Gatsby_1_img
+,,,,,,,,,,1,Text,Shelter,8,Home,Refuge,Sanctuary,Nest,Bunker,Cabin,Tent,Shanty
+,,,,,,,,,,2,Text,Virus,8,Flu,HBV,HCV,Ebola,SARS,Rabies,Corona,HIV
+,,,,,,,,,,3,Text,Islands,8,Oahu,Molokai,Kauai,Key West,Nantucket,Kodiak,Sicily,Corsica
+,,,,,,,,,,4,Icon,Cookies ,6,Macaron_3_img,Spritz_img,Oatmeal_img,Amaretti_img,Linzer_img,Molasses_img,,
+,,,,,,,,,,5,Text,Nobility ,6,Viscount,Earl,Marquis,Baronet,Margrave,Countess,,
+,,,,,,,,,,6,Text,Photos ,6,Selfie,Portrait,Snapshot,Polaroid,Image,Panorama,,
+,,,,,,,,,,7,Text,Pottery ,5,Vase,Bowl,Jar,Cup,Plate,,,
+,,,,,,,,,,8,Text,Time ,5,Hours,Minutes,Seconds,Moments,Decades,,,
+,,,,,,,,,,9,Icon,Hardware,4,CPU_img,GPU_img,RAM_img,SSD_img,,,,
+,,,,,,,,,,10,Text,Finish,4,End,Complete,Done,Conclude,,,,
+,,,,,,,,,,11,Text,Roads ,4,Highway,Street,Pathway,Avenue,,,,
+,,,,,,,,,,12,Text,Verse ,3,Permian,Triassic,Cambrian,,,,,
+,,,,,,,,,,13,Text,Voyage ,3,Journey,Outbound,Trek,,,,,
+77,Easy2,TRUE,3,3,4,5,0,0,75,0,Text,Oceans ,8,Pacific,Atlantic,Indian,Arctic,Southern,Celtic,Bering,Adriatic
+,,,,,,,,,,1,Text,Weight ,8,Ounce,Pound,Kilo,Gram,Ton,Grain,Carat,Dram
+,,,,,,,,,,2,Icon,Beasts ,4,Cerberus_img,Minotaur_img,Basilisk_img,Scylla_img,,,,
+,,,,,,,,,,3,Text,Curses ,4,Hex,Jinx,Bane,Doom,,,,
+,,,,,,,,,,4,Text,Mango,3,Sweet,Juicy,Tangy,,,,,
+,,,,,,,,,,5,Text,Dusk ,3,Twilight,Sundown,Sunset,,,,,
+78,Medium2,TRUE,4,4,5,6,7,0,120,0,Icon,Bathroom ,8,Towel_img,Soap_img,Shower_img,Bubbles_img,Faucet_img,Sink_img,Slippers_img,Bathtub_img
+,,,,,,,,,,1,Text,Crypto ,8,Wallet,Token,Altcoin,Mining,Staker,DeFI,NFT,Bullrun
+,,,,,,,,,,2,Text,Viking ,8,Saga,Rune,Mead,Oars,Longship,Axe,Shield,Fjord
+,,,,,,,,,,3,Text,Ice,6,Frost,Snow,Freeze,Chill,Blizzard,Winter,,
+,,,,,,,,,,4,Text,Lessons,6,Biology,Physics,Geometry,Algebra,History,Calculus,,
+,,,,,,,,,,5,Text,Samurai ,4,Ronin,Daimyo,Katana,Bushi,,,,
+,,,,,,,,,,6,Text,Poseidon,4,Trident,Sea,Storm,Ocean,,,,
+,,,,,,,,,,7,Text,Sport ,4,Golf,Soccer,Tennis,Cricket,,,,
+,,,,,,,,,,8,Text,Scales ,3,Major,Minor,Harmonic,,,,,
+,,,,,,,,,,9,Icon,Guitar ,3,Acoustic_img,Electric_img,Classic_img,,,,,
+79,Medium2,TRUE,4,4,5,6,7,0,110,0,Icon,Fish,8,Salmon_79_img,Tuna_79_img,Shark_1_img,Goldfish_1_img,Trout_1_img,Cod_1_img,Mackerel_1_img,Carp_1_img
+,,,,,,,,,,1,Text,City ,8,Osaka,Lisbon,Berlin,Street,London,Square,District,Naples
+,,,,,,,,,,2,Icon,Weapons,8,Sword_79_img,Dagger_1_img,Axe_79_img,Spear_1_img,Hammer_1_img,Katana_1_img,Bow_img,Arrow_img
+,,,,,,,,,,3,Text,Markets ,6,Stock,Trader,Booth,Bazaar,Stall,Auction,,
+,,,,,,,,,,4,Text,Skincare ,6,Cleanser,Serum,Pores,Retinol,Sunscreen,Mask,,
+,,,,,,,,,,5,Text,Dogs,4,Bulldog,Beagle,Poodle,Husky,,,,
+,,,,,,,,,,6,Text,Stealth ,4,Sneaky,Hidden,Silent,Shadow,,,,
+,,,,,,,,,,7,Text,Hybrid ,4,Sphinx,Chimera,Centaur,Minotaur,,,,
+,,,,,,,,,,8,Text,Cookie ,3,Biscuit,Cracker,Sandie,,,,,
+,,,,,,,,,,9,Text,Math ,3,Add,Sum,Plus,,,,,
+80,Medium2,TRUE,4,4,5,6,7,0,110,0,Text,Fighting ,8,Karate,Judo,Muaythai,Kung fu,Aikido,Jujutsu,Wushu,Savate
+,,,,,,,,,,1,Icon,Cakes,8,Shortcake_1_img,Cupcake_1_img,Moon_cake_1_img,Pancakes_1_img,Birthday_Cake_1_img,Macaron_img,Eclair_1_img,Donut_80_img
+,,,,,,,,,,2,Text,Sub-zero,8,Coldness,Frost,Glacier,Icicle,Chill,Ice floe,Blizzard,Ice
+,,,,,,,,,,3,Icon,Puzzle ,6,Sudoku_img,Jigsaw_img,Maze_img,Cipher_img,Nonogram_img,Kakuro_img,,
+,,,,,,,,,,4,Text,Database ,6,Index,Data,Server,Storage,Backup,SQL,,
+,,,,,,,,,,5,Text,Fissure ,4,Crack,Split,Rift,Cleft,,,,
+,,,,,,,,,,6,Text,Resort ,4,Hotel,Vacation,Rest,Spa,,,,
+,,,,,,,,,,7,Text,Outpost ,4,Camp,Lookout,Barrack,Garrison,,,,
+,,,,,,,,,,8,Text,Vehicle ,3,Truck,Helicopter,Van,,,,,
+,,,,,,,,,,9,Text,Deserts ,3,Sahara,Gobi,Kalahari,,,,,
+81,Hard2,TRUE,5,5,6,7,8,9,170,0,Icon,Sweet,8,Candy_1_img,Sugar_img,Caramel_img,Pudding_img,Honey_img,Cake_img,Donut_81_img,Macaron_img
+,,,,,,,,,,1,Text,Instruments,8,Violin,Cello,Guitar,Electric_guitar,Ukulele,Banjo,Drum,Flute
+,,,,,,,,,,2,Icon,Bird,8,Eagle_1_img,Hawk_img,Owl_img,Crow_img,Pigeon_img,Sparrow_img,Parrot_81_img,Swan_1_img
+,,,,,,,,,,3,Text,Levels ,8,Easy,Medium,Hard,Expert,Rookie,Elite,Master,Grand
+,,,,,,,,,,4,Text,Cooking ,6,Frying,Boiling,Baking,Grilling,Roasting,Steaming,,
+,,,,,,,,,,5,Text,Shelled ,6,Turtle,Lobster,Snail,Clam,Mussel,Shrimp,,
+,,,,,,,,,,6,Text,Taxi,6,Passenger,Driver,Fare,Pickup,Drop-off,Route,,
+,,,,,,,,,,7,Text,Banana,5,Peel,Bunch,Tropical,Smoothie,Monkey,,,
+,,,,,,,,,,8,Text,English,5,London,Tea,Queen,Shakespeare,Monarchy,,,
+,,,,,,,,,,9,Text,Comic,5,Panel,Storyline,Illustration,Speech bubble,Characters,,,
+,,,,,,,,,,10,Text,Harvest,4,Autumn,Crop,Field,Barn,,,,
+,,,,,,,,,,11,Text,Bank,4,Cash,Loan,Saving,Interest,,,,
+,,,,,,,,,,12,Text,Clans ,4,Tribe,Faction,Crew,Guild,,,,
+,,,,,,,,,,13,Icon,Sky,3,Planes_img,Moon_img,Sun_img,,,,,
+,,,,,,,,,,14,Text,Fire,3,Flame,Spark,Burn,,,,,

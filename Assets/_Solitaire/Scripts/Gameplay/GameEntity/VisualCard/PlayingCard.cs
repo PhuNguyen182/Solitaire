@@ -1,0 +1,328 @@
+using System.Collections.Generic;
+using _Solitaire.Scripts.Gameplay.Controller;
+using _Solitaire.Scripts.Gameplay.GameEntity.Group;
+using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
+using _Solitaire.Scripts.Gameplay.Level;
+using Cysharp.Threading.Tasks;
+using DracoRuan.CoreSystems.AssetBundleSystem.Runtime.Interfaces;
+using ServiceLocators.Core;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
+{
+    public class PlayingCard : MonoBehaviour, ICard
+    {
+        [SerializeField] private CardType cardType;
+
+        [Header("Card Visual")] 
+        [SerializeField] private Image cardIcon;
+        [SerializeField] private TMP_Text cardText;
+        [SerializeField] private TMP_Text progressionText;
+        [SerializeField] private GameObject foundationMark;
+        [SerializeField] private Canvas cardSortingGroup;
+        [SerializeField] private GameObject content;
+        [SerializeField] private GameObject backVisual;
+
+        [Header("Card Physics")] 
+        [SerializeField] private LayerMask cardLayer;
+        [SerializeField] private BoxCollider2D cardCollider;
+
+        private bool _isFaceUp;
+        private bool _hasSetupLayer;
+        private bool _hasCardPlacedInColumn;
+        private int _originalLayer;
+        private int _currentLayer;
+        
+        private CardModel _cardModel;
+        private ICardGroup _cardGroup;
+        private CategoryData _categoryData;
+        private ICardPlaceholder _cardPlaceholder;
+        private Vector3 _initialPosition;
+        private Collider2D[] _cardColliders;
+        private IAssetBundleLoader _assetLoader;
+        private LevelManager _levelManager;
+        private CardSupplier _cardSupplier;
+        private WordPool _wordPool;
+
+        public bool IsSingleCard => this._cardGroup == null || this._cardGroup.IsEmpty;
+        public bool HasCardPlacedInColumn => this._hasCardPlacedInColumn;
+        public int SortingOrder => this._currentLayer;
+
+        public string CardCategory => this._cardModel?.cardCategory;
+        public CardType CardType => this.cardType;
+        public ICardGroup CardGroup => this._cardGroup;
+        public ICardPlaceholder CardPlaceholder => this._cardPlaceholder;
+        public Vector3 WorldPosition => this.transform.position;
+        public CardModel CardModel => this._cardModel;
+
+        private void Awake()
+        {
+            this._initialPosition = this.transform.position;
+            this._cardSupplier = ServiceLocator.ForSceneOf(this).Get<CardSupplier>();
+            this._levelManager = ServiceLocator.ForSceneOf(this).Get<LevelManager>();
+            this._wordPool = ServiceLocator.ForSceneOf(this).Get<WordPool>();
+        }
+
+        #region Card Visuals
+
+        public void SetupCamera(Camera canvasCamera)
+        {
+            this.cardSortingGroup.worldCamera = canvasCamera;
+        }
+
+        private void BackToOriginalLayer()
+        {
+            this.SetOrderLayer(this._originalLayer);
+        }
+
+        public void SetOrderLayer(int sortingOrder)
+        {
+            if (!this._hasSetupLayer)
+            {
+                this._hasSetupLayer = true;
+                this._originalLayer = sortingOrder;
+            }
+            
+            this.cardSortingGroup.sortingOrder = sortingOrder;
+            this._currentLayer = sortingOrder;
+        }
+
+        public void UpdateCardPlacingState(bool isPlacedInColumn)
+        {
+            this._hasCardPlacedInColumn = isPlacedInColumn;
+        }
+
+        public async UniTask FlipCard(bool isFaceUp, bool isImmediately)
+        {
+            this._isFaceUp = isFaceUp;
+            this.SetCardInteractable(isFaceUp);
+            if (isFaceUp && this._hasCardPlacedInColumn)
+                this._cardModel?.PlayCardManager?.AddGenerousCategory(this.CardCategory);
+
+            if (this.content && this.backVisual)
+            {
+                this.content.SetActive(isFaceUp);
+                this.backVisual.SetActive(!isFaceUp);
+            }
+
+            this.ToggleFoundationMark(this._isFaceUp && this._cardModel?.cardType == CardType.Foundation);
+            await UniTask.CompletedTask;
+        }
+
+        #endregion
+
+        public void SetCardGroup(ICardGroup cardGroup)
+        {
+            this._cardGroup = cardGroup;
+        }
+
+        public void SetCardPlaceholder(ICardPlaceholder cardPlaceholder)
+        {
+            this._cardPlaceholder = cardPlaceholder;
+            this._cardGroup?.SetCardPlaceholder(this._cardPlaceholder);
+        }
+
+        #region Drag And Drop
+
+        public void CardPickedUp()
+        {
+            if (this._cardGroup == null)
+            {
+                this.SetCardInteractable(false);
+                this.cardSortingGroup.sortingOrder = CardConstants.HighestCardSortingOrder;
+            }
+            else
+            {
+                this._cardGroup.SetCardsInGroupInteractable(false);
+                this._cardGroup.ChangeLayerOnDragging();
+            }
+        }
+
+        public void CardReleased()
+        {
+            this.cardSortingGroup.sortingOrder = this._currentLayer;
+            this._cardGroup?.SnapDownToOldPosition();
+            this._cardGroup?.BackToOriginalLayer();
+            this._cardGroup?.ReleaseDraggingCard();
+            this.SetCardInteractable(true);
+            this._cardGroup?.SetCardsInGroupInteractable(true);
+            
+            if (this.HasCardPlacedInColumn)
+            {
+                this._cardSupplier?.TryRemoveCardExternally(this);
+                this._wordPool?.RemoveWordByCategory(this.CardCategory, this._cardModel);
+            }
+            
+            this._cardColliders = null;
+        }
+
+        #endregion
+
+        #region Card Movement
+
+        public void MoveToPositionImmediately(Vector3 position)
+        {
+            this.transform.position = position;
+        }
+
+        public void UpdateNewInitialPosition(Vector3 position)
+        {
+            this._initialPosition = position;
+            this.transform.position = position;
+        }
+
+        public void FollowPosition(Vector3 position)
+        {
+            if (this._cardGroup == null)
+                this.transform.position = position;
+            else
+                this._cardGroup.FollowPosition(position);
+        }
+
+        public void SnapBackToInitialedPosition(bool shouldReleaseCard)
+        {
+            this.transform.position = this._initialPosition;
+            if (shouldReleaseCard)
+                this.CardReleased();
+        }
+
+        #endregion
+
+        #region Card Interaction
+
+        public void SetCardInteractable(bool isInteractable)
+        {
+            this.cardCollider.enabled = isInteractable;
+        }
+
+        public void AppendCardToGroup(ICard card)
+        {
+            this._cardGroup ??= new CardGroup(this.cardLayer);
+            this._cardGroup.SetCardPlaceholder(this.CardPlaceholder);
+            if (!this._cardGroup.ContainNormalCard(this))
+                this._cardGroup.AppendCards(true, this.WorldPosition, this);
+
+            this._cardGroup.AppendCards(true, this.WorldPosition, card);
+            this.UpdateCardProgressIfIsFoundation();
+        }
+
+        public bool IsSameCategory(ICard card)
+        {
+            bool isSameCategory = string.CompareOrdinal(this.CardCategory, card.CardCategory) == 0;
+            return isSameCategory;
+        }
+
+        public List<ICard> CheckAvailableCardOnDropDown()
+        {
+            this._cardColliders =
+                Physics2D.OverlapBoxAll(this.transform.position, this.cardCollider.size, 0, this.cardLayer);
+            if (this._cardColliders is not { Length: > 0 })
+                return null;
+
+            int count = this._cardColliders.Length;
+            List<ICard> result = new();
+
+            for (int i = 0; i < count; i++)
+            {
+                if (this._cardColliders[i].TryGetComponent(out ICard card))
+                    result.Add(card);
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region Card Bindation
+
+        public void BindModel(CardModel model)
+        {
+            this._cardModel = model;
+            this.OnModelBound(model);
+        }
+
+        private void OnModelBound(CardModel model)
+        {
+            this.cardType = model.cardType;
+            this.BindCardTextContent(model);
+            this.BindCardImageContent(model).Forget();
+            this.ToggleFoundationMark(model.cardType == CardType.Foundation);
+            this.UpdateCardProgressIfIsFoundation();
+        }
+
+        public void UpdateCardProgressIfIsFoundation()
+        {
+            if (this.cardType != CardType.Foundation)
+                return;
+            
+            this._categoryData ??= this._levelManager.GetCardCategoryByCategory(this.CardCategory);
+            if (this._categoryData == null)
+                return;
+
+            int maxCardCount = this._categoryData.maxCardCount;
+            int cardCount = this._cardGroup?.ElementCount ?? 0;
+            if (cardCount > 0)
+                cardCount -= 1;
+            
+            this.progressionText.text = $"{cardCount}/{maxCardCount}";
+        }
+
+        private void BindCardTextContent(CardModel model)
+        {
+            if (!this.cardText)
+                return;
+
+            if (model.contentType != CardContentType.Text)
+            {
+                this.cardText.gameObject.SetActive(false);
+                return;
+            }
+
+            this.cardText.text = model.cardContent;
+            this.cardText.gameObject.SetActive(true);
+        }
+
+        private async UniTask BindCardImageContent(CardModel model)
+        {
+            if (!this.cardIcon)
+                return;
+
+            if (model.contentType != CardContentType.Icon)
+            {
+                this.cardIcon.gameObject.SetActive(false);
+                return;
+            }
+
+            if (this._assetLoader != null)
+            {
+                Sprite cardIconSprite = await this._assetLoader.LoadAsset<Sprite>(model.cardContent);
+                this.cardIcon.sprite = cardIconSprite;
+                this.cardIcon.gameObject.SetActive(true);
+            }
+        }
+
+        private void ToggleFoundationMark(bool isFoundation)
+        {
+            if (this.foundationMark)
+                this.foundationMark.SetActive(isFoundation);
+            
+            if (this.progressionText)
+                this.progressionText.gameObject.SetActive(isFoundation);
+        }
+
+        #endregion
+        
+        public void SetCardActive(bool isActive) => this.gameObject.SetActive(isActive);
+
+        public void Cleanup()
+        {
+            this.SetCardGroup(null);
+            this.SetCardPlaceholder(null);
+            this.BackToOriginalLayer();
+            this._cardModel = null;
+            GameObjectPoolManager.Despawn(this.gameObject);
+        }
+    }
+}

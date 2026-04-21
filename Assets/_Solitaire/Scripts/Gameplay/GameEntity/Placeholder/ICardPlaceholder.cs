@@ -1,0 +1,24 @@
+﻿using _Solitaire.Scripts.Gameplay.GameEntity.Group;
+using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
+using UnityEngine;
+
+namespace _Solitaire.Scripts.Gameplay.GameEntity.Placeholder
+{
+    public interface ICardPlaceholder
+    {
+        public CardType CardType { get; }
+        public int CardPlaceHolderID { get; }
+        public Transform CurrentTransform { get; }
+        public string CardCategory { get; }
+        public ICard FoundationCard { get; }
+        public bool IsEmpty { get; }
+        
+        public void SetCardContainer(Transform cardContainer);
+        public void BindModelData(CardPlaceholderModel model);
+        public bool TryAppendCard(ICard card);
+        public void RemoveCard(ICard card);
+        public void FlipLastCard();
+        public void SetCardID(int cardID);
+        public void Cleanup();
+    }
+}
