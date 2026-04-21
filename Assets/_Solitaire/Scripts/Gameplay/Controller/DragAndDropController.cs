@@ -149,6 +149,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 this._pickedCardPlaceholder?.RemoveCard(this._pickedCard);
                 this._pickedCardPlaceholder?.FlipLastCard();
                 this._pickedCard.SetCardInteractable(true);
+                this._pickedCard.UpdateCardProgressIfIsFoundation();
                 
                 ICardPlaceholder cardPlaceholder = this._pickedCard.CardPlaceholder;
                 if (cardPlaceholder is { CardType: CardType.Foundation })

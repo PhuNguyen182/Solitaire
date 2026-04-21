@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using _Solitaire.Scripts.Gameplay.Controller;
 using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
+using _Solitaire.Scripts.Gameplay.Level;
 using Cysharp.Threading.Tasks;
 using DracoRuan.CoreSystems.AssetBundleSystem.Runtime.Interfaces;
 using ServiceLocators.Core;
@@ -35,10 +37,12 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         
         private CardModel _cardModel;
         private ICardGroup _cardGroup;
+        private CategoryData _categoryData;
         private ICardPlaceholder _cardPlaceholder;
         private Vector3 _initialPosition;
         private Collider2D[] _cardColliders;
         private IAssetBundleLoader _assetLoader;
+        private LevelManager _levelManager;
         private CardSupplier _cardSupplier;
         private WordPool _wordPool;
 
@@ -57,6 +61,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this._initialPosition = this.transform.position;
             this._cardSupplier = ServiceLocator.ForSceneOf(this).Get<CardSupplier>();
+            this._levelManager = ServiceLocator.ForSceneOf(this).Get<LevelManager>();
             this._wordPool = ServiceLocator.ForSceneOf(this).Get<WordPool>();
         }
 
@@ -200,6 +205,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 this._cardGroup.AppendCards(true, this.WorldPosition, this);
 
             this._cardGroup.AppendCards(true, this.WorldPosition, card);
+            this.UpdateCardProgressIfIsFoundation();
         }
 
         public bool IsSameCategory(ICard card)
@@ -243,6 +249,24 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this.BindCardTextContent(model);
             this.BindCardImageContent(model).Forget();
             this.ToggleFoundationMark(model.cardType == CardType.Foundation);
+            this.UpdateCardProgressIfIsFoundation();
+        }
+
+        public void UpdateCardProgressIfIsFoundation()
+        {
+            if (this.cardType != CardType.Foundation)
+                return;
+            
+            this._categoryData ??= this._levelManager.GetCardCategoryByCategory(this.CardCategory);
+            if (this._categoryData == null)
+                return;
+
+            int maxCardCount = this._categoryData.maxCardCount;
+            int cardCount = this._cardGroup?.ElementCount ?? 0;
+            if (cardCount > 0)
+                cardCount -= 1;
+            
+            this.progressionText.text = $"{cardCount}/{maxCardCount}";
         }
 
         private void BindCardTextContent(CardModel model)
@@ -283,6 +307,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             if (this.foundationMark)
                 this.foundationMark.SetActive(isFoundation);
+            
+            if (this.progressionText)
+                this.progressionText.gameObject.SetActive(isFoundation);
         }
 
         #endregion

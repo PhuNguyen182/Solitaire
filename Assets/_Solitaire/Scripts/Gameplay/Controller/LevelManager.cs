@@ -16,17 +16,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         public bool CheckCategory(ICardPlaceholder cardPlaceholder)
         {
-            CategoryData cardCategoryData = null;
-            int categoryCount = this._levelModel.availableCategories.Count;
-            for (int i = 0; i < categoryCount; i++)
-            {
-                if (string.CompareOrdinal(this._levelModel.availableCategories[i].categoryName, cardPlaceholder.CardCategory) != 0) 
-                    continue;
-                
-                cardCategoryData = this._levelModel.availableCategories[i];
-                break;
-            }
-            
+            CategoryData cardCategoryData = GetCardCategoryByCategory(cardPlaceholder.CardCategory);
             int cardCountByCategory = cardPlaceholder.FoundationCard?.CardGroup?.ElementCount ?? 0;
             bool isCategoryComplete = cardCategoryData != null && cardCategoryData.maxCardCount == cardCountByCategory - 1;
             if (!isCategoryComplete) 
@@ -36,6 +26,22 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this._playCardManager.RemoveCardCategory(cardPlaceholder.CardCategory);
             cardPlaceholder.Cleanup();
             return true;
+        }
+
+        public CategoryData GetCardCategoryByCategory(string category)
+        {
+            CategoryData cardCategoryData = null;
+            int categoryCount = this._levelModel.availableCategories.Count;
+            for (int i = 0; i < categoryCount; i++)
+            {
+                if (string.CompareOrdinal(this._levelModel.availableCategories[i].categoryName, category) != 0) 
+                    continue;
+                
+                cardCategoryData = this._levelModel.availableCategories[i];
+                break;
+            }
+
+            return cardCategoryData;
         }
     }
 }

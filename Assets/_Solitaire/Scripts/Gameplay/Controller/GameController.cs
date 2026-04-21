@@ -101,6 +101,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         {
             await UniTask.WaitUntil(() => this._isDataInitialized);
             this._levelManager = new LevelManager(levelModel, this._playCardManager);
+            ServiceLocator.ForSceneOf(this).Register(this._levelManager);
+
             this._cardPlaceholderManager = new CardPlaceholderManager(this.cardPlaceholderPrefab,
                 this.foundationPlaceholderStartPoint.position, this.normalPlaceholderStartPoint.position,
                 this._playCardManager, this.cardPlaceholderContainer, this.cardContainerPoint, this._cardFactory, 
