@@ -70,3 +70,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297e65b832b6ca8469ed7534f535a62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HomeScene.HomeSceneInitializer
+  popupCollection: {fileID: 11400000, guid: 564fd7a2b38bc1047a1594619f18d529, type: 2}
+  uiCanvasManager: {fileID: 0}

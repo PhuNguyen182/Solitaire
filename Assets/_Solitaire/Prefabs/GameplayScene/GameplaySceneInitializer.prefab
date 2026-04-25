@@ -70,3 +70,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9433e7da2dc6f549876cab8530da5e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Solitaire.Scripts.GameplayScene.GameplaySceneInitializer
+  popupCollection: {fileID: 11400000, guid: 564fd7a2b38bc1047a1594619f18d529, type: 2}
+  uiCanvasManager: {fileID: 0}

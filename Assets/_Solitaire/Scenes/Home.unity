@@ -1219,6 +1219,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df8ed821572c0fa48b2303e2d4be9d9b, type: 3}
+--- !u!114 &5335215979248581973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6248603814606084111, guid: df8ed821572c0fa48b2303e2d4be9d9b, type: 3}
+  m_PrefabInstance: {fileID: 5335215979248581972}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e724e2a1665f56439ce48b8a1698f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DracoRuan.Foundation.UISystem.Canvases.UICanvasManager
 --- !u!1001 &5863017167887326496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1227,6 +1238,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3095555024259000041, guid: e51af2323ff2a6742afd159e1b51eb72, type: 3}
+      propertyPath: uiCanvasManager
+      value: 
+      objectReference: {fileID: 5335215979248581973}
     - target: {fileID: 5135588834645974399, guid: e51af2323ff2a6742afd159e1b51eb72, type: 3}
       propertyPath: m_Name
       value: HomeSceneInitializer
