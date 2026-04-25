@@ -103,7 +103,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private void SetupGameResultChecker()
         {
             this._gameResultChecker =
-                new GameResultChecker(this._wordPool, this.cardSupplier, this._stateMachineController);
+                new GameResultChecker(this._playCardManager, this._stateMachineController, this.cardSupplier);
         }
 
         private void SetupLevelModel(LevelModel levelModel)

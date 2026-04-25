@@ -30,6 +30,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         private List<ICard> _supplyCards;
         private WordPool _wordPool;
 
+        public bool IsInfinityMove { get; private set; }
         public event Action<int> OnCardSupply;
 
         private void Awake()
@@ -56,6 +57,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         {
             this._wordPool = wordPool;
             this._moveCount = levelModel.moveCount;
+            this.IsInfinityMove = this._moveCount < 0;
             this.UpdateMoveCount();
             HashSet<string> cardCategories =
                 levelModel.availableCategories.Select(data => data.categoryName).ToHashSet();

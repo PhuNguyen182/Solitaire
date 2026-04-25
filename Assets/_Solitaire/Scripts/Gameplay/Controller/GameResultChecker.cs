@@ -6,31 +6,31 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 {
     public class GameResultChecker : IDisposable
     {
-        private readonly WordPool _wordPool;
-        private readonly CardSupplier _cardSupplier;
+        private readonly PlayCardManager _playCardManager;
         private readonly GameStateMachineController _gameStateMachineController;
+        private readonly CardSupplier _cardSupplier;
 
         private int _currentMove;
         private bool _isLevelCleared;
 
-        public GameResultChecker(WordPool wordPool, CardSupplier cardSupplier,
-            GameStateMachineController gameStateMachineController)
+        public GameResultChecker(PlayCardManager playCardManager, GameStateMachineController gameStateMachineController,
+            CardSupplier cardSupplier)
         {
-            this._wordPool = wordPool;
-            this._cardSupplier = cardSupplier;
+            this._playCardManager = playCardManager;
             this._gameStateMachineController = gameStateMachineController;
+            this._cardSupplier = cardSupplier;
             this.RegisterEvent();
         }
 
         private void RegisterEvent()
         {
-            this._wordPool.OnWordPoolCleaning += this.CheckLevelClear;
+            this._playCardManager.OnLevelCleaning += this.CheckLevelClear;
             this._cardSupplier.OnCardSupply += this.CheckLevelMoveCount;
         }
 
         private void UnregisterEvent()
         {
-            this._wordPool.OnWordPoolCleaning -= this.CheckLevelClear;
+            this._playCardManager.OnLevelCleaning -= this.CheckLevelClear;
             this._cardSupplier.OnCardSupply -= this.CheckLevelMoveCount;
         }
 
@@ -53,7 +53,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 case true when this._currentMove >= 0:
                     this._gameStateMachineController.EndGame(true);
                     break;
-                case false when this._currentMove == 0:
+                case false when this._currentMove == 0 && !this._cardSupplier.IsInfinityMove:
                     this._gameStateMachineController.EndGame(false);
                     break;
             }

@@ -14,6 +14,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private bool _isDisposed;
 
         public HashSet<string> GenerousCategories => this._generousCategories;
+        public event Action<bool> OnLevelCleaning;
 
         #region Card Management
 
@@ -56,6 +57,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         {
             this._cardCategories.Remove(category);
             this.RemoveGenerousCategory(category);
+            this.OnLevelCleaning?.Invoke(this._cardCategories.Count <= 0);
         }
 
         public HashSet<string> GetIncompletedCategories() => this._existingCards.Keys.ToHashSet();

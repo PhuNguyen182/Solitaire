@@ -898,6 +898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Solitaire.Scripts.Gameplay.GameEntity.VisualCard.Card
   cardType: 1
+  ignoreImageContent: 1
   cardIcon: {fileID: 2477639639742694095}
   cardText: {fileID: 6047206874569999135}
   progressionText: {fileID: 5775882537938522114}

@@ -16,6 +16,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
     public class PlayingCard : MonoBehaviour, ICard
     {
         [SerializeField] private CardType cardType;
+        [SerializeField] private bool ignoreImageContent;
 
         [Header("Card Visual")] 
         [SerializeField] private Image cardIcon;
@@ -288,6 +289,13 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         private async UniTask BindCardImageContent(CardModel model)
         {
+            if (this.ignoreImageContent)
+            {
+                this._cardModel.contentType = CardContentType.Text;
+                this.BindCardTextContent(this._cardModel);
+                return;    
+            }
+            
             if (!this.cardIcon)
                 return;
 
