@@ -15,6 +15,8 @@ namespace DracoRuan.CoreSystems.AssetBundleSystem.Runtime
         
         private AsyncOperationHandle<IResourceLocator> _initializeHandle;
 
+        public bool IsInitialized { get; private set; }
+        
         public IAssetBundleLoader AssetBundleLoader { get; }
         public IAssetBundleDownloader AssetBundleDownloader { get; }
         public IAssetBundleCleaner AssetBundleCleaner { get; }
@@ -23,6 +25,7 @@ namespace DracoRuan.CoreSystems.AssetBundleSystem.Runtime
 
         public AssetBundleService()
         {
+            this.IsInitialized = false;
             this.AssetBundleLoader = new AddressableAssetBundleLoader();
             this.AssetBundleResourceLocator = new AddressableAssetBundleResourceLocator();
             this.AssetBundleCleaner = new AddressableAssetBundleCleaner(this.AssetBundleResourceLocator);
@@ -43,6 +46,7 @@ namespace DracoRuan.CoreSystems.AssetBundleSystem.Runtime
                 {
                     Debug.Log($"[{LogTag}] Addressable initialized successfully.");
                     onInitializationComplete?.Invoke();
+                    this.IsInitialized = true;
                     return true;
                 }
 
@@ -70,6 +74,7 @@ namespace DracoRuan.CoreSystems.AssetBundleSystem.Runtime
                 {
                     Debug.Log($"[{LogTag}] Addressable initialized successfully.");
                     await onInitializationComplete;
+                    this.IsInitialized = true;
                     return true;
                 }
 

@@ -1,5 +1,5 @@
-using System;
 using Cysharp.Threading.Tasks;
+using DracoRuan.CoreSystems.AssetBundleSystem.Runtime;
 using DracoRuan.Foundation.DataFlow.MasterDataController;
 using ServiceLocators.Core;
 using UnityEngine;
@@ -8,16 +8,22 @@ namespace ProjectScope
 {
     public class ProjectInitializer : MonoBehaviour
     {
+        private IAssetBundleService _assetBundleService;
         private MainDataManager _mainDataManager;
+        
+        public bool AllServiceRegistered { get; private set; }
 
         private void Awake()
         {
+            this.AllServiceRegistered = false;
             this.RegisterServices().Forget();
         }
 
         private async UniTask RegisterServices()
         {
+            await this.RegisterAssetBundleService();
             await this.InitializeDataManager();
+            this.AllServiceRegistered = true;
         }
 
         private async UniTask InitializeDataManager()
@@ -25,6 +31,13 @@ namespace ProjectScope
             this._mainDataManager = new MainDataManager();
             await this._mainDataManager.InitializeDataHandlers();
             ServiceLocator.Global.Register(this._mainDataManager);
+        }
+        
+        private async UniTask RegisterAssetBundleService()
+        {
+            this._assetBundleService = new AssetBundleService();
+            await this._assetBundleService.Initialize();
+            ServiceLocator.Global.Register(this._assetBundleService);
         }
 
         #region Data Saving

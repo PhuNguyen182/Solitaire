@@ -4,6 +4,7 @@ using _Solitaire.Scripts.Gameplay.GameEntity.Group;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.Level;
 using Cysharp.Threading.Tasks;
+using DracoRuan.CoreSystems.AssetBundleSystem.Runtime;
 using DracoRuan.CoreSystems.AssetBundleSystem.Runtime.Interfaces;
 using ServiceLocators.Core;
 using UnityEngine;
@@ -63,6 +64,7 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             this._cardSupplier = ServiceLocator.ForSceneOf(this).Get<CardSupplier>();
             this._levelManager = ServiceLocator.ForSceneOf(this).Get<LevelManager>();
             this._wordPool = ServiceLocator.ForSceneOf(this).Get<WordPool>();
+            this._assetLoader = ServiceLocator.Global.Get<IAssetBundleService>().AssetBundleLoader;
         }
 
         #region Card Visuals
