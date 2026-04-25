@@ -74,6 +74,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this.InitializeWordPool(levelModel);
             this.SetupLevelModel(levelModel);
             this.SetupGameResultChecker();
+            this._stateMachineController.StartPlayGame();
         }
 
         private void InitializeWordPool(LevelModel levelModel)
