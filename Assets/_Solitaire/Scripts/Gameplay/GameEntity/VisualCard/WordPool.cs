@@ -10,6 +10,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 
         private readonly Dictionary<string, CardModelByCategory> _wordsPool = new();
 
+        public event Action<bool> OnWordPoolCleaning;
+        public bool HasWordPoolInitialized { get; set; }
+
         public int GetCardCountByCategory(string categoryName)
         {
             CardModelByCategory cardModelByCategory = this._wordsPool.GetValueOrDefault(categoryName);
@@ -54,6 +57,24 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
             
             cardModelByCategory.RemoveCardModel(word);
             this._wordsPool[categoryName] = cardModelByCategory;
+            if (this.HasWordPoolInitialized)
+            {
+                int remainWordCount = GetRemainWordCount();
+                this.OnWordPoolCleaning?.Invoke(remainWordCount <= 0);
+            }
+
+            return;
+
+            int GetRemainWordCount()
+            {
+                int wordCount = 0;
+                foreach (var kvp in _wordsPool)
+                {
+                    wordCount += kvp.Value.CardCount;
+                }
+
+                return wordCount;
+            }
         }
 
         private void ReleaseUnmanagedResources()
@@ -82,32 +103,6 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         ~WordPool()
         {
             this.Dispose(false);
-        }
-    }
-
-    public class CardModelByCategory
-    {
-        private readonly HashSet<CardModel> _cardModels;
-        
-        public string CategoryName { get; private set; }
-        public int CardCount => this._cardModels?.Count ?? 0;
-
-        public CardModelByCategory(string categoryName, int numberOfWord)
-        {
-            this.CategoryName = categoryName;
-            this._cardModels = new HashSet<CardModel>(numberOfWord);
-        }
-        
-        public void AddCardModel(CardModel cardModel) => this._cardModels.Add(cardModel);
-
-        public void RemoveCardModel(CardModel cardModel) => this._cardModels.Remove(cardModel);
-
-        public CardModel GetRandomCardModel() => this._cardModels.GetRandomElement();
-
-        public void Cleanup()
-        {
-            this.CategoryName = null;
-            this._cardModels.Clear();
         }
     }
 }

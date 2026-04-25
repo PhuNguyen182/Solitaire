@@ -1,7 +1,9 @@
 using _Solitaire.Scripts.Gameplay.Level;
 using _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers;
+using _Solitaire.Scripts.Gameplay.Controller.StateMachine;
 using _Solitaire.Scripts.Gameplay.GameEntity.Placeholder;
 using _Solitaire.Scripts.Gameplay.GameEntity.VisualCard;
+using _Solitaire.Scripts.GameplayScene.UI.GameUI;
 using DracoRuan.Foundation.DataFlow.MasterDataController;
 using ServiceLocators.Core;
 using UnityEngine;
@@ -10,6 +12,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 {
     public class GameController : MonoBehaviour
     {
+        [SerializeField] private GameplayUI gameplayUI;
         [SerializeField] private Camera mainCamera;
         
         [Header("Card Mapping")]
@@ -27,9 +30,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller
         private CardFactory _cardFactory;
         private PlayCardManager _playCardManager;
         private CardPlaceholderManager _cardPlaceholderManager;
-        private RawLevelConfigDataController _rawLevelConfigDataController;
+        private GameStateMachineController _stateMachineController;
+        private PlayerProgressionDataController _playerProgressionDataController;
         private CardSupplyProbabilityConfigDataController _cardSupplyProbabilityConfigDataController;
-        private MainDataManager _mainDataManager;
+        private RawLevelConfigDataController _rawLevelConfigDataController;
+        private GameResultChecker _gameResultChecker;
         private LevelManager _levelManager;
         private WordPool _wordPool;
 
@@ -45,25 +50,30 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private void InitializeGame()
         {
-            this._mainDataManager = ServiceLocator.Global.Get<MainDataManager>();
+            var mainDataManager = ServiceLocator.Global.Get<MainDataManager>();
             this._rawLevelConfigDataController =
-                this._mainDataManager.GetStaticDataController<RawLevelConfigDataController>();
-            this._cardSupplyProbabilityConfigDataController = this._mainDataManager
+                mainDataManager.GetStaticDataController<RawLevelConfigDataController>();
+            this._cardSupplyProbabilityConfigDataController = mainDataManager
                 .GetStaticDataController<CardSupplyProbabilityConfigDataController>();
+            this._playerProgressionDataController =
+                mainDataManager.GetDynamicDataController<PlayerProgressionDataController>();
             
             this._playCardManager = new PlayCardManager();
+            this._stateMachineController = new GameStateMachineController();
             this._cardFactory = new CardFactory(this.playingCardPrefab, this.mainCamera);
             this.dragAndDropController.SetPlayCardManager(this._playCardManager);
             this.cardSupplier.InitServices(this._playCardManager, this._cardFactory,
-                this._cardSupplyProbabilityConfigDataController);
+                this._cardSupplyProbabilityConfigDataController, this.gameplayUI);
             ServiceLocator.ForSceneOf(this).Register(this.cardSupplier);
         }
 
         private void StartGameLevel()
         {
-            LevelModel levelModel = this._rawLevelConfigDataController.BuildLevelModel(1, this._playCardManager);
+            int level = this._playerProgressionDataController.GetCurrentPlayLevel();
+            LevelModel levelModel = this._rawLevelConfigDataController.BuildLevelModel(level, this._playCardManager);
             this.InitializeWordPool(levelModel);
             this.SetupLevelModel(levelModel);
+            this.SetupGameResultChecker();
         }
 
         private void InitializeWordPool(LevelModel levelModel)
@@ -89,6 +99,12 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             ServiceLocator.ForSceneOf(this).Register(this._wordPool);
         }
 
+        private void SetupGameResultChecker()
+        {
+            this._gameResultChecker =
+                new GameResultChecker(this._wordPool, this.cardSupplier, this._stateMachineController);
+        }
+
         private void SetupLevelModel(LevelModel levelModel)
         {
             this._levelManager = new LevelManager(levelModel, this._playCardManager);
@@ -102,10 +118,12 @@ namespace _Solitaire.Scripts.Gameplay.Controller
             this._cardPlaceholderManager.BuildLevel(levelModel);
             this.dragAndDropController.SetCardPlaceholderManager(this._cardPlaceholderManager);
             this.cardSupplier.SetLevelModel(levelModel, this._wordPool);
+            this._wordPool.HasWordPoolInitialized = true;
         }
 
         private void OnDestroy()
         {
+            this._gameResultChecker.Dispose();
             this._playCardManager.Dispose();
             this._wordPool?.Dispose();
         }

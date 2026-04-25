@@ -18,6 +18,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         protected override SerializationType SerializationType => SerializationType.Json;
         protected override DataSourceType DataSourceType => DataSourceType.File;
         
+        public bool IsCheatMode { get; set; }
+        
         public override void Initialize()
         {
             
@@ -25,7 +27,11 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
 
         #region Level Progress Accessing
         
-        public int GetCurrentPlayLevel() => this.SourceData.currentLevel;
+        public int GetCurrentPlayLevel()
+        {
+            int level = this.IsCheatMode ? this._cheatingLevel : this.SourceData.currentLevel;
+            return level;
+        }
 
         public void IncreaseLevel()
         {
@@ -44,8 +50,6 @@ namespace _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers
         #region For Cheating
         
         public void SelectCheatingLevel(int level) => this._cheatingLevel = level;
-        
-        public int GetCheatingLevel() => this._cheatingLevel;
 
         #endregion
     }

@@ -1,11 +1,14 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using _Solitaire.Scripts.Gameplay.Controller;
 using _Solitaire.Scripts.Gameplay.Controller.DataController.Controllers;
 using _Solitaire.Scripts.Gameplay.Level;
+using _Solitaire.Scripts.GameplayScene.UI.GameUI;
 using Extensions;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
 {
@@ -17,12 +20,17 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         [SerializeField] private Transform[] cardPositions;
         [SerializeField] private int maxSupplyCardCount = 3;
 
+        private int _moveCount;
         private float _generousProbability;
+        
         private CardFactory _cardFactory;
         private PlayCardManager _playCardManager;
         private CardSupplyProbabilityConfigDataController _cardSupplyProbabilityConfigDataController;
+        private GameplayUI _gameplayUI;
         private List<ICard> _supplyCards;
         private WordPool _wordPool;
+
+        public event Action<int> OnCardSupply;
 
         private void Awake()
         {
@@ -35,17 +43,20 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
         }
 
         public void InitServices(PlayCardManager playCardManager, CardFactory cardFactory,
-            CardSupplyProbabilityConfigDataController dataController)
+            CardSupplyProbabilityConfigDataController dataController, GameplayUI gameplayUI)
         {
             this._cardFactory = cardFactory;
             this._playCardManager = playCardManager;
             this._cardSupplyProbabilityConfigDataController = dataController;
             this._generousProbability = this._cardSupplyProbabilityConfigDataController.GetGenerousProbability();
+            this._gameplayUI = gameplayUI;
         }
 
         public void SetLevelModel(LevelModel levelModel, WordPool wordPool)
         {
             this._wordPool = wordPool;
+            this._moveCount = levelModel.moveCount;
+            this.UpdateMoveCount();
             HashSet<string> cardCategories =
                 levelModel.availableCategories.Select(data => data.categoryName).ToHashSet();
             this._playCardManager.InitializeCardCategories(cardCategories);
@@ -111,6 +122,9 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 this._supplyCards.Add(supplyCard);
                 this._wordPool.RemoveWordByCategory(providedCardModel.cardCategory, providedCardModel);
                 this.RecalculateSuppliedCardPositionsAndLayers();
+
+                if (this._moveCount > 0)
+                    this.DecreaseMoveCount(1);
             }
         }
 
@@ -147,6 +161,27 @@ namespace _Solitaire.Scripts.Gameplay.GameEntity.VisualCard
                 ? this.GetRandomCardCategoryCard() 
                 : categories.GetRandomElement();
             return result;
+        }
+
+        public void IncreaseMoveCount(int moveCount)
+        {
+            this._moveCount += moveCount;
+            this.UpdateMoveCount();
+        }
+
+        private void DecreaseMoveCount(int moveCount)
+        {
+            this._moveCount -= moveCount;
+            if (this._moveCount < 0)
+                this._moveCount = 0;
+            
+            this.UpdateMoveCount();
+        } 
+
+        private void UpdateMoveCount()
+        {
+            this._gameplayUI.SetMoveCount(this._moveCount);
+            this.OnCardSupply?.Invoke(this._moveCount);
         }
 
         private void OnDisable()
