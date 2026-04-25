@@ -26,7 +26,9 @@ namespace _Solitaire.Scripts.HomeScene
         private async UniTask RegisterUIManager()
         {
             await UniTask.CompletedTask;
-            ServiceLocator.ForSceneOf(this).Register(typeof(IUIPopupManager), this.uiCanvasManager);
+            if (this.uiCanvasManager is IUICanvasManager canvasManager)
+                ServiceLocator.ForSceneOf(this).Register(canvasManager);
+            
             this._popupManager = new UIPopupManager(this.popupCollection);
             ServiceLocator.ForSceneOf(this).Register(this._popupManager);
         }
