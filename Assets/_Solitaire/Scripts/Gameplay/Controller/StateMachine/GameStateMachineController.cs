@@ -1,15 +1,18 @@
 using System;
+using _Solitaire.Scripts.GameplayScene.UI.GameUI;
 using Stateless;
 
 namespace _Solitaire.Scripts.Gameplay.Controller.StateMachine
 {
     public class GameStateMachineController : IDisposable
     {
+        private readonly GameplayUI _gameplayUI;
         private StateMachine<GameState, GameTrigger> _stateMachine;
         private StateMachine<GameState, GameTrigger>.TriggerWithParameters<bool> _endGameStateTrigger;
 
-        public GameStateMachineController()
+        public GameStateMachineController(GameplayUI gameplayUI)
         {
+            this._gameplayUI = gameplayUI;
             this.BuildGameStateMachine();
         }
 
@@ -65,7 +68,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller.StateMachine
 
         private void OnEndGame(bool isWinGame)
         {
-            
+            this._gameplayUI.ShowEndGameScreen(isWinGame);
         }
 
         private void OnQuitGame()

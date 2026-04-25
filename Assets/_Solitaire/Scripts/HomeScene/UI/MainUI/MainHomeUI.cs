@@ -52,9 +52,17 @@ namespace _Solitaire.Scripts.HomeScene.UI.MainUI
 
         private void OnLevelInputFieldUpdate(string input)
         {
+            bool isInputValid = !string.IsNullOrEmpty(input);
+            if (!isInputValid)
+            {
+                this.playButton.interactable = false;
+                return;
+            }
+            
             int level = int.Parse(input);
             if (level < 1)
                 this.levelInput.text = "1";
+            this.playButton.interactable = true;
         }
 
         private void OnDestroy()

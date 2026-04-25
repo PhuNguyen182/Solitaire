@@ -59,7 +59,7 @@ namespace _Solitaire.Scripts.Gameplay.Controller
                 mainDataManager.GetDynamicDataController<PlayerProgressionDataController>();
             
             this._playCardManager = new PlayCardManager();
-            this._stateMachineController = new GameStateMachineController();
+            this._stateMachineController = new GameStateMachineController(this.gameplayUI);
             this._cardFactory = new CardFactory(this.playingCardPrefab, this.mainCamera);
             this.dragAndDropController.SetPlayCardManager(this._playCardManager);
             this.cardSupplier.InitServices(this._playCardManager, this._cardFactory,
