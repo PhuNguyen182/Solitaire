@@ -20,6 +20,7 @@ namespace DracoRuan.Foundation.UISystem.Canvases
             this.canvas.sortingOrder = canvasConfig.sortingOrder;
             this.canvas.pixelPerfect = canvasConfig.pixelPerfect;
             this.canvas.planeDistance = canvasConfig.planeDistance;
+            this.gameObject.name = $"UICanvas{canvasConfig.name}";
         }
 
 #if UNITY_EDITOR
