@@ -826,7 +826,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: USE_EXTENDED_ADDRESSABLE;USE_LOGGER_UTILS
+    Android: USE_EXTENDED_ADDRESSABLE;USE_LOGGER_UTILS;UNITASK_DOTWEEN_SUPPORT
     Standalone: USE_LOGGER_UTILS
   additionalCompilerArguments: {}
   platformArchitecture: {}

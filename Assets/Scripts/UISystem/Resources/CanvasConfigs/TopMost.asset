@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28052dff7685b394c8710530357bae12, type: 3}
+  m_Script: {fileID: 11500000, guid: 996d691b2fbc58c4b903006c972548a0, type: 3}
   m_Name: TopMost
   m_EditorClassIdentifier: Assembly-CSharp::DracoRuan.Foundation.UISystem.Canvases.CanvasConfig
   canvasCategory: 8
   pixelPerfect: 0
-  renderMode: 0
+  renderMode: 1
   planeDistance: 100
-  sortingOrder: 2400
+  sortingOrder: 10100
