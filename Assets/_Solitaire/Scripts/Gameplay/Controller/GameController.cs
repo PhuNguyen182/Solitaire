@@ -12,6 +12,8 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 {
     public class GameController : MonoBehaviour
     {
+        private const float StandardScreenSize = 9f / 16f;
+        
         [SerializeField] private GameplayUI gameplayUI;
         [SerializeField] private Camera mainCamera;
         
@@ -40,12 +42,24 @@ namespace _Solitaire.Scripts.Gameplay.Controller
 
         private void Awake()
         {
+            this.PreGameSetup();
             this.InitializeGame();
         }
 
         private void Start()
         {
             this.StartGameLevel();
+        }
+
+        private void PreGameSetup()
+        {
+            float cameraRatio = this.mainCamera.aspect;
+            float cameraSize = this.mainCamera.orthographicSize;
+            if (!(cameraRatio < StandardScreenSize)) 
+                return;
+            
+            float ratio = StandardScreenSize / cameraRatio;
+            this.mainCamera.orthographicSize = ratio * cameraSize;
         }
 
         private void InitializeGame()
