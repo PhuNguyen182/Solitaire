@@ -16,7 +16,19 @@ namespace ProjectScope
         private void Awake()
         {
             this.AllServiceRegistered = false;
+            this.SetupProject();
             this.RegisterServices().Forget();
+        }
+
+        private void SetupProject()
+        {
+#if !UNITY_EDITOR && (UNITY_ANDROID || UNITY_IOS)
+            Application.targetFrameRate = Screen.currentResolution.refreshRateRatio.value <= 60
+                ? 60
+                : (int)Screen.currentResolution.refreshRateRatio.value;
+#else
+            Application.targetFrameRate = -1;
+#endif
         }
 
         private async UniTask RegisterServices()
