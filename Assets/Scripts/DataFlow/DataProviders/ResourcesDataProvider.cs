@@ -34,8 +34,8 @@ namespace DracoRuan.Foundation.DataFlow.DataProviders
             }
             finally
             {
-                if (asset)
-                    Resources.UnloadAsset(asset);
+                /*if (asset)
+                    Resources.UnloadAsset(asset);*/
             }
         }
 
